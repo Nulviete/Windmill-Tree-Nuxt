@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Navbar
+.navbar {
+    background-color: #D4E4B7;
+}
+.navbar-link {
+    padding: 10px 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.navbar-link:hover {
+    background-color: #c0cea6;
+}
+.navbar-logo {
+    width: 200px;
+    min-width: 200px;
+}
+
+// Hero
+.hero-img {
+    background-image: url('/assets/hero/Windmill_Tree.png');
+    height: 85vh;
+    background-position: center;
+    background-size: cover;
+    color: #e9fdd5;
+    position: relative;
+}
+.hero-img h1 {
+    font-size: 8em;
+    text-align: center;
+    
+}
+.hero-img h3 {
+    font-size: 3em;
+    text-align: center;
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    bottom: 0;
+    padding: 20px 0;
+    margin: 0;
+    
+}
+
+// socials
+.icon {
+    width: 56px;
+    height: 56px;
+}
+a {
+    padding: 10px 45px;
+}
+.socials {
+    background-color: #BDBDBD;
+    padding: 16px 0;
+}
+
+// Foundation description text
+.Foundation-description {
+    font-size: 2em;
+    padding: 3rem 3rem;
+}
