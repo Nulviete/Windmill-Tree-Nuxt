@@ -1,6 +1,6 @@
 <template>
     <div class="text-center" v-if="dataLoaded">
-        <div class="max-w-2xl mx-auto">
+        <div class="max-w-2xl mx-auto px-20 pt-32 -mt-24" style="background-color: #b7d189; height: 100vh">
             <div class="font-bold text-4xl p-10">{{ project[0].name }}</div>
             <div class="year pb-5 text-gray-500"> {{ project[0].year }}</div>
             <div class="text-lg">{{ project[0].projectDescription }}</div>

@@ -28,6 +28,7 @@ const props = defineProps({
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     transition: all 0.3s;
+    background: #D4E4B7;
 }
 .card:hover {
     box-shadow: 0px 0px 20px 10px rgba(255, 255, 255, 0.5);
