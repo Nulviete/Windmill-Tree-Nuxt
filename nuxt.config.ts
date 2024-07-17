@@ -2,13 +2,21 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/tailwindcss', 
     '@vesp/nuxt-fontawesome',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
+    "@nuxt/ui"
   ],
   css: [
     '~/assets/css/main.scss'
-  ]
- 
+  ],
+  supabase: {
+    redirect: false
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   
 })

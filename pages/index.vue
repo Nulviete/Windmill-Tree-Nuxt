@@ -4,7 +4,7 @@
     <div>
         <!-- Hero img -->
         <div class="hero-img vertical-center">
-            <h1 class="py-12">Windmill Tree</h1>
+            <h1 class="py-12 hero-title">Windmill Tree</h1>
             <h3 class="text-center w-full"> ,,Give a person a little of yourself. <br>
              For this, the soul is filled with light." -Lina Kostenko </h3>
         </div>
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Foundation description -->
-        <div class="Foundation-description text-justify">
+        <div class="Foundation-description text-justify max-w-2xl mx-auto">
             Windmill Tree is not just a foundation: we are a family on a true-hearted journey.<br><br> Our goal? To fill this world with creativity, make youth and social work even better. We are connecting with rural youth and creating bonds between countries.
             <br><br>Located in the breathtaking Izery Mountains region, our diverse team is a bland of individuals from Poland, Ukraine, Germany and Czech Republic. We're inviting you to be part of something special. <br><br> Let's build a world where everyone is included, and every little bit of effort transforms into something wonderfully positive. <br><br> Welcome home!
         </div>
@@ -57,5 +57,23 @@
 </script>
 
 <style lang="scss" scoped>
-
+@media (max-width: 640px) {
+.socials {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+} 
+.icon {
+    margin: auto;
+}
+.hero-title {
+    padding-top: 2.5em;
+    padding-bottom: 1em;
+    font-size: 50px;
+    text-shadow: #FC0 1px 0 10px;
+}
+h3 {
+    font-size: 30px;
+}
+}
 </style>

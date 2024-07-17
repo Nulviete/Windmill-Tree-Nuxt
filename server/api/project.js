@@ -4,7 +4,11 @@ export default defineEventHandler(async (event) => {
 
     const client = await serverSupabaseClient(event)
 
-    const { data } = await client.from('members').select('*')  
+    const query = getQuery(event)
+
+    const name = query.name
+
+    const { data } = await client.from('projects').select('*').eq('name', name)  
         
     return { data } 
 })
