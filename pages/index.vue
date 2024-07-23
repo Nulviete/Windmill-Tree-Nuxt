@@ -58,6 +58,7 @@
 </script>
 
 <style lang="scss" scoped>
+
 .hero-block {
     position: relative;
     top: -90px;
@@ -65,23 +66,17 @@
 .Foundation-description {
     background-color: #b7d189
 }
-
-
-
-
-@media (min-width: 640px) {
-
 .hero-title {
     padding-top: 1.0em;
+    min-height: 400px;
 }
 .hero-img h3 {
     font-size: 40px;
 }
-}
 
 
-
-@media (max-width: 640px) {
+/* 640 */
+@media (max-width: 900px) {
 .socials {
     display: flex;
     flex-direction: row;
@@ -103,11 +98,7 @@
     font-size: 20px;
 }
 }
+/* 640 */
 
-@media (max-width: 800) {
-.hero-img h3 {
-    font-size: 5px;
-}
-}
 
 </style>

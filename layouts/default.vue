@@ -16,5 +16,7 @@ const fullscreenMode = useFullscreen()
 .footer {
     bottom: 0;
     left: 0;
+    position: relative;
 }
+
 </style>

@@ -1,17 +1,14 @@
 <template>
     <div class="text-center" v-if="dataLoaded">
-        <div class="body max-w-2xl mx-auto px-20 pt-32 -mt-24 mb-0" style="background-color: #b7d189; min-height: 100vh">
-            <div class="font-bold text-4xl p-10">{{ project[0].name }}</div>
-            <div class="year pb-5 text-gray-500"> {{ project[0].year }}</div>
-            <div class="text-lg">{{ project[0].projectDescription }}</div>
+        <div class="body max-w-2xl mx-auto px-20 pt-32 -mt-24 mb-0" style="background-color: #b7d189; min-height: 100vh; height: auto;">
+            <div class="font-bold text-4xl p-10" :class="{ hidden: fullscreenMode}">{{ project[0].name }}</div>
+            <div class="year pb-5 text-gray-500" :class="{ hidden: fullscreenMode}"> {{ project[0].year }}</div>
+            <div class="text-lg" :class="{ hidden: fullscreenMode}">{{ project[0].projectDescription }}</div>
 
-            
                 <div class="gallery" :class="{ galleryfull: fullscreenMode }" >
                 <Carousel class="max-h-3" :photos="project[0].photos"  />
                 </div>
-           
-            
-            
+         
         </div>   
     </div> 
     <div v-else>DATA LOADING</div> 
@@ -52,7 +49,9 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .gallery {
-    padding-top: 15px;
+    min-height: 440px;
+    padding-top: 2.5vh;
+    position: relative;
 }
 .galleryfull {
     position: absolute;
@@ -63,13 +62,16 @@ onMounted(async () => {
     margin: auto;
     background: black;
     max-width: 1200px;
-    padding-top: 5vh;
+}
+.hidden {
+    display: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 625px) {
 .body {
     padding-left: 0px;
     padding-right: 0px;
 }
 }
+
 </style>
