@@ -49,7 +49,8 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .gallery {
-    min-height: 440px;
+    min-height: 100vh;
+    max-height: 100vh;
     padding-top: 2.5vh;
     position: relative;
 }
