@@ -30,6 +30,11 @@ const fullscreen = () => {
 .cont {
   max-height: 100vh;
 }
+img {
+  max-height: 95vh;
+  width: auto;
+  margin: auto;
+}
 @media (max-height: 530px) {
 img {
     max-height: 95vh;
