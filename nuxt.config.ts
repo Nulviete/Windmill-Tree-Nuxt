@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
+      title: 'Windmill Tree Foundation',
       meta: [ { name: "google-site-verification", content: "hLKALut4Uu3-zTOQhlRhT-laE6sj4vtjNhZ5UrOyB3s" }],
       script: [{
         type: 'application/ld+json',
