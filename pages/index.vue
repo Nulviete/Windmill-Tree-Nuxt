@@ -3,9 +3,9 @@
         <!-- Hero img -->
         <div class="hero-block">
 <div class="hero-img vertical-center">
-            <h1 class="py-12 hero-title">Windmill Tree</h1>
-            <h3 class="text-center w-full"> ,,Give a person a little of yourself. <br>
-             For this, the soul is filled with light." -Lina Kostenko </h3>
+            <!-- <h1 class="py-12 hero-title">Windmill Tree</h1> -->
+            <h3 class=" w-full"> …the worst is not that everything might <span class="hero-text-hl">change</span>  <br>
+                 but that everything remains the <span class="hero-text-hl">same!</span> </h3>
         </div>
         
         <!-- Socials -->
@@ -61,7 +61,7 @@
 
 .hero-block {
     position: relative;
-    top: -90px;
+    top: -95px;
 }
 .Foundation-description {
     background-color: #b7d189

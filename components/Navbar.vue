@@ -29,9 +29,9 @@
              </UDropdown>
         </div>
         <div class="choose-lang">
-            <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
-            <UButton class="bg-lime-600" label="Choose language" trailing-icon="i-heroicons-chevron-down-20-solid" />
-        </UDropdown>
+            <div>
+                UA | EN | PL
+            </div>
         </div>
         
     </div>

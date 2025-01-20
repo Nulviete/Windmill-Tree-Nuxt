@@ -4,7 +4,8 @@
 
 // Navbar
 .navbar {
-    background-color: #D4E4B7;
+    background-color: rgba(144,169,85, 0.4);
+    backdrop-filter: blur(20px);
 }
 .navbar-link {
     padding: 10px 10px;
@@ -22,10 +23,9 @@
 // Hero
 .hero-img {
     background-image: url('/assets/hero/Windmill_Tree.png');
-    min-height: 480px;
-    height: 85vh;
-    background-position: center;
-    background-size: cover;
+    background-size: 100% 85vh;
+    background-repeat: no-repeat;
+    min-height: 100vh;
     color: #e9fdd5;
     position: relative;
 }
@@ -35,14 +35,18 @@
     
 }
 .hero-img h3 {
-    font-size: 3em;
-    text-align: center;
-    background: rgba(0,0,0,.5);
+    font-weight: bold;
+    color: black;
+    text-align: left;
     position: absolute;
-    bottom: 0;
-    padding: 20px 0;
+    bottom: 18vh;
+    left: 20px;
+    padding: 20px 40px;
     margin: 0;
     
+}
+.hero-text-hl {
+    color: green;
 }
 
 // socials
@@ -56,6 +60,7 @@ a {
 .socials {
     background-color: #BDBDBD;
     padding: 16px 0;
+    margin-top: 60px;
 }
 
 // Foundation description text

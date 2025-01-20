@@ -15,24 +15,30 @@ export default defineNuxtConfig({
       }]
     }
   },
+
   ssr: false,
   devtools: { enabled: true },
+
   modules: [
     '@vesp/nuxt-fontawesome',
     '@nuxtjs/supabase',
     "@nuxt/ui"
   ],
+
   css: [
     '~/assets/css/main.scss'
   ],
+
   supabase: {
     redirect: false
   },
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  
+
+  compatibilityDate: "2025-01-12",
 })
