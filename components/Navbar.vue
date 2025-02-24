@@ -23,7 +23,13 @@
                 Toolbox
             </NuxtLink>
         </div>
+        
         <div class="burger-menu">
+            <div class="nav-socials">
+            <img src="~/assets/icons/fb-nav.png" alt="" srcset="">
+            <img src="~/assets/icons/ig-nav.png" alt="" srcset="">
+            <img src="~/assets/icons/yt-nav.png" alt="" srcset="">
+        </div>
             <UDropdown :items="menuItems" :popper="{ placement: 'bottom-start' }">
                 <IconsMenu class="menu" />
              </UDropdown>
@@ -119,6 +125,7 @@ onMounted(() => {
     padding: 1px;
 }
 
+
 /* Scrool stuff */
 .scroll-down  {
     transform: translate3d(0, -100%, 0);
@@ -126,24 +133,45 @@ onMounted(() => {
 .scroll-up  {
     filter: drop-shadow(0 -10px 20px rgb(170,170,170));
 }
-.menu {
-    width: 50px;
+
+.nav-socials {
+    display: flex;
+    flex-direction: row;
+    padding-right: 25px
+}
+.nav-socials img {
+    padding-right: 0px;
+    padding-left: 20px;
 }
 
 
-@media (max-width: 640px) {
-  .navbar-link {
-    display: none;
-  }   
-  .choose-lang {
-    display: none;
-  }
-}
-@media (min-width: 640px) {
-  .burger-menu {
-    display: none;
+@media (max-width: 900px) {
+    .burger-menu {
+        display: flex;
+        flex-direction: row;
+    }
+    .navbar-logo img {
+        width: 100px;
+    }
+    .navbar{
+        height: 71px;
+    }
+    .navbar-link {
+        display: none;
+    }   
+    .choose-lang {
+        display: none;
+    }
     
-  }
+}
+
+@media (min-width: 900px) {
+    .burger-menu {
+        display: none;
+    }
+    .nav-socials {
+        display: none;
+    }
   } 
 
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col h-screen">
+    <div class="flex flex-col" style="background-color: white;">
         <Navbar v-if="!fullscreenMode" />
-        <NuxtPage class="flex-grow pt-24" style="background-image: url('/back/stem_mod.jpeg'); background-repeat: repeat; background-position: center; background-color: #cccccc;" />
+        <NuxtPage class="" style="color: black;" />
         <Footer v-if="!fullscreenMode" class="footer z-10 bottom-0" />
     </div>
     
@@ -17,6 +17,7 @@ const fullscreenMode = useFullscreen()
     bottom: 0;
     left: 0;
     position: relative;
+    color: black;
 }
 
 </style>
