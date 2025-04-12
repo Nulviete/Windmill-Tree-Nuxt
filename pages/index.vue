@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="-mt-40">
         <!-- Hero img -->
         <div class="hero-block">
             <picture>
@@ -52,27 +52,43 @@
         </div>
     
 
-        <div class="latest-news-list">
+        <div v-if="news.length!=0" class="latest-news-list" >
             <div class="new pt-16 pb-8 pl-20">
                 <div class="new-image">
-                    <img src="~/assets/tmp/new-example.png" alt="">
+                    <img :src="news[0].new_img" alt="">
                 </div>
                 <div class="new-info">
-                    <div class="new-name">Tratwa dla powodzian</div>
-                    <div class="new-date">07.09.2024</div>
-                    <div class="new-des">Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text ...</div>
+                    <div class="new-name">{{ news[0].new_title }}</div>
+                    <div class="new-date">{{ news[0].created_at.substr(8, 2) }}.{{ news[0].created_at.substr(5, 2) }}.{{ news[0].created_at.substr(0, 4) }}</div>
+                    <div v-for="phrase in news[0].new_body" :key="phrase">
+                        <div class="new-des">{{ phrase }}</div>
+                        <br>
+                    </div>
+                    <div v-for="signature in news[0].new_signature" :key="signature">
+                        <div class="new-des">{{ signature }}</div>
+                        <br>
+                    </div>
+                    
                 </div>
             </div>
             <hr class="first-new-line">
 
                 <div class="new pt-16 pb-8 pl-20">
                     <div class="new-image">
-                        <img src="~/assets/tmp/new-example.png" alt="">
+                        <img :src="news[1].new_img" alt="">
                     </div>
                     <div class="new-info">
-                        <div class="new-name">Tratwa dla powodzian</div>
-                        <div class="new-date">07.09.2024</div>
-                        <div class="new-des">Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text ...</div>
+                        <div class="new-name">{{ news[1].new_title }}</div>
+                        <div class="new-date">{{ news[1].created_at.substr(8, 2) }}.{{ news[0].created_at.substr(5, 2) }}.{{ news[1].created_at.substr(0, 4) }}</div>
+                        <div v-for="phrase in news[1].new_body" :key="phrase">
+                        <div class="new-des">{{ phrase }}</div>
+                        <br>
+                    </div>
+                        <div v-for="signature in news[1].new_signature" :key="signature">
+                            <div class="new-des">{{ signature }}</div>
+                            <br>
+                        </div>
+                        
                     </div>
                 </div>
                 <hr class="second-new-line">
@@ -179,6 +195,8 @@
 
              <!-- A bit of numbers section -->
 
+             <!-- PC version -->
+
              <div class="numbers-title">
                 A Bit Of Numbers...
              </div>
@@ -204,14 +222,48 @@
                 
              </div>
 
+             <!-- Phone version -->
+             <div class="numbers-images-mob mob-ver">
+
+                <div class="numbers-image">
+                    <img src="~/assets/numbers/numbers-1-mob.png" alt="" srcset="">
+                    <div class="number">400+</div>
+                    <div class="number-text" style="height: 55px;">Participants from all around the world took part in our projects</div>
+                </div>
+
+                <div class="numbers-image">
+                    <img src="~/assets/numbers/numbers-2-mob.png" alt="" srcset="">
+                    <div class="number">20+</div>
+                    <div class="number-text" style="height: 55px; font-size: 20px;">Projects organised</div>
+                </div>
+
+                <div class="numbers-image">
+                    <img src="~/assets/numbers/numbers-3-mob.png" alt="" srcset="">
+                    <div class="number">20+</div>
+                    <div class="number-text" style="height: 55px; font-size: 20px;">International partners</div>
+                </div>
+                
+             </div>
+
              <div class="our-partners">
                 <div class="our-partners-title">
                     Our Partners
                 </div>
-                <div class="partners-logos">
-                    <img src="~/assets/partners/partners-1.png" alt="" srcset="">
-                    <img src="~/assets/partners/partners-2.png" alt="" srcset="">
+                <div class="pc-ver">
+                    <div class="partners-logos">
+                                        <img src="~/assets/partners/partners-1.png" alt="" srcset="" style="padding-right: 50px;">
+                                        <img src="~/assets/partners/partners-2.png" alt="" srcset="">
+                                    </div>
                 </div>
+
+                <div class="mob-ver">
+                    <div class="partners-logos">
+                                        <img src="~/assets/partners/partners-1-mob.png" alt="" style="align-self: flex-start;">
+                                        <img src="~/assets/partners/partners-2-mob.png" alt="" style="align-self: flex-end;">
+                                    </div>
+                </div>
+                
+                
              </div>
             
 
@@ -224,6 +276,19 @@
 
 <script setup>
 
+
+const news = ref([])
+
+onMounted(async () => {
+    const { data } = await $fetch('api/news', {
+        headers: useRequestHeaders(['cookie']),
+        key: 'data-from-server',
+        transform: data => data.data
+    })
+    news.value = data
+    console.log(news.value)
+    
+})
 
 </script>
 

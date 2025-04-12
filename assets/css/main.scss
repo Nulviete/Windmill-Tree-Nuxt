@@ -7,6 +7,7 @@
     display: none;
 }
 
+
 // Navbar
 .navbar {
     background-color: rgba(144,169,85, 0.4);
@@ -77,6 +78,7 @@ a {
     font-size: 40px; 
     font-weight: bolder; 
     text-align: center;
+    padding-bottom: 40px;
 }
 .foundation-sec {
     padding-bottom: 50px;
@@ -123,7 +125,8 @@ a {
     display: flex;
 }
 .new-image {
-    min-width: 209px;
+    min-width: 371px;
+    max-width: 371px;
 }
 .new-name {
     font-size: 32px;
@@ -140,7 +143,7 @@ a {
 }
 .new-info {
     padding-left: 40px;
-    padding-top: 15px
+    padding-top: 0px
 }
 .news-more {
     font-size: 32px;
@@ -485,6 +488,198 @@ a {
         font-weight: 800;
         color: #46a046;
     }
+    .numbers-title {
+        font-size: 20px;
+    }
+    .numbers-images-mob {
+        display: flex;
+        flex-direction: column;
+    }
+    .numbers-image {
+        margin: 10px auto;
+    }
+    .number {
+        font-size: 55px;
+    }
+    .number-text {
+        font-size: 14px;
+    }
+
+    .our-partners {
+        margin-bottom: 50px;
+    }
+    .our-partners-title {
+        background-color: #ECF39E;
+        font-size: 20px;
+    }
+    .partners-logos {
+        padding: 0;
+        padding-bottom: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .partners-logos img {
+        padding: 10px 15px;
+    }
+
+    .footer-mob {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-mob-socials {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 10px;
+    }
+    .footer-mob-socials img {
+        width: 30px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+    }
+    a {
+        padding: 0;
+        margin: 0;
+    }
 
     }
-    /* 640 */
+
+
+// projects 
+
+.menu-button {
+    padding: 2px 10px;
+    border-radius: 50vh;
+    margin: 20px 12px;
+    margin-bottom: 48px;
+    font-size: 24px;
+}
+.menu-button:hover {
+    cursor: pointer;
+}
+.menu-button-1 {
+    background-color: #EFFF3B;
+}
+.menu-button-2 {
+    background-color: #EEC9C9;
+}
+.menu-button-3 {
+    background-color: rgba(151, 71, 255, 0.4);
+}
+.menu-button-4 {
+    background-color: rgba(250, 191, 65, 0.979);
+}
+.menuButtonActive {
+    background-color: #6C7600;
+    color: white;
+}
+
+.head-title {
+    font-size: 40px;
+}
+.date {
+    font-size: 36px;
+    padding-bottom: 36px;
+}
+.proj-name {
+    border-top-left-radius: 25vh;
+    border-bottom-left-radius: 25vh;
+    padding-left: 12px;
+    margin-right: -40px;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+.proj-name-1 {
+    background-color: rgba(8,102,255, 0.4);
+}
+.proj-name-sub {
+    display: inline-block;
+    font-size: 26px;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    padding-right: 40px;
+    padding-left: 42px;
+    margin-left: -42px;
+  
+    border: 1px solid #0866FF;
+    border-top-right-radius: 25vh;
+    border-bottom-right-radius: 25vh;
+}
+.proj-p {
+    font-size: 26px;
+} 
+.proj-p-2 {
+    font-size: 24px;
+    padding-left: 100px;
+}  
+.proj-volunteers {
+    display: inline-block;
+    font-size: 26px;
+    background-color: rgba(236,243,158,0.8);
+    border-radius: 30px;
+    padding: 5px 40px 5px 20px;
+    margin-top: 30px;
+}
+.proj-1-img {
+    margin-top: 140px;
+}
+
+@media (max-width: 900px) { 
+
+.proj-volunteers {
+    padding-top: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.proj-p-2 {
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 55px;
+}
+.head-title {
+    text-align: center;
+}
+
+
+// fonts
+.menu-button {
+    font-size: 14px;
+}
+.head-title {
+    font-size: 20px;
+}
+
+.proj-name, .proj-name-sub, .proj-p, .proj-p-2, .date {
+    font-size: 12px;
+}
+.proj-volunteers {
+    font-size: 13px;
+}
+
+// paddings, margins
+.proj-name-sub {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.date {
+    padding-bottom: 25px;
+}
+.menu-button {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+.mob-ver img {
+    margin-bottom: 15px;
+}
+
+
+
+
+
+}
+    

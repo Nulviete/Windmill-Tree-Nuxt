@@ -1,12 +1,13 @@
 <template>
-    
-    <div class="card max-w-sm rounded overflow-hidden shadow-lg">
-        <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2"> {{ props.project.name }}  </div>
-             <p class="text-gray-700 text-base">  {{ props.project.year }}  </p>
-             <p> {{ props.project.projectDescription }} </p>
 
+    <div class="card flex flex-col">
+        <img :src="props.project.main_photo" alt="" style="">
+        <div class="flex flex-col ml-4 grow justify-around my-6">
+            <div class="proj-cat"> {{ props.project.category }}</div>
+            <div class="proj-nam"> {{ props.project.name }}</div>
+            <div class="hashtags w-fit"> {{ props.project.hashtags }}</div> 
         </div>
+        
     </div>
 
 </template>
@@ -23,15 +24,34 @@ const props = defineProps({
 
 <style scoped>
 .card {
-    width: 250px;
-    height: 300px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    width: 444px;
+    height: 430px;
+    border: 3px solid #81B1FF;
+    border-radius: 30px;
     transition: all 0.3s;
-    background: #D4E4B7;
 }
 .card:hover {
     box-shadow: 0px 0px 20px 10px rgba(255, 255, 255, 0.5);
-    scale: 1.04;
+    scale: 1.01;
+}
+.card img {
+    border-radius: 30px;
+    padding: 5px;
+    height: 250px;
+    object-fit: cover;
+}
+.proj-cat {
+    font-size: 24px;
+}
+.proj-nam {
+    font-size: 32px;
+    font-weight: bold;
+}
+.hashtags {
+    
+    border: 2px solid #FFF200;
+    border-radius: 50vh;
+    padding: 0px 15px;
+    font-size: 24px;
 }
 </style>

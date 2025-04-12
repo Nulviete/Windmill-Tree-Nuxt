@@ -4,11 +4,7 @@ export default defineEventHandler(async (event) => {
 
     const client = await serverSupabaseClient(event)
 
-    const query = getQuery(event)
-
-    const year = query.year
-
-    const { data } = await client.from('projects').select('*').eq('year', year) 
+    const { data } = await client.from('News').select('*').order('id', { ascending: false }).limit(2)  
         
     return { data } 
 })

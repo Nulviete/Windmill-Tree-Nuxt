@@ -4,7 +4,7 @@
             <img src="~/assets/logo/logoWindmilltree_color.png" alt="">
             </div>
         <div class="links">
-            <NuxtLink to="/" class="navbar-link">
+            <NuxtLink to="/" class="navbar-link" style="">
                 Who are we
             </NuxtLink>
             <NuxtLink to="/Projects" class="navbar-link">
@@ -26,9 +26,16 @@
         
         <div class="burger-menu">
             <div class="nav-socials">
-            <img src="~/assets/icons/fb-nav.png" alt="" srcset="">
-            <img src="~/assets/icons/ig-nav.png" alt="" srcset="">
-            <img src="~/assets/icons/yt-nav.png" alt="" srcset="">
+                <a href="https://www.facebook.com/FundacjaWindmillTree/photos_by">
+                    <img src="~/assets/icons/fb-nav.png" alt="" srcset="">
+                </a>
+                <a href="https://www.instagram.com/foundation_windmill_tree/">
+                    <img src="~/assets/icons/ig-nav.png" alt="" srcset="">
+                </a>
+                <a href="https://www.youtube.com/@foundationwindmilltree8203">
+                    <img src="~/assets/icons/yt-nav.png" alt="" srcset="">
+                </a>
+            
         </div>
             <UDropdown :items="menuItems" :popper="{ placement: 'bottom-start' }">
                 <IconsMenu class="menu" />
@@ -115,6 +122,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+a {
+    padding: 0;
+    margin: 0;
+}
 .navbar{
     position: fixed;
     top: 0;
@@ -122,7 +133,7 @@ onMounted(() => {
     transition: all 300ms ease-in-out;
 }
 .navbar-link {
-    padding: 1px;
+    padding: 5px;
 }
 
 
@@ -137,11 +148,13 @@ onMounted(() => {
 .nav-socials {
     display: flex;
     flex-direction: row;
-    padding-right: 25px
+    padding-right: 25px;
+    justify-content: center;
 }
 .nav-socials img {
     padding-right: 0px;
-    padding-left: 20px;
+    width: 20px;
+    margin-left: 20px;
 }
 
 
@@ -162,6 +175,7 @@ onMounted(() => {
     .choose-lang {
         display: none;
     }
+    
     
 }
 
