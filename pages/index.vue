@@ -19,7 +19,7 @@
         <!-- Latest news -->
 
         <div class="foundation-sec">
-            <div class="Foundation-description text-center w-full mx-auto -mb-24">
+            <div class="Foundation-description text-center w-full mx-auto">
             <div class="lines">
                <div class="line"></div>
                <div class="dashed-line"></div> 
@@ -53,7 +53,7 @@
     
 
         <div v-if="news.length!=0" class="latest-news-list" >
-            <div class="new pt-16 pb-8 pl-20">
+            <div class="new pt-16 pb-8 pl-20 max-md:px-4">
                 <div class="new-image">
                     <img :src="news[0].new_img" alt="">
                 </div>
@@ -73,7 +73,7 @@
             </div>
             <hr class="first-new-line">
 
-                <div class="new pt-16 pb-8 pl-20">
+                <div class="new pt-16 pb-8 pl-20 max-md:px-4">
                     <div class="new-image">
                         <img :src="news[1].new_img" alt="">
                     </div>
@@ -312,12 +312,47 @@ onMounted(async () => {
     height: 1px;
     width: 1000px;
 }
+.new-image {
+    max-width: 371px;
+}
 
 @media (max-width: 900px) {
 
-    .hero-block {
-        
-    } 
+    .new {
+        display: flex;
+        flex-direction: column; 
+        padding: 0 16px; 
+    }
+    .new-name {
+        font-size: 14px;
+        padding-top: 10px;
+    }
+    .new-date {
+        font-size: 12px;
+    }
+    .new-des {
+        font-size: 12px;
+        padding-right: 0;
+    }
+    .new-image {
+        max-width: 444px;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+    }
+    .new-image img{   
+        box-sizing: border-box;
+        display: block;
+        overflow: hidden;
+        width: 100%;
+    }
+    .new-info {
+        width: 100%;
+        padding-top: 10px;
+    }
 }
 
 

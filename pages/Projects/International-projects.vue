@@ -24,7 +24,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const yearSel = ref(2022)
+const yearSel = ref(2024)
 const projects = ref([])
 const dataLoaded = ref(false)
 

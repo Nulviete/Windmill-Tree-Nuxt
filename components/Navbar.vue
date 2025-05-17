@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar flex flex-row w-full justify-between px-5 items-center" id="navbar">
+    <div class="navbar flex flex-row w-full justify-between px-4 items-center" id="navbar">
         <div class="navbar-logo">
             <img src="~/assets/logo/logoWindmilltree_color.png" alt="">
             </div>
@@ -41,7 +41,7 @@
                 <IconsMenu class="menu" />
              </UDropdown>
         </div>
-        <div class="choose-lang">
+        <div class="choose-lang" style="visibility: hidden;">
             <div>
                 UA | EN | PL
             </div>

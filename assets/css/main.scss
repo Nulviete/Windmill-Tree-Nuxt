@@ -30,6 +30,7 @@
 .hero-block img {
     width: 100%;  
     max-height: 111vh; 
+    object-fit: cover;
 }
 .hero-block h1 {
     font-size: 8em;
@@ -123,10 +124,6 @@ a {
 
 .new {
     display: flex;
-}
-.new-image {
-    min-width: 371px;
-    max-width: 371px;
 }
 .new-name {
     font-size: 32px;
@@ -552,7 +549,7 @@ a {
 .menu-button {
     padding: 2px 10px;
     border-radius: 50vh;
-    margin: 20px 12px;
+    margin: 20px 20px 20px 0px;
     margin-bottom: 48px;
     font-size: 24px;
 }
@@ -560,7 +557,7 @@ a {
     cursor: pointer;
 }
 .menu-button-1 {
-    background-color: #EFFF3B;
+    background-color: #d9e948;
 }
 .menu-button-2 {
     background-color: #EEC9C9;
@@ -649,6 +646,7 @@ a {
 // fonts
 .menu-button {
     font-size: 14px;
+    margin-right: 8px;
 }
 .head-title {
     font-size: 20px;

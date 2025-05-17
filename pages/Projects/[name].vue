@@ -21,7 +21,7 @@
                 <div class="proj-cat "> {{ project.category }}</div>
                 <div class="proj-nam pb-14"> "{{ project.name }}"</div>
                 <div class="vid mx-auto">
-                    video
+                    
                 </div>
             </div>
         </div>
@@ -32,76 +32,221 @@
             <div>Number of participant: {{ project.number_of_participants }}</div>
         </div>
 
-        <div class="flex justify-end pb-36">
-            <div class="proj-participants py-6 text-white pl-4 pr-6 -mt-4">
+        <div class="flex justify-end pb-36 max-md:pb-4">
+            <div class="proj-participants py-6 text-white pl-8 pr-6 -mt-4">
             Participants: {{ project.participants_countries }}
             </div>
         </div>
         
 
-        <div class="proj-des px-12">
+        <div class="proj-des px-12 pb-24 max-md:mb-6">
             {{ project.description }}
         </div>
-        
 
 
-    </div> 
-    <div v-else>DATA LOADING</div> 
+
+        <!-- gallery slideshow -->
+    <div class="relative w-full max-w-4xl mx-auto">
+      <!-- Slider -->
+      <div class="overflow-hidden w-full">
+        <div
+          class="flex transition-transform duration-300"
+          :style="{
+            transform: `translateX(-${currentIndex * (100 / (project.photos.length / photosPerSlide))}%)`,
+            width: `${Math.ceil((project.photos?.length || 0) / photosPerSlide) * 100}%`
+          }"
+        @touchstart="handleTouchStart"
+        @touchend="handleTouchEnd"
+        >
+          <div
+            v-for="(photo, index) in project.photos"
+            :key="index"
+            class="w-full md:w-1/4 p-2 cursor-pointer"
+            @click="openFullscreen(photo)"
+          >
+            <img :src="photo" class="rounded-xl object-cover w-full h-64" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrows -->
+      <button
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+        @click="prevSlide"
+        v-if="currentIndex > 0"
+      >
+        ◀
+      </button>
+      <button
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+        @click="nextSlide"
+        v-if="currentIndex < maxIndex"
+      >
+        ▶
+      </button>
+
+      <!-- Fullscreen Overlay -->
+      <div
+        v-if="fullscreenPhoto"
+        class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+        @click="closeFullscreenOnBackground"
+      >
+        <button class="absolute top-4 right-4 text-white text-4xl font-bold z-50" @click.stop="closeFullscreen">
+          &times;
+        </button>
+        <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+          @click.stop="prevFullscreenSlide" v-if="currentFullscreenIndex > 0">
+          ◀
+        </button>
+        <img :src="fullscreenPhoto" class="max-w-full max-h-full rounded-lg" />
+        <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+          @click.stop="nextFullscreenSlide" v-if="currentFullscreenIndex < project.photos.length - 1">
+          ▶
+        </button>
+      </div>
+    </div>
+  </div>
+  <div v-else>DATA LOADING</div>
 </template>
 
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watchEffect } from 'vue'
 import Carousel from "~/components/Carousel";
 
-
 const route = useRoute()
-
 const projectName = ref(route.params.name)
-
 const project = ref({})
 const dataLoaded = ref(false)
 
 const fullscreenMode = useFullscreen()
 
-const fetchData = async () => {
-    const { data } = await $fetch(`/api/project?name=${projectName.value}`, {
-        query: { projectName },
-        headers: useRequestHeaders(['cookie']),
-        key: 'data-from-server',
-        transform: data => data.data
-    })
-    project.value = data[0]
-    dataLoaded.value = true
+const fullscreenPhoto = ref(null)
+const currentFullscreenIndex = ref(0)
+const currentIndex = ref(0)
+
+const photosPerSlide = ref(4)
+
+const updatePhotosPerSlide = () => {
+  photosPerSlide.value = window.innerWidth <= 768 ? 1 : 4
 }
 
+const fetchData = async () => {
+  const { data } = await $fetch(`/api/project?name=${projectName.value}`, {
+    query: { projectName },
+    headers: useRequestHeaders(['cookie']),
+    key: 'data-from-server',
+    transform: data => data.data
+  })
+  project.value = data[0]
+  dataLoaded.value = true
+}
 
-
-onMounted(async () => {
-    await fetchData()
+const maxIndex = computed(() => {
+  return Math.ceil((project.value?.photos?.length || 0) / photosPerSlide.value - 1)
 })
 
+const nextSlide = () => {
+  if (currentIndex.value < maxIndex.value) currentIndex.value++
+}
+const prevSlide = () => {
+  if (currentIndex.value > 0) currentIndex.value--
+}
+
+const openFullscreen = (photo) => {
+  fullscreenPhoto.value = photo
+  currentFullscreenIndex.value = project.value.photos.indexOf(photo)
+}
+const closeFullscreen = () => {
+  fullscreenPhoto.value = null
+  currentFullscreenIndex.value = 0
+}
+const nextFullscreenSlide = () => {
+  if (currentFullscreenIndex.value < project.value.photos.length - 1) {
+    currentFullscreenIndex.value++
+    fullscreenPhoto.value = project.value.photos[currentFullscreenIndex.value]
+  }
+}
+const prevFullscreenSlide = () => {
+  if (currentFullscreenIndex.value > 0) {
+    currentFullscreenIndex.value--
+    fullscreenPhoto.value = project.value.photos[currentFullscreenIndex.value]
+  }
+}
+
+const closeFullscreenOnBackground = (event) => {
+  if (event.target === event.currentTarget) {
+    closeFullscreen()
+  }
+}
+
+const handleKeyDown = (event) => {
+  if (fullscreenPhoto.value) {
+    if (event.key === 'ArrowRight') nextFullscreenSlide()
+    else if (event.key === 'ArrowLeft') prevFullscreenSlide()
+    else if (event.key === 'Escape') closeFullscreen()
+  }
+}
+
+const touchStartX = ref(0)
+
+const handleTouchStart = (event) => {
+  touchStartX.value = event.changedTouches[0].clientX
+}
+
+const handleTouchEnd = (event) => {
+  const touchEndX = event.changedTouches[0].clientX
+  const deltaX = touchStartX.value - touchEndX
+
+  if (Math.abs(deltaX) > 50) {
+    // Swipe Left
+    if (deltaX > 0) nextSlide()
+    // Swipe Right
+    else prevSlide()
+  }
+}
+
+
+watchEffect(() => {
+  if (currentIndex.value) {
+    console.log('current index is ' + currentIndex.value)
+    console.log('max index is ' + maxIndex.value)
+  }
+})
+
+onMounted(async () => {
+  await fetchData()
+  updatePhotosPerSlide()
+  window.addEventListener('resize', updatePhotosPerSlide)
+  window.addEventListener('keydown', handleKeyDown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updatePhotosPerSlide)
+  window.removeEventListener('keydown', handleKeyDown)
+})
 </script>
 
+
 <style lang="scss" scoped>
-.gallery {
-    max-height: 100vh;
-    padding-top: 2.5vh;
-    position: relative;
-}
-.galleryfull {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    margin: auto;
-    background: black;
-    max-width: 1200px;
-}
-.hidden {
-    display: none;
-}
+// .gallery {
+//     max-height: 100vh;
+//     padding-top: 2.5vh;
+//     position: relative;
+// }
+// .galleryfull {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     right: 0;
+//     height: 100vh;
+//     margin: auto;
+//     background: black;
+//     max-width: 1200px;
+// }
+// .hidden {
+//     display: none;
+// }
 
 .header {
     background-image: url();
@@ -116,7 +261,7 @@ onMounted(async () => {
     font-size: 32px;
 }
 .vid {
-    width: 908px;
+    width: 714.66px;
     height: 402px;
     background-color: rgb(211, 202, 202);
     border-radius: 30px;
@@ -135,18 +280,50 @@ onMounted(async () => {
 .proj-participants {
     font-size: 24px;
     background-color: #C99FFF;
-    padding-left: 10px;
 }
 .proj-des {
     font-size: 32px;
 }
 
 
-@media (max-width: 625px) {
-.body {
-    padding-left: 0px;
-    padding-right: 0px;
+@media (max-width: 900px) {
+
+.vid {
+width: 90%;
+height: 184px;
+border-radius: 10px;
 }
+.proj-info {
+    font-size: 11px;
+    padding: 15px;
+}
+.proj-participants {
+    font-size: 10px;
+    margin-left: 30%;
+    margin-top: -10px;
+    padding: 10px;
+}
+.proj-des {
+    font-size: 12px;
+    padding: 15px;
+}
+.header-1 {
+    font-size: 12px;
+    padding-left: 15px;
+}
+.proj-cat {
+    font-size: 16px;
+}
+.proj-nam {
+    font-size: 16px;
+}
+.header {
+    padding-left: 0;
+    padding-top: 35%;
+    font-weight: bold;
+}
+
+
 }
 
 </style>

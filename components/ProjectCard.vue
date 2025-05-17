@@ -54,4 +54,22 @@ const props = defineProps({
     padding: 0px 15px;
     font-size: 24px;
 }
+
+@media (max-width: 900px) {
+    .card {
+        width: 100%;
+        height: 380px;
+    }
+    .proj-cat {
+        font-size: 10px;
+    }
+    .proj-nam {
+        font-size: 14px;
+    }
+    .hashtags {
+        font-size: 12px;
+    }
+
+
+}
 </style>
