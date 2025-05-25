@@ -1,4 +1,6 @@
 <template>
+
+<!-- PC verze -->
   <div class="pc-ver" style="color: black;">
     <footer v-bind="$attrs" class="footer w-full z-10 font-body bottom-0 flex flex-row mx-auto justify-between px-10 py-5">
         <div class="footer-left self-center">
@@ -10,12 +12,12 @@
           </p>
         </div>
         <div class="footer-mid-left">
-          <div>Who we are</div>   
-          <div>What's new</div>   
-          <div>Projects</div>   
-          <div>Our team</div>   
-          <div>Documents</div>   
-          <div>Open call (We need you)</div>   
+          <NuxtLink to="/" class="navbar-link" style="">Who we are </NuxtLink>  
+          <NuxtLink to="/LatestNews" class="navbar-link">What's new</NuxtLink>   
+          <NuxtLink to="/Projects" class="navbar-link">Projects </NuxtLink>  
+          <NuxtLink to="/OurTeam" class="navbar-link">Our team</NuxtLink>   
+          <NuxtLink to="/Documents" class="navbar-link">Documents</NuxtLink>   
+          <NuxtLink to="/WeNeedYou" class="navbar-link">Open call (We need you)</NuxtLink>   
         </div>
 
         <div class="footer-mid-right">
@@ -39,6 +41,8 @@
     </footer>
   </div>
 
+
+<!-- Mob verze -->
   <div class="mob-ver" style="color: black;">
     <footer v-bind="$attrs" class="footer z-10 font-body bottom-0 px-10 py-5">
 
@@ -89,10 +93,16 @@ defineOptions({
 
 
 <style scoped>
- a {
-        padding: 0;
-        margin: 0;
-    }
+ a 
+ {
+    padding: 0;
+    margin: 0;
+    transition: 0.3s;
+}
+a:hover {
+  background-color: #f7fad8;
+  color: #8E9193;
+}
 .footer {
 background-image: url('~/assets/footer/footer.png');
 background-size: 100% 315px;

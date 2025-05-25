@@ -19,9 +19,10 @@
             <NuxtLink to="/WeNeedYou" class="navbar-link">
                 We need you (Open call)
             </NuxtLink>
-            <NuxtLink to="/Toolbox" class="navbar-link">
-                Toolbox
+            <NuxtLink to="/Documents" class="navbar-link">
+                Documents
             </NuxtLink>
+            
         </div>
         
         <div class="burger-menu">
@@ -86,9 +87,10 @@ const menuItems = [
         to: "/OurTeam"
     }],
     [{
-        label: 'Toolbox',
-        to: "/Toolbox"
+        label: 'Documents',
+        to: "/Documents"
     }],
+    
 ]
 
 const selected = ref(menuItems[0])
@@ -122,9 +124,14 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-a {
+a 
+ {
     padding: 0;
     margin: 0;
+    transition: 0.3s;
+}
+a:hover {
+  color: black;
 }
 .navbar{
     position: fixed;

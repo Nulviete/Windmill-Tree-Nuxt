@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col" style="background-color: white;">
         <Navbar v-if="!fullscreenMode" />
-            <NuxtPage class="pt-40" style="color: black;" />
+            <NuxtPage class="max-md:pt-32 md:pt-40" style="color: black;" />
         <Footer v-if="!fullscreenMode" class="footer z-10 bottom-0" />
     </div>
     

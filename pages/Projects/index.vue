@@ -31,35 +31,36 @@
           </div>
         </div>
 
+<!-- mob ver -->
         <div class="mob-ver">
-  <div class="page-title">Projects</div>
+          <div class="page-title">Projects</div>
 
-  <div class="flex flex-col p-6 gap-6">
-    <NuxtLink to="/Projects/International-projects" class="fill">
-      <img src="~/assets/projects/international-mob.png" alt="International projects" />
-      <p style="background-color: #81B1FF; color: white;">International</p>
-    </NuxtLink>
+          <div class="flex flex-col p-6 gap-6">
+            <NuxtLink to="/Projects/International-projects" class="fill">
+              <img src="~/assets/projects/international-mob.png" alt="International projects" />
+              <p style="background-color: #81B1FF; color: white;">International</p>
+            </NuxtLink>
 
-    <NuxtLink to="/Projects/Local-projects" class="fill">
-      <img src="~/assets/projects/local-mob.png" alt="Local projects" />
-      <p style="background-color: #90A955; color: white;">Local</p>
-    </NuxtLink>
+            <NuxtLink to="/Projects/Local-projects" class="fill">
+              <img src="~/assets/projects/local-mob.png" alt="Local projects" />
+              <p style="background-color: #90A955; color: white;">Local</p>
+            </NuxtLink>
 
-    <NuxtLink to="/Projects/Volunteering-projects" class="fill">
-      <img src="~/assets/projects/esc-mob.png" alt="European Solidarity Corps" />
-      <p style="background-color: #FF7A75; color: white;">European Solidarity Corps</p>
-    </NuxtLink>
+            <NuxtLink to="/Projects/Volunteering-projects" class="fill">
+              <img src="~/assets/projects/esc-mob.png" alt="European Solidarity Corps" />
+              <p style="background-color: #FF7A75; color: white;">European Solidarity Corps</p>
+            </NuxtLink>
 
-    <NuxtLink to="/Projects/From-partners-projects" class="fill">
-      <img src="~/assets/projects/from-partners-mob.png" alt="From Partners" />
-      <p style="background-color: #CC3396; color: white;">From Partners</p>
-    </NuxtLink>
+            <NuxtLink to="/Projects/From-partners-projects" class="fill">
+              <img src="~/assets/projects/from-partners-mob.png" alt="From Partners" />
+              <p style="background-color: #CC3396; color: white;">From Partners</p>
+            </NuxtLink>
 
-    <NuxtLink to="/Projects/For-Ukraine-projects" class="fill">
-      <img src="~/assets/projects/4ukraine-mob.png" alt="For Ukraine" />
-      <p style="background-color: #B0BF00; color: white;">For Ukraine</p>
-    </NuxtLink>
-  </div>
+            <NuxtLink to="/Projects/For-Ukraine-projects" class="fill">
+              <img src="~/assets/projects/4ukraine-mob.png" alt="For Ukraine" />
+              <p style="background-color: #B0BF00; color: white;">For Ukraine</p>
+            </NuxtLink>
+          </div>
 </div>
 
         
