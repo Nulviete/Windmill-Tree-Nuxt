@@ -3,20 +3,20 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Windmill Tree Foundation',
-      meta: [ { name: "google-site-verification", content: "hLKALut4Uu3-zTOQhlRhT-laE6sj4vtjNhZ5UrOyB3s" }],
+      meta: [ {  }],
       script: [{
         type: 'application/ld+json',
         innerHTML: JSON.stringify({
-          "@context" : "https://windmilltree.netlify.com",
+          "@context" : "https://windmilltree.org",
           "@type" : "WebSite",
           "name" : "WindmillTree Foundation",
-          "url" : "https://windmilltree.netlify.com/"
+          "url" : "https://windmilltree.org/"
         })
       }]
     }
   },
 
-  ssr: true,
+  ssr: false,
   devtools: { enabled: true },
 
   modules: [

@@ -50,13 +50,13 @@
       <!-- Slider -->
       <div class="overflow-hidden w-full">
         <div
+          ref="slider"
           class="flex transition-transform duration-300"
           :style="{
             transform: `translateX(-${currentIndex * (100 / (project.photos.length / photosPerSlide))}%)`,
             width: `${Math.ceil((project.photos?.length || 0) / photosPerSlide) * 100}%`
           }"
-        @touchstart="handleTouchStart"
-        @touchend="handleTouchEnd"
+        
         >
           <div
             v-for="(photo, index) in project.photos"
@@ -126,6 +126,8 @@ const currentFullscreenIndex = ref(0)
 const currentIndex = ref(0)
 
 const photosPerSlide = ref(4)
+
+const slider = ref(null)
 
 const updatePhotosPerSlide = () => {
   photosPerSlide.value = window.innerWidth <= 768 ? 1 : 4
@@ -206,19 +208,17 @@ const handleTouchEnd = (event) => {
   }
 }
 
-
-watchEffect(() => {
-  if (currentIndex.value) {
-    console.log('current index is ' + currentIndex.value)
-    console.log('max index is ' + maxIndex.value)
-  }
-})
-
 onMounted(async () => {
   await fetchData()
   updatePhotosPerSlide()
+
   window.addEventListener('resize', updatePhotosPerSlide)
   window.addEventListener('keydown', handleKeyDown)
+
+  if (slider.value) {
+    slider.value.addEventListener('touchstart', handleTouchStart, { passive: true })
+    slider.value.addEventListener('touchend', handleTouchEnd, { passive: true })
+  }
 })
 
 onUnmounted(() => {

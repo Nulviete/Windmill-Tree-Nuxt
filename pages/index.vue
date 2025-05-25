@@ -286,7 +286,6 @@ onMounted(async () => {
         transform: data => data.data
     })
     news.value = data
-    console.log(news.value)
     
 })
 

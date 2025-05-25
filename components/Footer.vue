@@ -1,6 +1,6 @@
 <template>
   <div class="pc-ver" style="color: black;">
-    <footer class="footer w-full z-10 font-body bottom-0 flex flex-row mx-auto justify-between px-10 py-5">
+    <footer v-bind="$attrs" class="footer w-full z-10 font-body bottom-0 flex flex-row mx-auto justify-between px-10 py-5">
         <div class="footer-left self-center">
           <img src="~/assets/footer/logo.png" alt="" srcset="" style="margin-left: -25px;">
           <p style="margin-top: -10px;">
@@ -40,7 +40,7 @@
   </div>
 
   <div class="mob-ver" style="color: black;">
-    <footer class="footer z-10 font-body bottom-0 px-10 py-5">
+    <footer v-bind="$attrs" class="footer z-10 font-body bottom-0 px-10 py-5">
 
       <div class="footer-mob">
         <div class="footer-mob-socials" style="align-self: flex-start;">
@@ -80,6 +80,13 @@
     
     
 </template>
+
+<script setup>
+defineOptions({
+  inheritAttrs: false
+})
+</script>
+
 
 <style scoped>
  a {

@@ -1,4 +1,5 @@
 <template>
+<div v-bind="attrs" class="-mt-40">
     <div class="header flex flex-col justify-center">
         <div class="header-1">4 Ukraine</div>
     </div>
@@ -123,13 +124,14 @@
 
         </div>
     </div>
-    
+</div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
 const menuSel = ref(2024)
+const attrs = useAttrs()
 
 </script>
 

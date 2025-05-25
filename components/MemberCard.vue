@@ -1,23 +1,10 @@
 <template>
-    <UCard class="w-72 h-full text-center bg-lime-200">
-    <template #header>
-      <div class="flex flex-row justify-center items-center">
-        <div class="w-7">
-          <img v-if="props.member.country" :src="'/country_flag/'+props.member.country+'_flag.png'" alt="">
-        </div>
-        <div class="h-5 pl-1"> {{ props.member.name }} </div>
-      </div>
-      
-    </template>
+  <div class="container">
+    <img :src="props.member.profile_pic" alt="">
+    <div class="name"> {{ props.member.name }} </div>
+  </div>
+          
 
-   
-        <div class="h-48"> Foto </div>
-    <template #footer>
-    
-      <div class="relative bottom-0 h-auto"> {{ props.member.positionDescription }} </div>
-      <div class="text-xs text-gray-400" v-if="props.member.position === 'Volunteer'">{{ props.member.dateSince }} - {{ props.member.dateTill }}</div>
-    </template>
-  </UCard>
 </template>
 
 <script setup>
@@ -31,5 +18,49 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+.container {
+  position: relative;
+  text-align: center;
+  height: 457px;
+  width: 444px;
+}
+.name {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  background-color: rgba(144,169,85,0.8);
+  width: 100%;
+  font-size: 40px;
+  border-bottom-left-radius: 4vh;
+  border-bottom-right-radius: 4vh;
+}
+img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: 30px;
+}
+
+@media (max-width: 900px) {
+.container {
+  width: 100%;
+  height: 100%;
+}
+.name {
+  font-size: 13px;
+}
+img {
+  border-radius: 10px;
+}
+.name {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+}
 
 </style>

@@ -40,13 +40,11 @@ const fetchData = async () => {
 
 onMounted(async () => {
     await fetchData()
-    // console.log(projects.value)
 })
 
 watchEffect(async () => {
   if (yearSel.value) {
     await fetchData()
-    console.log(projects.value)
   }
 })
 
