@@ -1,34 +1,56 @@
+/// <reference types="@nuxtjs/sitemap" />
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_KEY!
+)
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
     head: {
       title: 'Windmill Tree Foundation',
-      meta: [ {  }],
-      script: [{
-        type: 'application/ld+json',
-        innerHTML: JSON.stringify({
-          "@context" : "https://windmilltree.org",
-          "@type" : "WebSite",
-          "name" : "WindmillTree Foundation",
-          "url" : "https://windmilltree.org/"
-        })
-      }]
+      meta: [],
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "WindmillTree Foundation",
+            url: "https://windmilltree.org/"
+          })
+        }
+      ]
     }
   },
 
   ssr: true,
+
   devtools: { enabled: true },
+
+  css: ['~/assets/css/main.scss'],
 
   modules: [
     '@vesp/nuxt-fontawesome',
     '@nuxtjs/supabase',
-    "@nuxt/ui"
+    '@nuxt/ui',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
+  site: {
+    url: "https://windmilltree.org",
+    name: "Windmill Tree Foundation",
+  },
 
-  css: [
-    '~/assets/css/main.scss'
-  ],
-
+  sitemap: {
+    sources: [
+      '/api/projects-for-sitemap'
+    ]
+  },
+  
   supabase: {
     redirect: false
   },
@@ -36,9 +58,9 @@ export default defineNuxtConfig({
   postcss: {
     plugins: {
       tailwindcss: {},
-      autoprefixer: {},
-    },
+      autoprefixer: {}
+    }
   },
 
-  compatibilityDate: "2025-01-12",
+  compatibilityDate: '2025-01-12'
 })

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.15.2",
+    "@nuxtjs/robots": "^5.2.10",
+    "@nuxtjs/sitemap": "^7.3.0",
     "@vesp/nuxt-fontawesome": "^1.0.4",
     "dotenv": "^16.4.5",
     "nuxt": "^3.11.2",
