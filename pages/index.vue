@@ -93,7 +93,7 @@
                 </div>
                 <hr class="second-new-line">
                     
-                <div class="news-more">More</div>
+                <NuxtLink to="/LatestNews"><div class="news-more">More</div></NuxtLink>
 
                     
                 </div>
@@ -280,12 +280,12 @@
 const news = ref([])
 
 onMounted(async () => {
-    const { data } = await $fetch('api/news', {
+    const { latest } = await $fetch('api/news', {
         headers: useRequestHeaders(['cookie']),
         key: 'data-from-server',
-        transform: data => data.data
+        transform: latest => latest.data
     })
-    news.value = data
+    news.value = latest
     
 })
 
