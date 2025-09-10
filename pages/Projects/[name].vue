@@ -26,14 +26,14 @@
             </div>
         </div>
 
-        <div class="proj-info pl-12 mt-12 py-6">
+        <div class="proj-info pl-12 mt-12 py-6 text-black">
             <div> {{ project.place }}</div>
             <div>{{ project.date }}</div>
             <div>Number of participant: {{ project.number_of_participants }}</div>
         </div>
 
-        <div class="flex justify-end pb-36 max-md:pb-4">
-            <div class="proj-participants py-6 text-white pl-8 pr-6 -mt-4">
+        <div class="flex justify-end pb-36 max-md:pb-4 ">
+            <div class="proj-participants py-6 text-[var(--white-to-black)] pl-8 pr-6 -mt-4">
             Participants: {{ project.participants_countries }}
             </div>
         </div>
@@ -49,7 +49,7 @@
     <div class="relative w-full max-w-4xl mx-auto">
       <!-- Slider -->
       <div class="overflow-hidden w-full">
-        <div
+        <div v-if="project.photos && project.photos.length"
           ref="slider"
           class="flex transition-transform duration-300"
           :style="{
@@ -106,7 +106,7 @@
       </div>
     </div>
   </div>
-  <div v-else>DATA LOADING</div>
+  <div v-else class="text-center">DATA LOADING</div>
 </template>
 
 

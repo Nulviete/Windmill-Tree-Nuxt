@@ -1,7 +1,7 @@
 <template>
 
 <!-- PC verze -->
-  <div class="pc-ver" style="color: black;">
+  <div class="pc-ver text-[var(--con-black)]">
     <footer v-bind="$attrs" class="footer w-full z-10 font-body bottom-0 flex flex-row mx-auto justify-between px-10 py-5">
         <div class="footer-left self-center">
           <img src="~/assets/footer/logo.png" alt="" srcset="" style="margin-left: -25px;">
@@ -12,15 +12,15 @@
           </p>
         </div>
         <div class="footer-mid-left">
-          <NuxtLink to="/" class="navbar-link" style="">Who we are </NuxtLink>  
-          <NuxtLink to="/LatestNews" class="navbar-link">What's new</NuxtLink>   
-          <NuxtLink to="/Projects" class="navbar-link">Projects </NuxtLink>  
-          <NuxtLink to="/OurTeam" class="navbar-link">Our team</NuxtLink>   
-          <NuxtLink to="/Documents" class="navbar-link">Documents</NuxtLink>   
-          <NuxtLink to="/WeNeedYou" class="navbar-link">Open call (We need you)</NuxtLink>   
+          <NuxtLink to="/" class="navbar-link" style=""><span class="text-[var(--con-black)]">Who we are</span></NuxtLink>  
+          <NuxtLink to="/LatestNews" class="navbar-link"><span class="text-[var(--con-black)]">What's new</span></NuxtLink>   
+          <NuxtLink to="/Projects" class="navbar-link"><span class="text-[var(--con-black)]">Projects</span> </NuxtLink>  
+          <NuxtLink to="/OurTeam" class="navbar-link"><span class="text-[var(--con-black)]">Our team</span></NuxtLink>   
+          <NuxtLink to="/Documents" class="navbar-link"><span class="text-[var(--con-black)]">Documents</span></NuxtLink>   
+          <NuxtLink to="/WeNeedYou" class="navbar-link"><span class="text-[var(--con-black)]">Open call (We need you)</span></NuxtLink>   
         </div>
 
-        <div class="footer-mid-right">
+        <div class="footer-mid-right ">
           <a href="https://www.facebook.com/FundacjaWindmillTree/photos_by">
             <img src="~/assets/icons/fb.png" alt="" srcset="">
           </a>
@@ -32,7 +32,7 @@
           </a>
         </div>
         <div class="footer-right text-right">
-          <p>
+          <p class="">
             National Court Register No.: 0000784824 <br>
             VAT No.: 6161567287 <br>
             National Official Register: 383942113

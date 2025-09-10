@@ -47,10 +47,6 @@
 </script>
 
 <style lang="scss" scoped>
-* {
-    color: black;
-}
-
 .header {
     font-size: 40px;
     font-weight: bold;

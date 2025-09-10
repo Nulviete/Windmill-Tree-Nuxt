@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <p>We need you page</p>
+    <div class="max-w-7xl mx-auto p-4">
+        <p class="text-3xl">Under construction...</p>
     </div>
 </template>
 

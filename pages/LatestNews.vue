@@ -1,6 +1,6 @@
 <template>
   <div v-bind="$attrs">
-    <div class="text-[40px] text-center font-bold">
+    <div class="text-4xl text-center font-bold">
       LATEST NEWS
     </div>
 
@@ -16,14 +16,14 @@
           class="max-w-[500px] aspect-[3/2] object-cover rounded-3xl"
         />
         <div class="flex flex-col">
-          <div class="new-head text-[32px]">{{ item.new_title }}</div>
-          <div class="new-date text-[24px]">
+          <div class="new-head text-3xl">{{ item.new_title }}</div>
+          <div class="new-date text-2xl">
             {{ formatDate(item.created_at) }}
           </div>
-          <div class="new-des text-[24px]">
+          <div class="new-des text-2xl">
             <p v-for="(paragraph, idx) in item.new_body" :key="idx">{{ paragraph }}</p>
           </div>
-          <div v-if="item.new_signature" class="text-[20px] italic mt-2">
+          <div v-if="item.new_signature" class="text-xl italic mt-2">
             <p v-for="(sig, i) in item.new_signature" :key="i">{{ sig }}</p>
           </div>
         </div>
@@ -73,7 +73,6 @@ onMounted(async () => {
     key: 'data-from-server',
   })
   news.value = all
-  console.log('Fetched news:', news.value.length)
 })
 </script>
 
