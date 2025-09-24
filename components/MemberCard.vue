@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <img :src="props.member.profile_pic" alt="">
-    <div class="name"> {{ props.member.name }} </div>
+    <div class="name rounded-br-[3vh] rounded-bl-[3vh]"> {{ props.member.name }} </div>
   </div>
           
 
@@ -34,8 +34,7 @@ const props = defineProps({
   background-color: rgba(144,169,85,0.8);
   width: 100%;
   font-size: 40px;
-  border-bottom-left-radius: 4vh;
-  border-bottom-right-radius: 4vh;
+ 
 }
 img {
   object-fit: cover;
