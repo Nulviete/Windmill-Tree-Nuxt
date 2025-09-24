@@ -50,11 +50,7 @@
 }
 
 // Hero
-.hero-block img {
-    width: 100%;  
-    max-height: 111vh; 
-    object-fit: cover;
-}
+
 .hero-block h1 {
     font-size: 8em;
     text-align: center;
@@ -62,7 +58,6 @@
 }
 .hero-block h3 {
     font-weight: bold;
-    font-size: 40px;
     color: black;
     text-align: left;
     position: absolute;

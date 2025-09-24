@@ -4,15 +4,15 @@
         <div class="hero-block">
             <picture>
                 <source media="(min-width:900px)" srcset="~/assets/hero/Windmill_Tree.png" />
-                <img src="~/assets/hero/Windmill_Tree-mob.png" alt="heroimg" />
+                <img src="~/assets/hero/Windmill_Tree-mob.png" alt="heroimg" class="w-full object-cover min-h-[854px] max-h-[950px]" />
             </picture>
 
-            <h3>
+            <h3 class="leading-[4rem] text-4xl max-[1138px]:text-3xl max-[1138px]:leading-[3.5rem]">
                 …the worst is not that everything might
                 <span class="hero-text-hl">change </span><br />
                 but that everything remains the <span class="hero-text-hl">same!</span><br />
-                <span class="kostenko">-Lina Kostenko </span><span class="kostenko-des"
-                    style="font-size: 20px; font-weight: normal">(a Ukrainian poet, journalist, writer, publisher, and
+                <span class="kostenko">-Lina Kostenko </span><span class="kostenko-des text-xl"
+                    style="font-weight: normal">(a Ukrainian poet, journalist, writer, publisher, and
                     former Soviet
                     dissident)</span>
             </h3>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <hr class="first-new-line" />
+                <hr class="first-new-line pb-[3rem]" />
 
                 <div class="new pt-16 pb-8 pl-20 max-md:px-4">
                     <div class="new-image">
