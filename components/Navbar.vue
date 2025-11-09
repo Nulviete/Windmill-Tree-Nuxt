@@ -15,7 +15,7 @@
       <NuxtLink to="/WeNeedYou" class="navbar-link">
         We need you (Open call)
       </NuxtLink>
-      <NuxtLink to="/Documents" class="navbar-link"> Documents </NuxtLink>
+      <NuxtLink to="/Documents" class="navbar-link"> Documents / Toolbox </NuxtLink>
     </div>
 
     <div class="flex items-center gap-2">
@@ -156,6 +156,9 @@ a:hover {
 .navbar-link {
   padding: 5px;
 }
+// .navbar-link:hover {
+//   color: #78c0c5;
+// }
 
 /* Scrool stuff */
 .scroll-down {

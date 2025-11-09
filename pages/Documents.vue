@@ -38,6 +38,13 @@
         <li>4.2 2023</li>
         <li>4.3 2024</li>
     </ul>
+    <div class="header">
+        Toolbox
+    </div>
+
+    <ul class="body">
+        <li><a href="/docs/przewodnik.pdf" target="_blank">Przewodnik Kręgi kobiece (Polish and Ukrainian language)</a></li>
+    </ul>
 
     </div>
 </template>
@@ -75,6 +82,4 @@ li {
     padding-bottom: 14px;
 }
 }
-
-
 </style>
