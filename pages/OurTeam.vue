@@ -1,11 +1,19 @@
 <template>
     <div class="pt-32 px-4">
         <div style="font-weight: bolder" class="pb-10 md:text-[40px] max-md:text-[20px]">Team</div>
-        <div style="font-weight: 200" class="md:text-[40px] max-md:text-[15px]">Main team</div>
+        <div style="font-weight: 200" class="md:text-[40px] max-md:text-[15px]">The Board of the Foundation</div>
 
         <div>
         <div class="flex flex-row justify-center md:gap-4 max-md:gap-2 py-10 flex-wrap">
-            <div class="coreMembers" v-for="member in coreMembers" :key="member.id">
+            <div class="coreMembers" v-for="member in board" :key="member.id">
+                <MemberCard :member="member" class="h-auto" />
+            </div>    
+        </div>
+        <div style="font-weight: 200" class="md:text-[40px] max-md:text-[15px]">The Foundation Council</div>
+
+        <div>
+        <div class="flex flex-row justify-center md:gap-4 max-md:gap-2 py-10 flex-wrap">
+            <div class="coreMembers" v-for="member in council" :key="member.id">
                 <MemberCard :member="member" class="h-auto" />
             </div>    
         </div>
@@ -45,8 +53,11 @@ onMounted(async () => {
     members.value = data
 })
 
-const coreMembers = computed(() => {
-    return members.value.filter((memb) => memb.status === null)
+const board = computed(() => {
+    return members.value.filter((memb) => memb.position === 'board')
+})
+const council = computed(() => {
+    return members.value.filter((memb) => memb.position === 'council')
 })
 
 const presentVolunteers = computed(() => {
