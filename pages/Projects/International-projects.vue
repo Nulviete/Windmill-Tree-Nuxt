@@ -8,6 +8,7 @@
                 <button @click="yearSel=2022" class="menu-button menu-button-2" :class="{ menuButtonActive: yearSel === 2022 }">2022</button>
                 <button @click="yearSel=2023" class="menu-button menu-button-3" :class="{ menuButtonActive: yearSel === 2023 }">2023</button>
                 <button @click="yearSel=2024" class="menu-button menu-button-4" :class="{ menuButtonActive: yearSel === 2024 }">2024</button>
+                <button @click="yearSel=2025" class="menu-button menu-button-5" :class="{ menuButtonActive: yearSel === 2025 }">2025</button>
         </div>
 
         <div class="flex flex-row gap-4 flex-wrap">
@@ -24,7 +25,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const yearSel = ref(2024)
+const yearSel = ref(2025)
 const projects = ref([])
 const dataLoaded = ref(false)
 

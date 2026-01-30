@@ -1,5 +1,5 @@
 <template>
-    <div v-if="dataLoaded" class="pb-24">
+    <div v-if="dataLoaded && project" class="pb-24">
         <!-- <div class="">
             <div class="font-bold text-4xl p-10" :class="{ hidden: fullscreenMode}">{{ project[0].name }}</div>
             <div class="year pb-5 text-gray-500" :class="{ hidden: fullscreenMode}"> {{ project[0].year }}</div>
@@ -12,7 +12,7 @@
         </div>    -->
 
         <div class="header text-white -mt-[160px] pl-12 pt-[160px] " :style=" { 
-            backgroundImage: `url(${project.bg_img})`,
+            backgroundImage: `url(${project?.bg_img || 'https://i.imgur.com/sKMbDX5.png'})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover' 
             }">
@@ -20,8 +20,8 @@
             <div class="text-center pb-24">
                 <div class="proj-cat "> {{ project.category }}</div>
                 <div class="proj-nam pb-14"> "{{ project.name }}"</div>
-                <div class="vid mx-auto">
-                    
+                <div class="vid mx-auto overflow-hidden">
+                    <img v-if="project.video_image" :src="project.video_image" alt="" class="object-cover">
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
 
         <div class="flex justify-end pb-36 max-md:pb-4 ">
             <div class="proj-participants py-6 text-[var(--white-to-black)] pl-8 pr-6 -mt-4">
-            Participants: {{ project.participants_countries }}
+            Participants from: {{ project.participants_countries }}
             </div>
         </div>
         
@@ -105,8 +105,22 @@
         </button>
       </div>
     </div>
+
+    <div class="pl-24 pt-12 max-900:pl-4"><span class="text-3xl max-900:text-xl">Video links:</span>
+    <div v-if="project.fb_videos" class="pt-3">
+        <div v-for="(video, index) in project.fb_videos" :key="index" class="pl-6 py-1 max-900:pl-2">
+          <IconsFacebook class="inline-block w-6 h-6 mr-2 text-blue-600"/>
+            <a :href="video" target="_blank" class="text-blue-600 underline hover:text-[16.5px] max-900:hover:text-sm ease-linear duration-300 max-900:text-xs">{{ video }}</a>
+        </div>
+    </div>
+    <div v-else>No video links available :(</div>
+    </div>
   </div>
-  <div v-else class="text-center">DATA LOADING</div>
+  <div v-else class="text-center">
+  DATA LOADING
+  <div>{{ dataLoaded }}</div>
+  <div>{{ project }}</div>
+  </div>
 </template>
 
 
@@ -116,7 +130,7 @@ import Carousel from "~/components/Carousel";
 
 const route = useRoute()
 const projectName = ref(route.params.name)
-const project = ref({})
+const project = ref(null)
 const dataLoaded = ref(false)
 
 const fullscreenMode = useFullscreen()
@@ -141,6 +155,7 @@ const fetchData = async () => {
     transform: data => data.data
   })
   project.value = data[0]
+  console.log(project.value)
   dataLoaded.value = true
 }
 

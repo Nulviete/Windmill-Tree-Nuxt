@@ -562,6 +562,9 @@ a {
 .menu-button-4 {
     background-color: rgba(250, 191, 65, 0.979);
 }
+.menu-button-5 {
+    background-color: rgba(102, 204, 255, 0.4);
+}
 .menuButtonActive {
     background-color: #6C7600;
     color: white;
@@ -580,7 +583,6 @@ a {
     padding-left: 12px;
     margin-right: -40px;
     margin-bottom: 20px;
-    font-size: 1.625rem;
 }
 .proj-name-1 {
     background-color: rgba(8,102,255, 0.4);
@@ -646,7 +648,7 @@ a {
     font-size: 20px;
 }
 
-.proj-name, .proj-name-sub, .proj-p, .proj-p-2, .date {
+.proj-name-sub, .proj-p, .proj-p-2, .date {
     font-size: 12px;
 }
 .proj-volunteers {

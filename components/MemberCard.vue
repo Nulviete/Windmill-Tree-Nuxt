@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <img :src="props.member.profile_pic" alt="">
+    <img v-if="props.member.profile_pic" :src="props.member.profile_pic" alt="" class="object-cover w-full h-full" />
+    <img v-else src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" class="object-cover w-full h-full">
     <div class="name rounded-br-[3vh] rounded-bl-[3vh]"> {{ props.member.name }} </div>
   </div>
           
@@ -37,7 +38,6 @@ const props = defineProps({
  
 }
 img {
-  object-fit: cover;
   height: 100%;
   border-radius: 30px;
 }
