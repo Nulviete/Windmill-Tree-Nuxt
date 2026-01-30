@@ -11,16 +11,22 @@
          
         </div>    -->
 
-        <div class="header text-white -mt-[160px] pl-12 pt-[160px] " :style=" { 
-            backgroundImage: `url(${project?.bg_img || 'https://i.imgur.com/sKMbDX5.png'})`,
+        <div class="header text-white -mt-[160px] pl-12 pt-[160px]" :style=" { 
+            backgroundImage: `url(${project?.bg_img || 'https://i.imgur.com/FlJnzka.png'})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover' 
             }">
-            <div class="header-1 pb-12"> International projects </div>
-            <div class="text-center pb-24">
+            <div class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl">
+            <div class="header-1 text-center "> International projects </div>
+            </div>
+            <div class="text-center pb-24 flex-col flex items-center justify-center">
+              <div class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl">
                 <div class="proj-cat "> {{ project.category }}</div>
-                <div class="proj-nam pb-14"> "{{ project.name }}"</div>
-                <div class="vid mx-auto overflow-hidden">
+              </div>
+              <div class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl mt-4">
+                <div class="proj-nam"> "{{ project.name }}"</div>
+                </div>
+                <div class="vid mx-auto overflow-hidden mt-12">
                     <img v-if="project.video_image" :src="project.video_image" alt="" class="object-cover">
                 </div>
             </div>
@@ -263,9 +269,8 @@ onUnmounted(() => {
 //     display: none;
 // }
 
-.header {
-    background-image: url();
-}
+
+
 .header-1 {
     font-size: 24px;
 }
@@ -304,8 +309,8 @@ onUnmounted(() => {
 @media (max-width: 900px) {
 
 .vid {
-width: 90%;
-height: 184px;
+width: 95%;
+height: auto;
 border-radius: 10px;
 }
 .proj-info {
@@ -334,7 +339,7 @@ border-radius: 10px;
 }
 .header {
     padding-left: 0;
-    padding-top: 35%;
+    padding-top: 120px;
     font-weight: bold;
 }
 
