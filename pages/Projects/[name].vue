@@ -161,7 +161,7 @@ const fetchData = async () => {
     transform: data => data.data
   })
   project.value = data[0]
-  console.log(project.value)
+  // console.log(project.value)
   dataLoaded.value = true
 }
 
