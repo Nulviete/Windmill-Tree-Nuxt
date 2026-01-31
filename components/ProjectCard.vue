@@ -24,7 +24,8 @@ const props = defineProps({
 
 <style scoped>
 .card {
-    width: 444px;
+    min-width: 250px;
+    max-width: 360px;
     height: auto;
     border: 3px solid #81B1FF;
     border-radius: 30px;
@@ -57,7 +58,6 @@ const props = defineProps({
 
 @media (max-width: 900px) {
     .card {
-        width: 100%;
         height: 380px;
     }
     .proj-cat {

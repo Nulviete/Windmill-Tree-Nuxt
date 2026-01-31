@@ -3,8 +3,8 @@
         <!-- Hero img -->
         <div class="hero-block">
             <picture>
-                <source media="(min-width:900px)" srcset="~/assets/hero/Windmill_Tree.png" />
-                <img src="~/assets/hero/Windmill_Tree-mob.png" alt="heroimg" class="w-full object-cover min-h-[854px] max-h-[950px]" />
+                <source media="(min-width:900px)" srcset="~/assets/hero/Windmill_Tree.webp" />
+                <img src="~/assets/hero/Windmill_Tree-mob.webp" alt="heroimg" class="w-full object-cover min-h-[854px] max-h-[950px]" />
             </picture>
 
             <h3 class="leading-[4rem] text-4xl max-1030:text-3xl max-1030:leading-[3.5rem] max-463:text-lg max-463:leading-10 max-1030:px-4 max-1030:py-4">
