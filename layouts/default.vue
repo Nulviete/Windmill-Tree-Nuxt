@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col min-h-screen">
         <Navbar v-if="!fullscreenMode" />
-        <NuxtPage class="pt-40 flex-1" />
+        <NuxtPage class="pt-40 flex-1 bg-page" />
         <Footer v-if="!fullscreenMode" class="footer z-10 bottom-0" />
     </div>
     
@@ -17,6 +17,9 @@ const fullscreenMode = useFullscreen()
     bottom: 0;
     left: 0;
     position: relative;
+}
+.bg-page {
+    background: #dbebe5;
 }
 
 </style>

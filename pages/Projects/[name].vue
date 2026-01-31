@@ -40,7 +40,7 @@
           <div class="proj-nam">"{{ project.name }}"</div>
         </div>
         <div
-          class="vid mx-auto overflow-hidden mt-12 shadow-[0_25px_80px_rgba(0,0,0,0.45)] ring-1 ring-white/40 rounded-3xl"
+          class="vid mx-auto overflow-hidden mt-12 shadow-[0_60px_140px_rgba(0,0,0,0.85),0_20px_50px_rgba(0,0,0,0.7)] ring-1 ring-white/40 rounded-3xl"
         >
           <img
             v-if="project.video_image"
@@ -58,7 +58,7 @@
       <div>Number of participant: {{ project.number_of_participants }}</div>
     </div>
 
-    <div class="flex justify-end pb-36 max-md:pb-4">
+    <div class="flex justify-end pb-36 max-900:pb-6">
       <div
         class="proj-participants py-6 pl-8 pr-6 -mt-4"
       >
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div class="proj-des px-12 pb-24 max-md:mb-6">
+    <div class="proj-des px-12 pb-24 max-900:mb-6">
       {{ project.description }}
     </div>
 
@@ -161,7 +161,7 @@
           <a
             :href="video"
             target="_blank"
-            class="text-blue-600 underline hover:text-[16.5px] max-900:hover:text-sm ease-linear duration-300 max-900:text-xs"
+            class="text-blue-800 underline max-900:text-xs"
             >{{ video }}</a
           >
         </div>

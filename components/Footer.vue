@@ -2,7 +2,7 @@
 
 <!-- PC verze -->
   <div class="pc-ver text-[var(--con-black)]">
-    <footer v-bind="$attrs" class="footer w-full z-10 font-body bottom-0 flex flex-row mx-auto justify-between px-10 py-5">
+    <footer v-bind="$attrs" class="footer w-full z-10 font-body bottom-0 flex flex-row mx-auto justify-between px-10 py-5 bg-[var(--bg-page)]">
         <div class="footer-left self-center">
           <img src="~/assets/footer/logo.png" alt="" srcset="" style="margin-left: -25px;">
           <p style="margin-top: -10px;">
