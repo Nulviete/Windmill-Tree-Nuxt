@@ -12,7 +12,7 @@
 
     <div>
       <div
-        class="flex flex-row justify-center md:gap-4 max-md:gap-2 py-10 flex-wrap"
+        class="flex flex-row justify-center gap-4 py-10 flex-wrap"
       >
         <div class="coreMembers" v-for="member in board" :key="member.id">
           <MemberCard :member="member" class="h-auto" />
@@ -24,7 +24,7 @@
 
       <div>
         <div
-          class="flex flex-row justify-center md:gap-4 max-md:gap-2 py-10 flex-wrap"
+          class="flex flex-row justify-center gap-4 py-10 flex-wrap"
         >
           <div class="coreMembers" v-for="member in council" :key="member.id">
             <MemberCard :member="member" class="h-auto" />
@@ -35,7 +35,7 @@
           Coordinators
         </div>
          <div
-          class="flex flex-row justify-center md:gap-4 max-md:gap-2 py-10 flex-wrap"
+          class="flex flex-row justify-center gap-4 py-10 flex-wrap"
         >
         <div class="coreMembers" v-for="member in coordinators" :key="member.id">
           <MemberCard :member="member" class="h-auto" />
@@ -46,7 +46,7 @@
           Creative Team
         </div>
          <div
-          class="flex flex-row justify-center md:gap-4 max-md:gap-2 py-10 flex-wrap"
+          class="flex flex-row justify-center gap-4 py-10 flex-wrap"
         >
         <div class="coreMembers" v-for="member in creatives" :key="member.id">
           <MemberCard :member="member" class="h-auto" />
@@ -57,7 +57,7 @@
           Mental Support
         </div>
          <div
-          class="flex flex-row justify-center md:gap-4 max-md:gap-2 py-10 flex-wrap"
+          class="flex flex-row justify-center gap-4 py-10 flex-wrap"
         >
         <div class="coreMembers" v-for="member in mentals" :key="member.id">
           <MemberCard :member="member" class="h-auto" />

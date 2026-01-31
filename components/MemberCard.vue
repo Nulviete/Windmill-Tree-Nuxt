@@ -4,6 +4,19 @@
     <img v-else src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" class="object-cover w-full h-full">
     <div class="name rounded-br-[3vh] rounded-bl-[3vh]"> {{ props.member.name }} </div>
   </div>
+
+  <!-- OVERLAY: roleta -->
+    <div class="overlay">
+      <div class="overlay-box">
+        <div class="overlay-title">{{ props.member.name }}</div>
+
+        <!-- tady si dosaď svoje pole dle struktury member -->
+        <div class="overlay-text">
+          <div v-if="props.member.position">{{ props.member.position }}</div>
+          
+        </div>
+      </div>
+    </div>
           
 
 </template>
@@ -36,6 +49,19 @@ const props = defineProps({
   width: 100%;
   font-size: 40px;
  
+}
+.overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 500ms ease, opacity 400ms ease;
+  pointer-events: none; /* aby hover držel na containeru */
+  padding: 14px;
 }
 img {
   height: 100%;

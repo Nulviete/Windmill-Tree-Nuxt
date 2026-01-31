@@ -22,7 +22,7 @@
       }"
     >
       <div
-        class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl"
+        class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl ml-4 mb-6"
       >
         <div class="header-1 text-center">International projects</div>
       </div>
@@ -377,7 +377,7 @@ onUnmounted(() => {
   }
   .header-1 {
     font-size: 12px;
-    padding-left: 15px;
+    
   }
   .proj-cat {
     font-size: 16px;
@@ -387,7 +387,7 @@ onUnmounted(() => {
   }
   .header {
     padding-left: 0;
-    padding-top: 120px;
+    padding-top: 100px;
     font-weight: bold;
   }
 }

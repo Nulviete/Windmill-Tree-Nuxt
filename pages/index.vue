@@ -7,7 +7,7 @@
                 <img src="~/assets/hero/Windmill_Tree-mob.png" alt="heroimg" class="w-full object-cover min-h-[854px] max-h-[950px]" />
             </picture>
 
-            <h3 class="leading-[4rem] text-4xl max-[1138px]:text-3xl max-[1138px]:leading-[3.5rem]">
+            <h3 class="leading-[4rem] text-4xl max-1030:text-3xl max-1030:leading-[3.5rem] max-463:text-lg max-463:leading-10 max-1030:px-4 max-1030:py-4">
                 …the worst is not that everything might
                 <span class="hero-text-hl">change </span><br />
                 but that everything remains the <span class="hero-text-hl">same!</span><br />
