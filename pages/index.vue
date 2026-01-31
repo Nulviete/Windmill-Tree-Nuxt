@@ -115,8 +115,8 @@
                 </p>
             </div>
             <div class="our-mission-right">
-                <h1 style="" class="text-[var(--bg-green)] text-3xl">Our mission</h1>
-                <img class="mob-ver" src="~/assets/our-mission/our-mission-1-mob-x.png" alt="" srcset="" />
+                <h1 style="" class="text-[var(--bg-green)] text-3xl pb-10 max-900:py-6 max-900:bg-white">Our mission</h1>
+                <img class="mob-ver object-cover min-h-[955px]" src="~/assets/our-mission/our-mission-1-mob-x.png" alt="" srcset="" />
                 <div class="om-first" style="">
                     We focus on building a more inclusive and sustainable world by
                     delivering innovative high quality non-formal education, supporting
