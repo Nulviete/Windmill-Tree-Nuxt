@@ -4,16 +4,16 @@
       LATEST NEWS
     </div>
 
-    <div class="flex flex-col pl-10" v-if="news.length">
+    <div class="flex flex-col ml-10 max-900:ml-0" v-if="news.length">
       <div
         v-for="item in paginatedNews"
         :key="item.id"
-        class="flex flex-row space-x-6 py-6"
+        class="flex flex-row max-900:flex-col space-x-6 py-6 "
       >
         <img
           :src="item.new_img"
           alt=""
-          class="max-w-[500px] aspect-[3/2] object-cover rounded-3xl"
+          class="rounded-3xl w-full max-w-[500px] min-h-[300px] max-550:w-[95%] max-900:mb-6 mx-auto aspect-[3/2] object-cover"
         />
         <div class="flex flex-col">
           <div class="new-head text-3xl">{{ item.new_title }}</div>
