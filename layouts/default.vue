@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen bg-page">
         <Navbar v-if="!fullscreenMode" />
-        <NuxtPage class="pt-40 flex-1 bg-page" />
+        <NuxtPage class="pt-40 flex-1" />
         <Footer v-if="!fullscreenMode" class="footer z-10 bottom-0" />
     </div>
     
