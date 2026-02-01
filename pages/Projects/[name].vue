@@ -55,7 +55,7 @@
     <div class="proj-info pl-12 mt-12 py-6 text-black">
       <div>{{ project.place }}</div>
       <div>{{ project.date }}</div>
-      <div>Number of participant: {{ project.number_of_participants }}</div>
+      <div>Number of participants: {{ project.number_of_participants }}</div>
     </div>
 
     <div class="flex justify-end pb-36 max-900:pb-6">
