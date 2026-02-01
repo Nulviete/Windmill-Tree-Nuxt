@@ -40,7 +40,14 @@
           <img src="~/assets/icons/yt-nav.png" alt="" srcset="" />
         </a>
       </div>
-      <UDropdown :items="menuItems" :popper="{ placement: 'bottom-start' }">
+      <UDropdown :items="menuItems" :popper="{ placement: 'bottom-start' }" :ui="{
+        background: 'bg-[var(--bg-green)]',
+        item: {
+          active: 'bg-green-700 text-white',
+          inactive: 'text-gray-800',
+        }   
+        }
+      ">
         <IconsMenu class="menu" />
       </UDropdown>
     </div>

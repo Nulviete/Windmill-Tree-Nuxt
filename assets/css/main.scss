@@ -19,8 +19,8 @@
     html { font-size: var(--a11y-font); }
 
     /* Contrast */
-    html.a11y-contrast body { @apply bg-black text-white; }
-    html.a11y-contrast a { @apply text-yellow-400 underline; }
+    html.a11y-contrast body { @apply bg-black text-red-500; }
+    html.a11y-contrast a { @apply text-red-500 underline; }
     html.a11y-contrast {
         --bg-brown: #000000;
         --bg-green: #FFFFFF;
@@ -38,7 +38,7 @@
 
 // Navbar
 .navbar {
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(30px);
 }
 .navbar-link {
     padding: 10px 10px;
