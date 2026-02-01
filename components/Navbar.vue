@@ -18,18 +18,18 @@
       <NuxtLink to="/Documents" class="navbar-link"> Documents / Toolbox </NuxtLink>
     </div>
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 max-768:gap-1">
             <button @click="toggleFont()"
-              class="px-2 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm"><span class="text-[var(--con-black)]" :aria-pressed="labelFont">{{ labelFont }}</span></button>
+              class="px-2 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm max-768:text-xs max-768:px-2"><span class="text-[var(--con-black)]" :aria-pressed="labelFont">{{ labelFont }}</span></button>
 
       <button @click="toggleContrast()"
-              class="px-3 py-1 rounded bg-black text-yellow-300 hover:text-yellow-200 text-sm">
-        Kontrast
+              class="px-3 py-1 rounded bg-black text-yellow-300 hover:text-yellow-200 text-sm max-768:text-xs max-768:px-2">
+        Contrast
       </button>
     </div>
 
     <div class="burger-menu">
-      <div class="nav-socials">
+      <div class="nav-socials flex items-center">
         <a href="https://www.facebook.com/FundacjaWindmillTree/photos_by">
           <img src="~/assets/icons/fb-nav.png" alt="" srcset="" />
         </a>
@@ -167,6 +167,7 @@ a:hover {
 .choose-lang {
     display: none;
   }
+
 // .navbar-link:hover {
 //   color: #78c0c5;
 // }
@@ -182,7 +183,7 @@ a:hover {
 .nav-socials {
   display: flex;
   flex-direction: row;
-  padding-right: 25px;
+  padding-right: 20px;
   justify-content: center;
 }
 .nav-socials img {
@@ -198,6 +199,8 @@ a:hover {
   }
   .navbar-logo img {
     width: 100px;
+    min-height: 50px;
+    min-width: 100px;
   }
   .navbar {
     height: 71px;
