@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navbar flex flex-row w-full justify-between px-4 items-center bg-[var(--nav-color)]"
+    class="navbar flex flex-row w-full justify-between px-10 max-900:px-3 items-center bg-[var(--nav-color)]"
     id="navbar"
   >
     <div class="navbar-logo">
@@ -44,7 +44,7 @@
         <IconsMenu class="menu" />
       </UDropdown>
     </div>
-    <div class="choose-lang" style="visibility: hidden">
+    <div class="choose-lang" style="">
       <div>UA | EN | PL</div>
     </div>
   </div>
@@ -143,6 +143,7 @@ a {
   padding: 0;
   margin: 0;
   transition: 0.3s;
+  color: white;
 }
 a:hover {
   color: black;
@@ -156,6 +157,9 @@ a:hover {
 .navbar-link {
   padding: 5px;
 }
+.choose-lang {
+    display: none;
+  }
 // .navbar-link:hover {
 //   color: #78c0c5;
 // }

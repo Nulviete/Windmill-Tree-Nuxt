@@ -1,8 +1,8 @@
 <template>
-  <div class="pt-32 px-4" @click="closeAll">
+  <div class="pt-32 px-4 max-900:pt-28" @click="closeAll">
     <div
       style="font-weight: bolder"
-      class="pb-10 md:text-[40px] max-md:text-[20px]"
+      class="pb-10 md:text-[40px] max-900:text-[24px] max-900:text-center"
     >
       Team
     </div>

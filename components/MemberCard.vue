@@ -1,5 +1,5 @@
 <template>
-  <div class="card group" @click.stop>
+  <div class="card group aspect-[444/457]" @click.stop>
     <!-- FOTO -->
     <img
       v-if="member.profile_pic"
