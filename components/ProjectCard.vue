@@ -1,6 +1,6 @@
 <template>
 
-    <div class="card flex flex-col">
+    <div class="card flex flex-col bg-white/60 backdrop-blur-sm ring-1 ring-black/5">
         <img :src="props.project.main_photo || props.project.video_image" alt="" style="">
         <div class="flex flex-col ml-4 grow justify-around mb-6 mt-2">
             <div class="proj-cat"> {{ props.project.category }}</div>
@@ -27,14 +27,14 @@ const props = defineProps({
     min-width: 250px;
     max-width: 360px;
     height: auto;
-    border: 3px solid #81B1FF;
+    border: 3px solid #1351b4;
     border-radius: 30px;
     transition: all 0.3s;
-    background: rgb(210, 210, 240, 0.4);
+
 }
 .card:hover {
-    box-shadow: 0px 0px 20px 10px rgba(255, 255, 255, 0.5);
     scale: 1.01;
+    cursor: pointer;
 }
 .card img {
     border-radius: 30px;
