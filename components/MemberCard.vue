@@ -146,10 +146,14 @@ const onTap = (e) => {
     opacity: 1;
   }
 
-  .card:hover .photo {
+  .card:hover .photo img {
     transform: scale(1.05);
   }
  
+}
+
+.photo img {
+  object-fit: contain;
 }
 
 /* Mobil otevření přes klik (class="open") */

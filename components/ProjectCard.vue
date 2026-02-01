@@ -1,6 +1,6 @@
 <template>
 
-    <div class="card flex flex-col bg-white/60 backdrop-blur-sm ring-1 ring-black/5">
+    <div class="card flex flex-col bg-white/60 backdrop-blur-sm ring-1 ring-black/5 overflow-hidden">
         <img :src="props.project.main_photo || props.project.video_image" alt="" style="">
         <div class="flex flex-col ml-4 grow justify-around mb-6 mt-2">
             <div class="proj-cat"> {{ props.project.category }}</div>
@@ -33,14 +33,19 @@ const props = defineProps({
 
 }
 .card:hover {
-    scale: 1.01;
     cursor: pointer;
 }
 .card img {
-    border-radius: 30px;
-    padding: 5px;
-    height: 250px;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
+    padding: 0px;
+    height: 200px;
+    width: 100%;
     object-fit: cover;
+}
+.card img:hover {
+transform: scale(1.04);
+transition: all 0.7s;
 }
 .proj-cat {
     font-size: 24px;
