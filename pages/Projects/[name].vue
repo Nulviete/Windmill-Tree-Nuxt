@@ -60,7 +60,7 @@
 
     <div class="flex justify-end pb-36 max-900:pb-6">
       <div
-        class="proj-participants py-6 pl-8 pr-6 -mt-4"
+        class="proj-participants py-6 pl-12 pr-6 -mt-4"
       >
         Participants from: {{ project.participants_countries }}
       </div>
@@ -71,10 +71,10 @@
     </div>
 
     <!-- gallery slideshow -->
-    <div class="bg-green-900 py-4">
+    <div class="bg-green-900 py-6">
       <div class="relative w-full max-w-4xl mx-auto">
         <!-- Slider -->
-        <div class="overflow-hidden w-full">
+        <div class="overflow-hidden w-full rounded-xl">
           <div
             v-if="project.photos && project.photos.length"
             ref="slider"
@@ -91,7 +91,7 @@
             <div
               v-for="(photo, index) in project.photos"
               :key="index"
-              class="w-full md:w-1/4 p-2 cursor-pointer"
+              class="w-full md:w-1/4 px-2 cursor-pointer"
               @click="openFullscreen(photo)"
             >
               <img :src="photo" class="rounded-xl object-cover w-full h-64" />
@@ -170,9 +170,7 @@
     </div>
   </div>
   <div v-else class="text-center">
-    DATA LOADING
-    <div>{{ dataLoaded }}</div>
-    <div>{{ project }}</div>
+    DATA LOADING...
   </div>
 </template>
 
