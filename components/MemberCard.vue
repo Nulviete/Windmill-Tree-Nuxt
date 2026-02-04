@@ -87,7 +87,7 @@ const onTap = (e) => {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 40px;
+  font-size: 20px;
   font-weight: 600;
   z-index: 0;
 }
@@ -173,7 +173,7 @@ const onTap = (e) => {
   }
 
   .name {
-    font-size: 14px;
+    font-size: 10px;
   }
 
   .overlay {
