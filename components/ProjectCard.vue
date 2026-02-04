@@ -36,8 +36,6 @@ const props = defineProps({
     cursor: pointer;
 }
 .card img {
-    border-top-left-radius: 27px;
-    border-top-right-radius: 27px;
     padding: 0px;
     height: 200px;
     width: 100%;

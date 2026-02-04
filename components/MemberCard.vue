@@ -1,10 +1,11 @@
 <template>
-  <div class="card group aspect-[444/457]" @click.stop>
+  <div class="relative">
+  <div class="card group aspect-[444/457] mt-4 min-900:mt-12 items-center justify-center overflow-hidden" @click.stop>
     <!-- FOTO -->
     <img
       v-if="member.profile_pic"
       :src="member.profile_pic"
-      class="photo"
+      class="photo object-fit"
       @click="onTap"
     />
     <img
@@ -13,7 +14,7 @@
       class="photo"
       @click="onTap"
     />
-    <div class="name"> {{ member.name }}</div>
+    <div class="name w-fit self-center bg-green-600 text-center text-white rounded-3xl px-7 w-auto"> {{ member.name }}</div>
 
     <!-- OVERLAY -->
     <div class="overlay" :class="{ open }" @click.stop>
@@ -40,6 +41,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script setup>
@@ -65,11 +67,10 @@ const onTap = (e) => {
 
 <style scoped>
 .card {
-  position: relative;
   width: 444px;
   height: 457px;
   border-radius: 30px;
-  overflow: hidden;
+  border: #119928 solid 3px;
   cursor: pointer;
   background: #000; /* fallback když se nenačte obrázek */
 }
@@ -84,14 +85,11 @@ const onTap = (e) => {
 /* Jméno nahoře */
 .name {
   position: absolute;
-  top: 0;
-  left: 16px;
-  right: 16px;
-  color: rgb(0, 0, 0);
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 40px;
   font-weight: 600;
-  padding-top: 12px;
-  z-index: 3;
+  z-index: 0;
 }
 
 /* OVERLAY — výchozí stav = skrytý */
@@ -176,9 +174,6 @@ const onTap = (e) => {
 
   .name {
     font-size: 14px;
-    left: 12px;
-    right: 12px;
-    padding-top: 8px;
   }
 
   .overlay {
@@ -203,6 +198,11 @@ const onTap = (e) => {
 
   .overlay-small {
     font-size: 11px;
+  }
+}
+@media (max-width: 550px) {
+  .card {
+    border: #119928 solid 2px;
   }
 }
 </style>
