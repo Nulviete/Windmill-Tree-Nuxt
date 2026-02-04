@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-32 px-4 max-900:pb-10pt-28 text-center" @click="closeAll">
+  <div v-if="members.length" class="pt-32 px-4 max-900:pb-10pt-28 text-center" @click="closeAll">
     <div
       style="font-weight: bolder"
       class="pb-10 md:text-[40px] max-900:pb-10 text-[24px] text-center"
@@ -146,9 +146,12 @@
       </div>
     </div>
   </div>
+  <div v-else><LoadingSpinner /></div>
 </template>
 
 <script setup>
+import LoadingSpinner from '~/components/Icons/LoadingSpinner.vue';
+
 const members = ref([]);
 
 onMounted(async () => {

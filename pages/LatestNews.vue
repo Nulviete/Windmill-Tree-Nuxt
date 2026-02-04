@@ -39,11 +39,15 @@
 
     </div>
 
-    <div v-else class="text-center py-10">Data loading…</div>
+    <div v-else>
+      <LoadingSpinner />
+    </div>
   </div>
 </template>
 
 <script setup>
+import LoadingSpinner from '~/components/Icons/LoadingSpinner.vue'
+
 defineOptions({
   inheritAttrs: false
 })

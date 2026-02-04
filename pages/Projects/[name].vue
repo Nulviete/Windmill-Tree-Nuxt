@@ -13,13 +13,7 @@
 
     <div
       class="header text-white -mt-[160px] pl-12 pt-[160px]"
-      :style="{
-        backgroundImage: `url(${
-          project?.bg_img || 'https://i.imgur.com/FlJnzka.png'
-        })`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-      }"
+      :style="headerStyle"
     >
       <div
         class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl ml-4 mb-6"
@@ -169,20 +163,33 @@
       <div v-else>No video links available :(</div>
     </div>
   </div>
-  <div v-else class="text-center">
-    DATA LOADING...
+  <div v-else class="">
+    <LoadingSpinner />
   </div>
 </template>
 
 
 <script setup>
+import { _backgroundImage, _backgroundPosition } from "#tailwind-config/theme";
 import { ref, computed, onMounted, onUnmounted, watchEffect } from "vue";
-import Carousel from "~/components/Carousel";
+import LoadingSpinner from "~/components/Icons/LoadingSpinner.vue";
 
 const route = useRoute();
 const projectName = ref(route.params.name);
 const project = ref(null);
 const dataLoaded = ref(false);
+
+const bgUrl = computed(() => {
+  const key = project.value.bg_img;
+  return key ? `/projects/international/ip_bg_${key}.webp` : "https://i.imgur.com/FlJnzka.png";
+})
+
+const headerStyle = computed(() => ({
+  backgroundImage: `url(${bgUrl.value})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+}))
 
 const fullscreenMode = useFullscreen();
 

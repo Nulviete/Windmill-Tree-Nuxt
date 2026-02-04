@@ -102,6 +102,9 @@
                     <div class="news-more text-3xl">More</div>
                 </NuxtLink>
             </div>
+            <div v-else>
+                <LoadingSpinner />
+            </div>
         </div>
 
         <!-- Our mission section -->
@@ -336,6 +339,8 @@
 </template>
 
 <script setup>
+import LoadingSpinner from '~/components/Icons/LoadingSpinner.vue';
+
 const news = ref([]);
 
 onMounted(async () => {
