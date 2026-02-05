@@ -316,6 +316,12 @@ a {
     padding-bottom: 40px;
 }
 
+@media (max-width: 1030px) {
+   .hero-block h3 {
+    left: 20px;
+    bottom: 30px;
+   } 
+}
 /* 900 */
 @media (max-width: 900px) {
     .pc-ver {
@@ -342,8 +348,7 @@ a {
         font-size: 50px;
         text-shadow: #FC0 1px 0 10px;
     }
-    .hero-block h3 {
-    }
+   
     .Foundation-description {
         font-size: 20px;
     }
@@ -356,6 +361,7 @@ a {
         border: black solid 2px;
         border-top-right-radius: 30px;
         border-bottom-right-radius: 30px;
+        padding-right: 10px;
     }
     .hero-text-hl {
         color: black;
