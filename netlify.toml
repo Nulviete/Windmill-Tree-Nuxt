@@ -1,0 +1,28 @@
+[[redirects]]
+from = "/Projects"
+to = "/projects"
+status = 301
+force = true
+
+[[redirects]]
+from = "/OurTeam"
+to = "/our-team"
+status = 301
+force = true
+
+[[redirects]]
+from = "/WeNeedYou"
+to = "/we-need-you"
+status = 301
+force = true
+
+[[redirects]]
+from = "/Documents"
+to = "/documents"
+status = 301
+force = true
+
+[[redirects]]
+from = "/*/"
+to = "/:splat"
+status = 301

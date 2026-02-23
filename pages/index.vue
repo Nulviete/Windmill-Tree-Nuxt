@@ -3,11 +3,11 @@
         <!-- Hero img -->
         <div class="hero-block">
             <picture>
-                <source media="(min-width:900px)" srcset="~/assets/hero/Windmill_Tree.webp" />
-                <img src="~/assets/hero/Windmill_Tree-mob.webp" alt="heroimg" class="w-full object-cover min-h-[854px] max-h-[100vh]" />
+                <source media="(min-width:900px)" :srcset="heroImg" />
+                <img :src="heroImg" alt="heroimg" class="w-full object-cover min-768:min-h-[854px] max-768:min-h-[650px] max-h-[100vh]" />
             </picture>
 
-            <h3 class="leading-[4rem] text-4xl max-1030:text-3xl max-1030:leading-[3.5rem] max-463:text-lg max-463:leading-10 max-1030:py-4">
+            <h3 class="hero-txt bg-gradient-to-t from-black/80 via-black/30 to-transparent leading-[4rem] text-4xl max-1030:text-3xl max-1030:leading-[3.5rem] max-768:text-lg max-463:leading-10 max-1030:py-4">
                 …the worst is not that everything might
                 <span class="hero-text-hl">change </span><br />
                 but that everything remains the <span class="hero-text-hl">same!</span><br />
@@ -30,21 +30,21 @@
                 </div>
                 <div class="Foundation-description-mid" style="">LATEST NEWS</div>
                 <div class="socials">
-                    <div class="socials-under">
+                    <div class="socials-under bg-gray-800/80">
                         <a href="https://www.facebook.com/FundacjaWindmillTree/photos_by">
                             <div class="icon">
-                                <IconsFacebook height="35px" class="text-[var(--black)]" />
+                                <IconsFacebook height="35px" class="text-[var(--blue)] hover:text-blue-500 transition-colors duration-400" />
                             </div>
                         </a>
                         <a href="https://www.instagram.com/foundation_windmill_tree/">
                             <div class="icon">
-                                <IconsInstagram height="35px" class="text-[var(--black)]" />
+                                <IconsInstagram height="35px" class="text-[var(--instagram)] hover:text-red-700 transition-colors duration-400" />
                             </div>
                             <i class="fa-brands fa-instagram fa-4x cursor-pointer" />
                         </a>
                         <a href="https://www.youtube.com/@foundationwindmilltree8203">
                             <div class="icon">
-                                <IconsYoutube height="35px" class="text-[var(--black)]" />
+                                <IconsYoutube height="35px" class="text-[var(--red)] hover:text-red-500 transition-colors duration-400" />
                             </div>
                         </a>
                     </div>
@@ -98,7 +98,7 @@
                 </div>
                 <hr class="second-new-line" />
 
-                <NuxtLink to="/LatestNews">
+                <NuxtLink to="/latest-news">
                     <div class="news-more text-3xl">More</div>
                 </NuxtLink>
             </div>
@@ -341,6 +341,17 @@
 <script setup>
 import LoadingSpinner from '~/components/Icons/LoadingSpinner.vue';
 
+const config = useRuntimeConfig();
+const heroImg = computed(() => {
+    return config.public.heroImg === 'b' ? '/hero/hero_second_ver.webp' : '/hero/Windmill_Tree.webp';
+});
+
+
+const heroImgMob = computed(() => {
+    return config.public.heroImg === 'b' ? '/hero/hero_second_ver_mob.webp' : '/hero/Windmill_Tree-mob.webp';
+});
+
+
 const news = ref([]);
 
 onMounted(async () => {
@@ -368,6 +379,12 @@ onMounted(async () => {
 
 .hero-img h3 {
     font-size: 40px;
+}
+
+.hero-txt {
+    backdrop-filter: blur(15px);
+    padding: 5px 20px;
+    border-radius: 20px;
 }
 
 .hr {
@@ -421,6 +438,12 @@ onMounted(async () => {
     .new-info {
         width: 100%;
         padding-top: 10px;
+    }
+    .hero-txt {
+    padding: 5px 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: 0px;
     }
 }
 </style>

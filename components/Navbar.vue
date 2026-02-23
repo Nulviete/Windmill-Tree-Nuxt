@@ -9,13 +9,13 @@
 
     <div class="links">
       <NuxtLink to="/" class="navbar-link" style=""> Who are we </NuxtLink>
-      <NuxtLink to="/Projects" class="navbar-link"> Projects </NuxtLink>
-      <NuxtLink to="/OurTeam" class="navbar-link"> Our Team </NuxtLink>
-      <NuxtLink to="/LatestNews" class="navbar-link"> Latest news </NuxtLink>
-      <NuxtLink to="/WeNeedYou" class="navbar-link">
+      <NuxtLink to="/projects" class="navbar-link"> Projects </NuxtLink>
+      <NuxtLink to="/our-team" class="navbar-link"> Our Team </NuxtLink>
+      <NuxtLink to="/latest-news" class="navbar-link"> Latest news </NuxtLink>
+      <NuxtLink to="/we-need-you" class="navbar-link">
         We need you (Open call)
       </NuxtLink>
-      <NuxtLink to="/Documents" class="navbar-link"> Documents / Toolbox </NuxtLink>
+      <NuxtLink to="/documents" class="navbar-link"> Documents / Toolbox </NuxtLink>
     </div>
 
     <div class="flex items-center gap-2 max-768:gap-1">
@@ -88,31 +88,31 @@ const menuItems = [
   [
     {
       label: "Projects",
-      to: "/Projects",
+      to: "/projects",
     },
   ],
   [
     {
       label: "Latest news",
-      to: "/LatestNews",
+      to: "/latest-news",
     },
   ],
   [
     {
       label: "We need You",
-      to: "/WeNeedYou",
+      to: "/we-need-you",
     },
   ],
   [
     {
       label: "Our Team",
-      to: "/OurTeam",
+      to: "/our-team",
     },
   ],
   [
     {
       label: "Documents",
-      to: "/Documents",
+      to: "/documents",
     },
   ],
 ];

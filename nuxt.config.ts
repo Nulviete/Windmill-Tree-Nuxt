@@ -25,6 +25,18 @@ export default defineNuxtConfig({
         }
       ]
     }
+   
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+    }
+  },
+
+  runtimeConfig: {
+    public: {
+      heroImg: process.env.HERO_IMG || 'b',
+    }
   },
 
   colorMode: {

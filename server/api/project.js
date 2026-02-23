@@ -6,9 +6,9 @@ export default defineEventHandler(async (event) => {
 
     const query = getQuery(event)
 
-    const name = query.name
+    const slug = query.name
 
-    const { data } = await client.from('projects').select('*').eq('name', name)  
+    const { data } = await client.from('projects').select('*').eq('slug', slug)  
         
     return { data } 
 })

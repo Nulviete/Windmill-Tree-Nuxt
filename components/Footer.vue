@@ -13,11 +13,11 @@
         </div>
         <div class="footer-mid-left">
           <NuxtLink to="/" class="navbar-link" style=""><span class="text-[var(--con-black)]">Who we are</span></NuxtLink>  
-          <NuxtLink to="/LatestNews" class="navbar-link"><span class="text-[var(--con-black)]">What's new</span></NuxtLink>   
-          <NuxtLink to="/Projects" class="navbar-link"><span class="text-[var(--con-black)]">Projects</span> </NuxtLink>  
-          <NuxtLink to="/OurTeam" class="navbar-link"><span class="text-[var(--con-black)]">Our team</span></NuxtLink>   
-          <NuxtLink to="/Documents" class="navbar-link"><span class="text-[var(--con-black)]">Documents</span></NuxtLink>   
-          <NuxtLink to="/WeNeedYou" class="navbar-link"><span class="text-[var(--con-black)]">Open call (We need you)</span></NuxtLink>   
+          <NuxtLink to="/latest-news" class="navbar-link"><span class="text-[var(--con-black)]">What's new</span></NuxtLink>   
+          <NuxtLink to="/projects" class="navbar-link"><span class="text-[var(--con-black)]">Projects</span> </NuxtLink>  
+          <NuxtLink to="/our-team" class="navbar-link"><span class="text-[var(--con-black)]">Our team</span></NuxtLink>   
+          <NuxtLink to="/documents" class="navbar-link"><span class="text-[var(--con-black)]">Documents</span></NuxtLink>   
+          <NuxtLink to="/we-need-you" class="navbar-link"><span class="text-[var(--con-black)]">Open call (We need you)</span></NuxtLink>   
         </div>
 
         <div class="footer-mid-right ">

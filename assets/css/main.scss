@@ -10,6 +10,9 @@
         --bg-green: #90A955;
         --bg-light-green: #ECF39E;
         --black: #000000;
+        --blue: #1877F2;
+        --red: #ff0000;
+        --instagram: #E4405F;
         --con-black: #000;
         --nav-color: rgba(144,169,85, 0.4);
         --white-to-black: #fff;
@@ -60,7 +63,7 @@
 }
 .hero-block h3 {
     font-weight: bold;
-    color: black;
+    color: rgb(255, 255, 255);
     text-align: left;
     position: absolute;
     bottom: 10px;
@@ -69,7 +72,7 @@
     
 }
 .hero-text-hl {
-    color: green;
+    color: rgb(31, 248, 31);
 }
 .kostenko {
     font-size: 30px;
@@ -353,19 +356,16 @@ a {
         font-size: 20px;
     }
     .hero-block h3 {
-        background-color: rgba(144,169,85, 0.8);
+        background-color: rgba(176, 209, 99, 0.8);
         color: white;
         left: 0px;
-        top: 45%;
-        bottom: auto;
+        bottom: 10px;
         border: black solid 2px;
         border-top-right-radius: 30px;
         border-bottom-right-radius: 30px;
         padding-right: 10px;
     }
-    .hero-text-hl {
-        color: black;
-    }
+
     .kostenko-des {
         display: none;
     }

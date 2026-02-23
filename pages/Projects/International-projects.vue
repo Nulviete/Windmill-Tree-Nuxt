@@ -13,7 +13,7 @@
 
         <div class="flex flex-row gap-4 flex-wrap">
             <div v-for="project in projects" :key="project.id" class="">
-                <ProjectCard :project="project" @click="navigateTo('/Projects/' +project.name)" />
+                <ProjectCard :project="project" @click="navigateTo('/projects/' +project.slug)" />
             </div>
         </div>
         
