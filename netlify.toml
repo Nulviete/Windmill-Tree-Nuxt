@@ -27,10 +27,3 @@ force = true
 from = "/api/*"
 to = "/api/:splat"
 status = 200
-
-# trailing slash removal
-[[redirects]]
-from = "/*/"
-to = "/:splat"
-status = 301
-force = true
