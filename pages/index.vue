@@ -108,7 +108,7 @@
         </div>
 
         <!-- Our mission section -->
-        <div class="our-mission-block text-2xl">
+        <div class="our-mission-block text-2xl gap-12">
             <div class="our-mission-left" style="position: relative">
                 <img class="pc-ver" src="~/assets/our-mission/our-mission-1.png" alt="" srcset="" />
                 <p class="pc-ver">
@@ -140,7 +140,7 @@
         </div>
 
         <!-- Our activities section -->
-        <div class="our-activities-block flex flex-row pc-ver">
+        <div class="our-activities-block flex flex-row pc-ver gap-12">
             <div class="our-activities-left">
                 <div class="our-activities-title bg-[var(--bg-light-green)] text-black text-4xl">
                     OUR ACTIVITIES
