@@ -1,10 +1,10 @@
 <template>
 <div v-bind="attrs" class="-mt-40">
-    <div class="header flex flex-col justify-center">
+    <div class="header flex flex-col justify-center h-[90vh] max-900:h-[50vh]">
         <div class="header-1">4 Ukraine</div>
     </div>
 
-    <div class="md:pl-10 py-10 max-md:px-4">
+    <div class="px-4 md:pl-10 py-10 max-md:px-4">
         <div
         class="text-black text-[40px] pb-4">Projects we have organized</div>
         <!-- Menu -->
@@ -24,7 +24,7 @@
                 <div >2024</div>
             </div>
 
-            <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-md:flex-col">
+            <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-550:flex-col">
                 <img src="~/assets/projects/for-ukraine/1.png" alt="" class="">
                 <div>Intercultural, intergenerational treasures hunt games.
                 <br><br>
@@ -50,10 +50,10 @@
                 <div >23.02.2024 - 03.03.2024</div>
             </div>
 
-            <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-md:flex-col">
+            <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-550:flex-col">
                 <div>International trainings attended by, among others, educators, youth workers from Ukraine (aim: exchange of experience of tools for working with young people, mental health support, etc. ) as well as young people who had the opportunity to develop mental resilience through participation in various valuable outdoor activities, artistic activities, etc.
                 </div>
-                <img src="~/assets/projects/for-ukraine/2.png" alt="">
+                <img src="~/assets/projects/for-ukraine/2.png" alt="" class="max-w-24">
             </div>
 
             <hr class="hr-right pc-ver">
@@ -145,7 +145,6 @@ const attrs = useAttrs()
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 90vh;
 }
 .header-1 {
     font-size: 127px;
@@ -188,12 +187,13 @@ img {
 * {
     font-size: 12px;
 }
+.header {
+    height: 50vh;
+}
 .header-1 {
     font-size: 30px;
 }
-img {
-    max-width: 100%;
-}
+
 hr {
     width: 100vw;
     max-width: none; 
@@ -201,6 +201,13 @@ hr {
     border-top: 1px solid #000;
     margin-bottom: 60px;
     box-sizing: border-box;
+}
+
+}
+@media (max-width: 550px) { 
+
+img {
+    max-width: 100%;
 }
 
 }
