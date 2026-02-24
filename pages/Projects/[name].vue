@@ -66,7 +66,7 @@
 
     <!-- gallery slideshow -->
     <div class="bg-green-900 py-6">
-      <div class="relative w-full max-w-4xl mx-auto">
+      <div class="relative w-full max-w-[920px] mx-auto">
         <!-- Slider -->
         <div class="overflow-hidden w-full rounded-xl">
           <div
@@ -85,10 +85,10 @@
             <div
               v-for="(photo, index) in project.photos"
               :key="index"
-              class="w-full md:w-1/4 px-2 cursor-pointer"
+              class="w-full md:w-1/4 px-1 cursor-pointer"
               @click="openFullscreen(photo)"
             >
-              <img :src="photo" class="rounded-xl object-cover w-full h-64" />
+              <img :src="photo" class="object-cover w-full h-64 rounded-lg" />
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@
           </button>
           <img
             :src="fullscreenPhoto"
-            class="max-w-full max-h-full rounded-lg"
+            class="max-w-full max-h-full"
           />
           <button
             class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
