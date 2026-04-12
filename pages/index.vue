@@ -1,9 +1,9 @@
 <template>
   <div class="homepage">
-    <section class="hero-block">
-      <picture>
+    <section class="hero-block w-full">
+      <picture class="w-full">
         <source media="(min-width:900px)" :srcset="heroImg" />
-        <img :src="heroImg" alt="Windmill Tree Foundation in the mountains" class="hero-image" />
+        <img :src="heroImg" alt="Windmill Tree Foundation in the mountains" class="hero-image object-fit" />
       </picture>
 
       <div class="hero-overlay">
