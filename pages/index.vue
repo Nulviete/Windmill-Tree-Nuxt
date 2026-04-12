@@ -1,534 +1,781 @@
 <template>
-  <div class="-mt-40">
-    <!-- Hero img -->
-    <div class="hero-block">
+  <div class="homepage">
+    <section class="hero-block">
       <picture>
         <source media="(min-width:900px)" :srcset="heroImg" />
-        <img
-          :src="heroImg"
-          alt="heroimg"
-          class="w-full object-cover min-768:min-h-[854px] max-768:min-h-[650px] max-h-[100vh]"
-        />
+        <img :src="heroImg" alt="Windmill Tree Foundation in the mountains" class="hero-image" />
       </picture>
 
-      <h3
-        class="hero-txt bg-gradient-to-t from-black/80 via-black/30 to-transparent leading-[4rem] text-4xl max-1030:text-3xl max-1030:leading-[3.5rem] max-768:text-lg max-463:leading-10 max-1030:py-4"
-      >
-        …the worst is not that everything might
-        <span class="hero-text-hl">change </span><br />
-        but that everything remains the <span class="hero-text-hl">same!</span
-        ><br />
-        <span class="kostenko">-Lina Kostenko </span
-        ><span class="kostenko-des text-xl" style="font-weight: normal"
-          >(a Ukrainian poet, journalist, writer, publisher, and former Soviet
-          dissident)</span
-        >
-      </h3>
-    </div>
+      <div class="hero-overlay">
+        <p class="hero-kicker">Windmill Tree Foundation</p>
+        <h1 class="hero-title">
+          Building inclusive learning, solidarity and international exchange in
+          the Izery Mountains.
+        </h1>
+        <p class="hero-lead">
+          We create non-formal education, youth exchanges, volunteering
+          programmes and direct support for refugee and marginalized young
+          people.
+        </p>
 
-    <!-- Socials -->
-
-    <!-- Latest news -->
-
-    <div class="foundation-sec bg-[var(--bg-brown)]">
-      <div
-        class="Foundation-description w-full mx-auto flex items-center justify-center gap-4 h-[35px]"
-      >
-        <div class="lines">
-          <div class="line"></div>
-          <div class="dashed-line"></div>
-        </div>
-        <div class="Foundation-description-mid" style="">LATEST NEWS</div>
-        <div class="socials">
-          <div class="socials-under bg-gray-800/80">
-            <a href="https://www.facebook.com/FundacjaWindmillTree/photos_by">
-              <div class="icon">
-                <IconsFacebook
-                  height="35px"
-                  class="text-[var(--blue)] hover:text-blue-500 transition-colors duration-400"
-                />
-              </div>
-            </a>
-            <a href="https://www.instagram.com/foundation_windmill_tree/">
-              <div class="icon">
-                <IconsInstagram
-                  height="35px"
-                  class="text-[var(--instagram)] hover:text-red-700 transition-colors duration-400"
-                />
-              </div>
-              <i class="fa-brands fa-instagram fa-4x cursor-pointer" />
-            </a>
-            <a href="https://www.youtube.com/@foundationwindmilltree8203">
-              <div class="icon">
-                <IconsYoutube
-                  height="35px"
-                  class="text-[var(--red)] hover:text-red-500 transition-colors duration-400"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="news.length != 0" class="latest-news-list"> 
-        <div v-for="n in 2" :key="n">
-          <div class="new pt-16 pb-8 pl-20 max-md:px-4">
-            <div class="new-image">
-              <img :src="news[n - 1].new_img" alt="" />
-            </div>
-            <div class="new-info">
-              <div class="new-name text-3xl">{{ news[n - 1].new_title }}</div>
-              <div class="new-date text-2xl">
-                {{ news[n - 1].created_at.substr(8, 2) }}.{{
-                  news[n - 1].created_at.substr(5, 2)
-                }}.{{ news[n - 1].created_at.substr(0, 4) }}
-              </div>
-              <div v-for="phrase in news[n - 1].new_body" :key="phrase">
-                <div class="new-des">{{ phrase }}</div>
-              </div>
-
-              <!-- Link to videos if they exist -->
-              <div v-if="news[n - 1].new_links && news[n - 1].new_links.length > 0" class="pt-4">
-                <div>Links to videos:</div>
-                <div v-for="link in news[n - 1].new_links" :key="link">
-                  <div class="new-link">
-                    <a :href="link" target="_blank">{{ link }}</a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Link to interviews if they exist -->
-              <div
-                v-if="
-                  news[n - 1].new_link_interview &&
-                  news[n - 1].new_link_interview.length > 0
-                "
-              >
-                <div>Links to interviews:</div>
-                <div v-for="link in news[n - 1].new_link_interview" :key="link">
-                  <div class="new-link">
-                    <a :href="link" target="_blank">{{ link }}</a>
-                  </div>
-                </div>
-              </div>
-
-              <div v-for="signature in news[n - 1].new_signature" :key="signature">
-                <div class="new-des">{{ signature }}</div>
-                <br />
-              </div>
-            </div>
-          </div>
-
-          <hr v-if="n === 0" class="first-new-line pb-[3rem]" />
-          <hr v-else class="second-new-line" />
+        <div class="hero-actions">
+          <NuxtLink to="/projects" class="hero-button hero-button-primary">
+            Explore Projects
+          </NuxtLink>
+          <NuxtLink to="/latest-news" class="hero-button hero-button-secondary">
+            Latest News
+          </NuxtLink>
         </div>
 
-        <NuxtLink to="/latest-news">
-          <div class="news-more text-3xl">More</div>
-        </NuxtLink>
-      </div>
-      <div v-else>
-        <LoadingSpinner />
-      </div>
-    </div>
-
-    <!-- Our mission section -->
-    <div class="our-mission-block text-2xl gap-12">
-      <div class="our-mission-left" style="position: relative">
-        <img
-          class="pc-ver"
-          src="~/assets/our-mission/our-mission-1.png"
-          alt=""
-          srcset=""
-        />
-        <p class="pc-ver">
-          Located in the breathtaking Izery Mountains region, our diverse team
-          is a bland of individuals from Poland, Ukraine, Germany and Czech
-          Republic.
+        <p class="hero-quote">
+          “…the worst is not that everything might <span>change</span> but that
+          everything remains the <span>same</span>.”
+        </p>
+        <p class="hero-credit">
+          Lina Kostenko, Ukrainian poet, journalist and former Soviet dissident
         </p>
       </div>
-      <div class="our-mission-right">
-        <h1
-          style=""
-          class="text-[var(--bg-green)] text-3xl pb-10 max-900:py-6 max-900:bg-white"
+    </section>
+
+    <section class="homepage-section homepage-news">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">What is happening now</p>
+          <h2 class="section-title">Latest News</h2>
+        </div>
+
+        <div class="socials">
+          <div class="socials-under bg-gray-800/80">
+            <a
+              href="https://www.facebook.com/FundacjaWindmillTree/photos_by"
+              aria-label="Windmill Tree on Facebook"
+            >
+              <IconsFacebook
+                height="35px"
+                class="text-[var(--blue)] hover:text-blue-500 transition-colors duration-400"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/foundation_windmill_tree/"
+              aria-label="Windmill Tree on Instagram"
+            >
+              <IconsInstagram
+                height="35px"
+                class="text-[var(--instagram)] hover:text-red-700 transition-colors duration-400"
+              />
+            </a>
+            <a
+              href="https://www.youtube.com/@foundationwindmilltree8203"
+              aria-label="Windmill Tree on YouTube"
+            >
+              <IconsYoutube
+                height="35px"
+                class="text-[var(--red)] hover:text-red-500 transition-colors duration-400"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="pending" class="homepage-status">
+        <LoadingSpinner />
+      </div>
+
+      <div v-else-if="!latestNews.length" class="homepage-status">
+        <p>No news available yet. Please check back soon.</p>
+      </div>
+
+      <div v-else class="news-grid">
+        <article
+          v-for="item in latestNews"
+          :key="item.id"
+          class="news-card"
         >
-          Our mission
-        </h1>
+          <img
+            v-if="item.new_img"
+            :src="item.new_img"
+            :alt="item.new_title || 'Windmill Tree news image'"
+            class="news-card-image"
+          />
+
+          <div class="news-card-copy">
+            <time
+              v-if="item.created_at"
+              :datetime="item.created_at"
+              class="news-card-date"
+            >
+              {{ formatDate(item.created_at) }}
+            </time>
+            <h3 class="news-card-title">
+              {{ item.new_title || "Untitled update" }}
+            </h3>
+            <p v-if="item.preview" class="news-card-excerpt">
+              {{ item.preview }}
+            </p>
+
+            <NuxtLink to="/latest-news" class="news-card-link">
+              Read more
+            </NuxtLink>
+          </div>
+        </article>
+      </div>
+
+      <div class="news-footer">
+        <NuxtLink to="/latest-news" class="section-link">
+          Browse all updates
+        </NuxtLink>
+      </div>
+    </section>
+
+    <section class="homepage-section mission-grid">
+      <div class="mission-copy">
+        <p class="section-kicker">Why we exist</p>
+        <h2 class="section-title">Our mission</h2>
+        <p class="mission-lead">
+          We focus on building a more inclusive and sustainable world through
+          high quality non-formal education, youth work and international
+          cooperation.
+        </p>
+
+        <div class="mission-points">
+          <div
+            v-for="point in missionPoints"
+            :key="point.title"
+            class="mission-point"
+          >
+            <h3>{{ point.title }}</h3>
+            <p>{{ point.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission-media">
         <img
-          class="mob-ver object-cover min-h-[955px]"
-          src="~/assets/our-mission/our-mission-1-mob-x.png"
-          alt=""
-          srcset=""
+          src="~/assets/our-mission/our-mission-1.png"
+          alt="Participants during a Windmill Tree activity"
+          class="mission-image mission-image-main"
         />
-        <div class="om-first" style="">
-          We focus on building a more inclusive and sustainable world by
-          delivering innovative high quality non-formal education, supporting
-          marginalized and refugee youth, and enhancing the quality of youth
-          work, international exchange and volunteering programs.
-        </div>
-        <div class="mob-ver om-second">
-          Located in the breathtaking Izery Mountains region, our diverse team
-          is a bland of individuals from Poland, Ukraine, Germany and Czech
-          Republic.
-        </div>
         <img
-          class="pc-ver"
           src="~/assets/our-mission/our-mission-2.png"
-          alt=""
-          srcset=""
+          alt="Community moments from Windmill Tree programmes"
+          class="mission-image mission-image-secondary"
         />
-        <div class="pc-ver" style="font-size: 14px; text-align: left">
-          *all the photos you see are from activities and projects we have
-          organised
-        </div>
+        <p class="mission-note">
+          All photos come from activities and projects we have organised.
+        </p>
       </div>
-    </div>
+    </section>
 
-    <!-- Our activities section -->
-    <div class="our-activities-block flex flex-row pc-ver gap-12">
-      <div class="our-activities-left">
-        <div
-          class="our-activities-title bg-[var(--bg-light-green)] text-black text-4xl"
+    <section class="homepage-section activities-section">
+      <div class="section-heading section-heading-stacked">
+        <p class="section-kicker">How we work</p>
+        <h2 class="section-title">Our activities</h2>
+        <p class="section-intro">
+          We combine local roots with international reach through practical,
+          human-centered programmes.
+        </p>
+      </div>
+
+      <div class="activities-grid">
+        <article
+          v-for="activity in activities"
+          :key="activity.title"
+          class="activity-card"
         >
-          OUR ACTIVITIES
-        </div>
-        <div class="our-activities-pictures">
-          <img
-            class="img-up"
-            src="~/assets/our-activities/our-activities-img-up.png"
-            alt=""
-            srcset=""
-          />
-          <img
-            class="img-mid-l"
-            src="~/assets/our-activities/our-activities-img-mid-l.png"
-            alt=""
-            srcset=""
-          />
-          <img
-            class="img-mid-r"
-            src="~/assets/our-activities/our-activities-img-mid-r.png"
-            alt=""
-            srcset=""
-          />
-          <img
-            class="img-bot-l"
-            src="~/assets/our-activities/our-activities-img-bot-l.png"
-            alt=""
-            srcset=""
-          />
-          <img
-            class="img-bot-r"
-            src="~/assets/our-activities/our-activities-img-bot-r.png"
-            alt=""
-            srcset=""
-          />
-        </div>
+          <h3>{{ activity.title }}</h3>
+          <p>{{ activity.description }}</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="homepage-section numbers-section">
+      <div class="section-heading section-heading-stacked">
+        <p class="section-kicker">A bit of numbers</p>
+        <h2 class="section-title">Impact at a glance</h2>
       </div>
 
-      <div class="our-activities-right">
-        <div class="our-activities-r-title">Local Projects & Initiatives</div>
-        <ul>
-          <li>
-            Art, eco and social initiatives of youth in Jelenia Góra and region
-            (Solidarity projects, happenings, charity actions ) Inclusive,
-            mixed-ability mountain trips
-          </li>
-        </ul>
-
-        <div class="our-activities-r-title">International projects</div>
-        <ul>
-          <li>Accreditation in Erasmus+ Youth Sector</li>
-          <li>
-            Around 100 participants from Europe, Africa, South America annually;
-          </li>
-          <li>
-            Trainings and Youth exchanges; Topics: Non-formal education, Youth
-            work,
-          </li>
-          <li>Mental health, Nature, Inclusion, Creative art forms</li>
-        </ul>
-
-        <div class="our-activities-r-title">
-          Educational and Mental health support for Ukrainian refugee children
-          and youth
-        </div>
-        <ul>
-          <li>
-            Outdoor activities, including mountain trips, summer camps, and art
-            therapy sessions.
-          </li>
-          <li>
-            Regular programs for children living in collective housing centers
-            in rural areas (around 100 children)
-          </li>
-        </ul>
-
-        <div class="our-activities-r-title">
-          International volunteering program
-        </div>
-        <ul>
-          <li>European Solidarity Corps Program</li>
-          <li>
-            Hosting and coordinating international volunteers in the Sudety
-            region (local sport clubs, schools, culture centers in rural areas)
-          </li>
-        </ul>
+      <div class="numbers-grid">
+        <article
+          v-for="stat in stats"
+          :key="stat.value"
+          class="stat-card"
+        >
+          <img :src="stat.image" :alt="stat.alt" class="stat-image" />
+          <div class="stat-value">{{ stat.value }}</div>
+          <p class="stat-label">{{ stat.label }}</p>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div class="our-activities-mob mob-ver">
-      <div class="our-activities-title">OUR ACTIVITIES</div>
-
-      <div class="our-activities-subtitle our-activities-subtitle-1">
-        Local activities & initiatives
-      </div>
-      <ul>
-        <li>
-          Art, eco and social initiatives of youth in Jelenia Góra and region
-          (Solidarity projects, happenings, charity actions );
-        </li>
-        <li>Inclusive, mixed-ability mountain trips</li>
-      </ul>
-      <div class="our-activities-subtitle our-activities-subtitle-2">
-        Educational and Mental health support for Ukrainian refugee children and
-        youth
-      </div>
-      <ul>
-        <li>
-          Regular programs for children living in collective housing centers in
-          rural areas (around 100 children)
-        </li>
-        <li>
-          Outdoor activities, including mountain trips, summer camps, and art
-          therapy sessions.
-        </li>
-      </ul>
-      <div class="our-activities-subtitle our-activities-subtitle-3">
-        International projects
-      </div>
-      <ul>
-        <li>
-          Accreditation in Erasmus+ Youth Sector Around 100 participants from
-          Europe, Africa, South America annually;
-        </li>
-        <li>
-          Trainings and Youth exchanges; Topics: Non-formal education, Youth
-          work, Mental health, Nature, Inclusion, Creative art forms
-        </li>
-      </ul>
-      <div class="our-activities-subtitle our-activities-subtitle-4">
-        International volunteering program
-      </div>
-      <ul>
-        <li>European Solidarity Corps Program</li>
-        <li>
-          Hosting and coordinating international volunteers in the Sudety region
-          (local sport clubs, schools, culture centers in rural areas)
-        </li>
-      </ul>
-    </div>
-
-    <!-- A bit of numbers section -->
-
-    <!-- PC version -->
-
-    <div class="numbers-title">A Bit Of Numbers...</div>
-    <div class="numbers-images pc-ver">
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-1.png" alt="" srcset="" />
-        <div class="number">400+</div>
-        <div class="number-text">
-          Participants from all around the world took part in our projects
-        </div>
+    <section class="homepage-section partners-section">
+      <div class="section-heading section-heading-stacked">
+        <p class="section-kicker">Trusted by partners</p>
+        <h2 class="section-title">Our partners</h2>
       </div>
 
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-2.png" alt="" srcset="" />
-        <div class="number">20+</div>
-        <div class="number-text" style="height: 70px">Projects organised</div>
+      <div class="partners-strip">
+        <img
+          src="~/assets/partners/partners-1.png"
+          alt="Partner organisation logo"
+          class="partner-logo"
+        />
+        <img
+          src="~/assets/partners/partners-2.png"
+          alt="Partner organisation logo"
+          class="partner-logo"
+        />
       </div>
-
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-3.png" alt="" srcset="" />
-        <div class="number">20+</div>
-        <div class="number-text" style="height: 70px">
-          International partners
-        </div>
-      </div>
-    </div>
-
-    <!-- Phone version -->
-    <div class="numbers-images-mob mob-ver">
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-1-mob.png" alt="" srcset="" />
-        <div class="number">400+</div>
-        <div class="number-text" style="height: 55px">
-          Participants from all around the world took part in our projects
-        </div>
-      </div>
-
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-2-mob.png" alt="" srcset="" />
-        <div class="number">20+</div>
-        <div class="number-text" style="height: 55px; font-size: 20px">
-          Projects organised
-        </div>
-      </div>
-
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-3-mob.png" alt="" srcset="" />
-        <div class="number">20+</div>
-        <div class="number-text" style="height: 55px; font-size: 20px">
-          International partners
-        </div>
-      </div>
-    </div>
-
-    <div class="our-partners">
-      <div class="our-partners-title">Our Partners</div>
-      <div class="pc-ver">
-        <div class="partners-logos bg-[var(--bg-light-green)]">
-          <img
-            src="~/assets/partners/partners-1.png"
-            alt=""
-            srcset=""
-            style="padding-right: 50px"
-          />
-          <img src="~/assets/partners/partners-2.png" alt="" srcset="" />
-        </div>
-      </div>
-
-      <div class="mob-ver">
-        <div class="partners-logos">
-          <img
-            src="~/assets/partners/partners-1-mob.png"
-            alt=""
-            style="align-self: flex-start"
-          />
-          <img
-            src="~/assets/partners/partners-2-mob.png"
-            alt=""
-            style="align-self: flex-end"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div></div>
+    </section>
   </div>
 </template>
 
 <script setup>
 import LoadingSpinner from "~/components/Icons/LoadingSpinner.vue";
+import numbersOne from "~/assets/numbers/numbers-1.png";
+import numbersTwo from "~/assets/numbers/numbers-2.png";
+import numbersThree from "~/assets/numbers/numbers-3.png";
 
 const config = useRuntimeConfig();
-const heroImg = computed(() => {
-  return config.public.heroImg === "b"
+const heroImg = computed(() =>
+  config.public.heroImg === "b"
     ? "/hero/hero_second_ver.webp"
-    : "/hero/Windmill_Tree.webp";
-});
+    : "/hero/Windmill_Tree.webp"
+);
 
-const heroImgMob = computed(() => {
-  return config.public.heroImg === "b"
-    ? "/hero/hero_second_ver_mob.webp"
-    : "/hero/Windmill_Tree-mob.webp";
-});
+const missionPoints = [
+  {
+    title: "Inclusion",
+    description:
+      "We create safer spaces for marginalized young people, refugee communities and mixed-ability groups.",
+  },
+  {
+    title: "Youth work",
+    description:
+      "Our programmes use art, nature and non-formal education to strengthen confidence, connection and agency.",
+  },
+  {
+    title: "International exchange",
+    description:
+      "We bring together participants, volunteers and partners from across Europe and beyond.",
+  },
+];
 
-const news = ref([]);
+const activities = [
+  {
+    title: "Local projects and initiatives",
+    description:
+      "Art, eco and social initiatives in Jelenia Gora and the region, including solidarity projects, happenings, charity actions and inclusive mountain trips.",
+  },
+  {
+    title: "International projects",
+    description:
+      "Trainings and youth exchanges focused on non-formal education, mental health, nature, inclusion and creative forms of expression.",
+  },
+  {
+    title: "Support for Ukrainian children and youth",
+    description:
+      "Regular programmes in collective housing centres, outdoor activities, mountain trips, camps and art-therapy support.",
+  },
+  {
+    title: "International volunteering",
+    description:
+      "Through the European Solidarity Corps we host and coordinate volunteers in schools, clubs and culture centres in rural areas.",
+  },
+];
 
-onMounted(async () => {
-  const { latest } = await $fetch("api/news", {
+const stats = [
+  {
+    value: "400+",
+    label: "Participants from around the world joined our projects.",
+    image: numbersOne,
+    alt: "Participants statistic illustration",
+  },
+  {
+    value: "20+",
+    label: "Projects organised across local and international formats.",
+    image: numbersTwo,
+    alt: "Projects statistic illustration",
+  },
+  {
+    value: "20+",
+    label: "International partners helping us create lasting impact.",
+    image: numbersThree,
+    alt: "Partners statistic illustration",
+  },
+];
+
+const { data, pending } = await useAsyncData("homepage-latest-news", () =>
+  $fetch("/api/news", {
     headers: useRequestHeaders(["cookie"]),
-    key: "data-from-server",
-    transform: (latest) => latest.data,
+  })
+);
+
+const normalizedNews = computed(() => {
+  const items = data.value?.latest;
+
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items.map((item, index) => {
+    const body = Array.isArray(item?.new_body) ? item.new_body : [];
+
+    return {
+      id: item?.id ?? `latest-${index}`,
+      new_title: item?.new_title ?? "",
+      created_at: item?.created_at ?? "",
+      new_img: item?.new_img ?? "",
+      preview:
+        body.find((paragraph) => typeof paragraph === "string" && paragraph.trim()) ?? "",
+    };
   });
-  news.value = latest;
 });
+
+const latestNews = computed(() => normalizedNews.value.slice(0, 2));
+
+function formatDate(dateStr) {
+  if (!dateStr) {
+    return "";
+  }
+
+  const date = new Date(dateStr);
+
+  if (Number.isNaN(date.getTime())) {
+    return dateStr;
+  }
+
+  return date.toLocaleDateString("cs-CZ", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+}
 </script>
 
 <style lang="scss" scoped>
+.homepage {
+  margin-top: -160px;
+  background:
+    radial-gradient(circle at top, rgba(236, 243, 158, 0.32), transparent 28%),
+    linear-gradient(180deg, #f7f4ef 0%, #f5efe7 38%, #eef0e6 100%);
+}
+
+.homepage-section {
+  padding: 0 40px 88px;
+}
+
 .hero-block {
-  padding: 0;
-  margin: 0;
   position: relative;
-  top: -95px;
-  margin-bottom: -95px;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(11, 15, 12, 0.1) 0%, rgba(11, 15, 12, 0.78) 100%);
+}
+
+.hero-image {
+  width: 100%;
+  min-height: 860px;
+  max-height: 100vh;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  bottom: 48px;
+  z-index: 1;
+  max-width: 760px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 32px;
+  color: white;
+  backdrop-filter: blur(18px);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.46));
+}
+
+.hero-kicker,
+.section-kicker {
+  margin-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hero-title,
+.section-title {
+  font-weight: 700;
+  line-height: 1.02;
 }
 
 .hero-title {
-  min-height: 400px;
+  min-height: auto;
+  margin-bottom: 18px;
+  font-size: clamp(42px, 6vw, 76px);
 }
 
-.hero-img h3 {
-  font-size: 40px;
+.hero-lead,
+.section-intro,
+.mission-lead {
+  font-size: 20px;
+  line-height: 1.7;
 }
 
-.hero-txt {
-  backdrop-filter: blur(15px);
-  padding: 5px 20px;
-  border-radius: 20px;
+.hero-lead {
+  max-width: 62ch;
+  margin-bottom: 24px;
 }
 
-.hr {
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-2px);
+}
+
+.hero-button-primary {
+  background: var(--bg-light-green);
+  color: black;
+}
+
+.hero-button-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  color: white;
+}
+
+.hero-quote {
+  margin-bottom: 8px;
+  font-size: clamp(19px, 2.4vw, 30px);
+  line-height: 1.35;
+}
+
+.hero-quote span {
+  color: #d6f57a;
+}
+
+.hero-credit {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.homepage-news {
+  margin-top: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.section-heading-stacked {
   display: block;
-  height: 1px;
-  width: 1000px;
 }
 
-.new-image {
-  max-width: 371px;
+.section-title {
+  font-size: clamp(34px, 4vw, 54px);
 }
-.new-link {
-  font-size: 14px;
-  color: blue;
+
+.section-intro {
+  max-width: 62ch;
+  margin-top: 14px;
+  color: rgb(71, 70, 70);
+}
+
+.socials {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.socials-under {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.news-card,
+.mission-point,
+.activity-card,
+.stat-card {
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 18px 45px rgba(72, 55, 26, 0.08);
+}
+
+.news-card {
+  overflow: hidden;
+}
+
+.news-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.news-card-copy {
+  padding: 22px 22px 26px;
+}
+
+.news-card-date {
+  display: block;
+  margin-bottom: 10px;
+  color: rgb(71, 70, 70);
+}
+
+.news-card-title {
+  margin-bottom: 14px;
+  font-size: 31px;
+  line-height: 1.1;
+}
+
+.news-card-excerpt {
+  color: rgb(71, 70, 70);
+  line-height: 1.75;
+}
+
+.news-card-link,
+.section-link {
+  display: inline-flex;
+  margin-top: 18px;
+  color: #1d4ed8;
   text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.news-footer {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.homepage-status {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgb(71, 70, 70);
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.mission-copy {
+  padding-top: 20px;
+}
+
+.mission-points {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.mission-point {
+  padding: 20px 22px;
+}
+
+.mission-point h3,
+.activity-card h3 {
+  margin-bottom: 8px;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.mission-point p,
+.activity-card p,
+.stat-label {
+  color: rgb(71, 70, 70);
+  line-height: 1.7;
+}
+
+.mission-media {
+  position: relative;
+  min-height: 720px;
+}
+
+.mission-image {
+  width: 100%;
+  border-radius: 32px;
+  object-fit: cover;
+  box-shadow: 0 18px 45px rgba(72, 55, 26, 0.12);
+}
+
+.mission-image-main {
+  min-height: 460px;
+}
+
+.mission-image-secondary {
+  position: absolute;
+  right: 0;
+  bottom: 72px;
+  width: 58%;
+}
+
+.mission-note {
+  position: absolute;
+  left: 0;
+  bottom: 18px;
+  max-width: 300px;
+  font-size: 14px;
+  color: rgb(71, 70, 70);
+}
+
+.activities-grid,
+.numbers-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.activities-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.activity-card {
+  padding: 24px;
+}
+
+.numbers-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stat-card {
+  padding: 18px;
+  text-align: center;
+}
+
+.stat-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+.stat-value {
+  margin: 18px 0 8px;
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 700;
+  color: var(--bg-green);
+}
+
+.partners-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  padding: 24px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(236, 243, 158, 0.58), rgba(255, 255, 255, 0.74));
+}
+
+.partner-logo {
+  width: 100%;
+  border-radius: 24px;
+  background: white;
+  padding: 16px;
 }
 
 @media (max-width: 900px) {
-  .new {
-    display: flex;
-    flex-direction: column;
-    padding: 0 16px;
+  .homepage {
+    margin-top: -128px;
   }
 
-  .new-name {
-    font-size: 14px;
-    padding-top: 10px;
+  .homepage-section {
+    padding: 0 16px 56px;
   }
 
-
-  .new-des {
-    font-size: 12px;
-    padding-right: 0;
+  .hero-block {
+    min-height: auto;
   }
 
-  .new-image {
-    max-width: 444px;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin: auto;
+  .hero-image {
+    min-height: 720px;
   }
 
-  .new-image img {
-    box-sizing: border-box;
+  .hero-overlay {
+    left: 16px;
+    right: 16px;
+    bottom: 20px;
+    padding: 20px;
+  }
+
+  .hero-lead,
+  .section-intro,
+  .mission-lead {
+    font-size: 17px;
+  }
+
+  .section-heading {
     display: block;
-    overflow: hidden;
-    width: 100%;
   }
 
-  .new-info {
-    width: 100%;
-    padding-top: 10px;
+  .socials {
+    justify-content: flex-start;
+    margin-top: 18px;
   }
-  .hero-txt {
-    padding: 5px 20px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-left: 0px;
+
+  .news-grid,
+  .mission-grid,
+  .activities-grid,
+  .numbers-grid,
+  .partners-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .news-card-title {
+    font-size: 25px;
+  }
+
+  .mission-media {
+    min-height: auto;
+  }
+
+  .mission-image-secondary,
+  .mission-note {
+    position: static;
+    width: 100%;
+    margin-top: 18px;
   }
 }
 </style>
