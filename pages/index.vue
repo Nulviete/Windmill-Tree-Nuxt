@@ -87,7 +87,7 @@
                 :date="item.created_at"
                 :image="item.new_img"
                 :excerpt="item.preview"
-                link="/latest-news"
+                :link="item.path"
               />
             </RevealOnScroll>
           </div>
@@ -394,6 +394,7 @@
 
 <script setup>
 import LoadingSpinner from "~/components/Icons/LoadingSpinner.vue";
+import { normalizeNewsItem } from "~/utils/news";
 
 const config = useRuntimeConfig();
 const heroImg = computed(() => {
@@ -415,18 +416,7 @@ const normalizedNews = computed(() => {
     return [];
   }
 
-  return items.map((item, index) => {
-    const body = Array.isArray(item?.new_body) ? item.new_body : [];
-
-    return {
-      id: item?.id ?? `latest-${index}`,
-      new_title: item?.new_title ?? "",
-      created_at: item?.created_at ?? "",
-      new_img: item?.new_img ?? "",
-      preview:
-        body.find((paragraph) => typeof paragraph === "string" && paragraph.trim()) ?? "",
-    };
-  });
+  return items.map((item, index) => normalizeNewsItem(item, index, "latest"));
 });
 
 const latestNews = computed(() => normalizedNews.value.slice(0, 4));
