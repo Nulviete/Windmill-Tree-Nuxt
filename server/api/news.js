@@ -1,19 +1,13 @@
-import { serverSupabaseClient } from '#supabase/server'
+import { serverSupabaseClient } from "#supabase/server"
+import { fetchPaginatedNews } from "../utils/news"
 
 export default defineEventHandler(async (event) => {
+  const client = await serverSupabaseClient(event)
+  const query = getQuery(event)
 
-    const client = await serverSupabaseClient(event)
-
-    const { data: latestNews, error: error1 } = await client.from('News').select('*').order('id', { ascending: false }).limit(4)  
-
-    const { data: allNews, error: error2 } = await client.from('News').select('*').order('id', { ascending: false })
-        
-     if (error1 || error2) {
-    console.error('Supabase error:', error1 || error2)
-    return createError({ statusCode: 500, statusMessage: 'Failed to load news' })
-    }
-
-    return { 
-        latest: latestNews, 
-        all: allNews } 
+  return fetchPaginatedNews(client, {
+    prefix: "news",
+    page: query.page,
+    perPage: query.perPage,
+  })
 })

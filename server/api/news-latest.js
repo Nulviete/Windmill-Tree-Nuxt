@@ -3,11 +3,5 @@ import { fetchNormalizedNews } from "../utils/news"
 
 export default defineEventHandler(async (event) => {
   const client = await serverSupabaseClient(event)
-  const items = await fetchNormalizedNews(client, { prefix: "news" })
-
-  return items.map((item) => ({
-    loc: item.path,
-    lastmod: item.created_at || undefined,
-    changefreq: "monthly",
-  }))
+  return fetchNormalizedNews(client, { limit: 4, prefix: "latest" })
 })

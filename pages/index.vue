@@ -447,7 +447,6 @@
 
 <script setup>
 import LoadingSpinner from "~/components/Icons/LoadingSpinner.vue";
-import { normalizeNewsItem } from "~/utils/news";
 
 const config = useRuntimeConfig();
 const heroImg = computed(() => {
@@ -463,22 +462,14 @@ const heroImg = computed(() => {
 });
 
 const { data, pending } = await useAsyncData("homepage-latest-news", () =>
-  $fetch("/api/news", {
+  $fetch("/api/news-latest", {
     headers: useRequestHeaders(["cookie"]),
   })
 );
 
-const normalizedNews = computed(() => {
-  const items = data.value?.latest;
-
-  if (!Array.isArray(items)) {
-    return [];
-  }
-
-  return items.map((item, index) => normalizeNewsItem(item, index, "latest"));
-});
-
-const latestNews = computed(() => normalizedNews.value.slice(0, 4));
+const latestNews = computed(() =>
+  Array.isArray(data.value) ? data.value.slice(0, 4) : []
+);
 </script>
 
 <style lang="scss" scoped>

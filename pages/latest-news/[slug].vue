@@ -97,7 +97,6 @@
 
 <script setup>
 import LoadingSpinner from "~/components/Icons/LoadingSpinner.vue";
-import { normalizeNewsItem } from "~/utils/news";
 
 const route = useRoute();
 const canonicalUrl = computed(
@@ -112,53 +111,32 @@ const articleDescription = computed(
 const { data, pending, error } = await useAsyncData(
   `news-detail-${String(route.params.slug)}`,
   () =>
-    $fetch("/api/news", {
+    $fetch(`/api/news-detail/${String(route.params.slug)}`, {
       headers: useRequestHeaders(["cookie"]),
     }),
   {
-    default: () => ({ all: [] }),
+    default: () => ({
+      article: null,
+      previousArticle: null,
+      nextArticle: null,
+      relatedArticles: [],
+    }),
   }
 );
 
-const articles = computed(() => {
-  const items = data.value?.all;
-
-  if (!Array.isArray(items)) {
-    return [];
-  }
-
-  return items.map((item, index) => normalizeNewsItem(item, index, "news"));
-});
-
-const article = computed(() =>
-  articles.value.find((item) => item.slug === String(route.params.slug))
-);
-
-const currentIndex = computed(() =>
-  articles.value.findIndex((item) => item.slug === String(route.params.slug))
-);
-
-const previousArticle = computed(() => {
-  if (currentIndex.value <= 0) {
-    return null;
-  }
-
-  return articles.value[currentIndex.value - 1] ?? null;
-});
-
-const nextArticle = computed(() => {
-  if (currentIndex.value < 0 || currentIndex.value >= articles.value.length - 1) {
-    return null;
-  }
-
-  return articles.value[currentIndex.value + 1] ?? null;
-});
-
+const article = computed(() => data.value?.article ?? null);
+const previousArticle = computed(() => data.value?.previousArticle ?? null);
+const nextArticle = computed(() => data.value?.nextArticle ?? null);
 const relatedArticles = computed(() =>
-  articles.value
-    .filter((item) => item.slug !== String(route.params.slug))
-    .slice(0, 3)
+  Array.isArray(data.value?.relatedArticles) ? data.value.relatedArticles : []
 );
+
+if (error.value?.statusCode === 404) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Article not found",
+  });
+}
 
 if (!pending.value && !error.value && !article.value) {
   throw createError({

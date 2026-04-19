@@ -25,6 +25,17 @@ export function createNewsSlug(item: { id?: string | number; title?: string }) {
   return titleSlug ? `${id}-${titleSlug}` : id
 }
 
+export function extractNewsIdFromSlug(value: string) {
+  const slug = String(value ?? "").trim()
+
+  if (!slug) {
+    return ""
+  }
+
+  const [idPart] = slug.split("-")
+  return idPart ?? ""
+}
+
 export function getNewsPath(item: { id?: string | number; title?: string }) {
   return `/latest-news/${createNewsSlug(item)}`
 }

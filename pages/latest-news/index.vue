@@ -23,7 +23,7 @@
 
     <div v-else class="latest-news-content">
       <NewsCard
-        v-for="item in paginatedNews"
+        v-for="item in news"
         :key="item.id"
         variant="full"
         heading-tag="h2"
@@ -55,7 +55,6 @@
 
 <script setup>
 import LoadingSpinner from "~/components/Icons/LoadingSpinner.vue";
-import { normalizeNewsItem } from "~/utils/news";
 
 defineOptions({
   inheritAttrs: false,
@@ -77,34 +76,42 @@ const { data, pending, error } = await useAsyncData(
   () =>
     $fetch("/api/news", {
       headers: useRequestHeaders(["cookie"]),
+      query: {
+        page: page.value,
+        perPage: itemsPerPage,
+      },
     }),
   {
-    default: () => ({ all: [] }),
+    default: () => ({
+      items: [],
+      totalItems: 0,
+      page: 1,
+      perPage: itemsPerPage,
+      totalPages: 1,
+    }),
+    watch: [page],
   }
 );
 
-const news = computed(() => {
-  const items = data.value?.all;
-
-  if (!Array.isArray(items)) {
-    return [];
-  }
-
-  return items.map((item, index) => normalizeNewsItem(item, index, "news"));
-});
-
-const totalItems = computed(() => news.value.length);
-const totalPages = computed(() =>
-  Math.max(1, Math.ceil(totalItems.value / itemsPerPage))
+const news = computed(() =>
+  Array.isArray(data.value?.items) ? data.value.items : []
 );
-
-const paginatedNews = computed(() => {
-  const start = (page.value - 1) * itemsPerPage;
-  return news.value.slice(start, start + itemsPerPage);
-});
+const totalItems = computed(() => Number(data.value?.totalItems ?? 0));
+const totalPages = computed(() => Number(data.value?.totalPages ?? 1) || 1);
 
 watch(
   () => route.query.page,
+  (value) => {
+    const nextPage = normalizePage(value);
+
+    if (nextPage !== page.value) {
+      page.value = nextPage;
+    }
+  }
+);
+
+watch(
+  () => data.value?.page,
   (value) => {
     const nextPage = normalizePage(value);
 
