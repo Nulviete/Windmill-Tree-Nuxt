@@ -96,6 +96,14 @@ import LoadingSpinner from "~/components/Icons/LoadingSpinner.vue";
 import { normalizeNewsItem } from "~/utils/news";
 
 const route = useRoute();
+const canonicalUrl = computed(
+  () => `https://windmilltree.org${route.path}`
+);
+const articleDescription = computed(
+  () =>
+    article.value?.preview ||
+    "Stories, reflections and fresh updates from the Windmill Tree community."
+);
 
 const { data, pending, error } = await useAsyncData(
   `news-detail-${String(route.params.slug)}`,
@@ -160,17 +168,32 @@ useSeoMeta({
     article.value?.new_title
       ? `${article.value.new_title} | Windmill Tree`
       : "Latest News | Windmill Tree",
-  description: () =>
-    article.value?.preview ||
-    "Stories, reflections and fresh updates from the Windmill Tree community.",
+  description: () => articleDescription.value,
   ogTitle: () =>
     article.value?.new_title
       ? `${article.value.new_title} | Windmill Tree`
       : "Latest News | Windmill Tree",
-  ogDescription: () =>
-    article.value?.preview ||
-    "Stories, reflections and fresh updates from the Windmill Tree community.",
+  ogDescription: () => articleDescription.value,
+  ogType: "article",
+  ogUrl: () => canonicalUrl.value,
   ogImage: () => article.value?.new_img || undefined,
+  articlePublishedTime: () => article.value?.created_at || undefined,
+  twitterCard: () => (article.value?.new_img ? "summary_large_image" : "summary"),
+  twitterTitle: () =>
+    article.value?.new_title
+      ? `${article.value.new_title} | Windmill Tree`
+      : "Latest News | Windmill Tree",
+  twitterDescription: () => articleDescription.value,
+  twitterImage: () => article.value?.new_img || undefined,
+});
+
+useHead({
+  link: [
+    {
+      rel: "canonical",
+      href: canonicalUrl,
+    },
+  ],
 });
 </script>
 

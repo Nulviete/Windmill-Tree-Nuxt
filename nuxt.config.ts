@@ -66,7 +66,8 @@ export default defineNuxtConfig({
 
   sitemap: {
     sources: [
-      '/api/projects-for-sitemap'
+      '/api/projects-for-sitemap',
+      '/api/news-for-sitemap'
     ]
   },
   
