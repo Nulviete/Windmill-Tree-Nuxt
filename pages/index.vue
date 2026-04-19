@@ -26,372 +26,388 @@
     </div>
 
     <div class="foundation-sec bg-[var(--bg-brown)]">
-      <section class="homepage-news text-gray-200">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">What is happening now</p>
-            <h2 class="section-title">Latest News</h2>
-          </div>
+      <RevealOnScroll :distance="30">
+        <section class="homepage-news text-gray-200">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">What is happening now</p>
+              <h2 class="section-title">Latest News</h2>
+            </div>
 
-          <div class="socials">
-            <div class="socials-under bg-gray-800/80">
-              <a
-                href="https://www.facebook.com/FundacjaWindmillTree/photos_by"
-                aria-label="Windmill Tree on Facebook"
-              >
-                <IconsFacebook
-                  height="35px"
-                  class="text-[var(--blue)] hover:text-blue-500 transition-colors duration-400"
-                />
-              </a>
-              <a
-                href="https://www.instagram.com/foundation_windmill_tree/"
-                aria-label="Windmill Tree on Instagram"
-              >
-                <IconsInstagram
-                  height="35px"
-                  class="text-[var(--instagram)] hover:text-red-700 transition-colors duration-400"
-                />
-              </a>
-              <a
-                href="https://www.youtube.com/@foundationwindmilltree8203"
-                aria-label="Windmill Tree on YouTube"
-              >
-                <IconsYoutube
-                  height="35px"
-                  class="text-[var(--red)] hover:text-red-500 transition-colors duration-400"
-                />
-              </a>
+            <div class="socials">
+              <div class="socials-under bg-gray-800/80">
+                <a
+                  href="https://www.facebook.com/FundacjaWindmillTree/photos_by"
+                  aria-label="Windmill Tree on Facebook"
+                >
+                  <IconsFacebook
+                    height="35px"
+                    class="text-[var(--blue)] hover:text-blue-500 transition-colors duration-400"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/foundation_windmill_tree/"
+                  aria-label="Windmill Tree on Instagram"
+                >
+                  <IconsInstagram
+                    height="35px"
+                    class="text-[var(--instagram)] hover:text-red-700 transition-colors duration-400"
+                  />
+                </a>
+                <a
+                  href="https://www.youtube.com/@foundationwindmilltree8203"
+                  aria-label="Windmill Tree on YouTube"
+                >
+                  <IconsYoutube
+                    height="35px"
+                    class="text-[var(--red)] hover:text-red-500 transition-colors duration-400"
+                  />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div v-if="pending" class="homepage-status">
-          <LoadingSpinner />
-        </div>
+          <div v-if="pending" class="homepage-status">
+            <LoadingSpinner />
+          </div>
 
-        <div v-else-if="!latestNews.length" class="homepage-status">
-          <p>No news available yet. Please check back soon.</p>
-        </div>
+          <div v-else-if="!latestNews.length" class="homepage-status">
+            <p>No news available yet. Please check back soon.</p>
+          </div>
 
-        <div v-else class="news-grid">
-          <article
-            v-for="item in latestNews"
-            :key="item.id"
-            class="news-card"
+          <div v-else class="news-grid">
+            <RevealOnScroll
+              v-for="(item, index) in latestNews"
+              :key="item.id"
+              :delay="index * 90"
+              :distance="22"
+            >
+              <article class="news-card">
+                <img
+                  v-if="item.new_img"
+                  :src="item.new_img"
+                  :alt="item.new_title || 'Windmill Tree news image'"
+                  class="news-card-image"
+                />
+
+                <div class="news-card-copy">
+                  <time
+                    v-if="item.created_at"
+                    :datetime="item.created_at"
+                    class="news-card-date"
+                  >
+                    {{ formatDate(item.created_at) }}
+                  </time>
+                  <h3 class="news-card-title text-black">
+                    {{ item.new_title || "Untitled update" }}
+                  </h3>
+                  <p v-if="item.preview" class="news-card-excerpt">
+                    {{ item.preview }}
+                  </p>
+
+                  <NuxtLink to="/latest-news" class="news-card-link">
+                    Read more
+                  </NuxtLink>
+                </div>
+              </article>
+            </RevealOnScroll>
+          </div>
+
+          <div class="news-footer">
+            <NuxtLink to="/latest-news" class="section-link">
+              Browse all updates
+            </NuxtLink>
+          </div>
+        </section>
+      </RevealOnScroll>
+    </div>
+
+    <RevealOnScroll :delay="60">
+      <div class="our-mission-block text-2xl gap-12">
+        <div class="our-mission-left pc-ver" style="position: relative">
+          <img
+            class=""
+            src="~/assets/our-mission/our-mission-1.png"
+            alt=""
+            srcset=""
+          />
+          <p class="">
+            Located in the breathtaking Izery Mountains region, our diverse team
+            is a bland of individuals from Poland, Ukraine, Germany and Czech
+            Republic.
+          </p>
+        </div>
+        <div class="our-mission-right">
+          <h1
+            style=""
+            class="text-[var(--bg-green)] text-3xl pb-10 max-900:py-6 max-900:bg-white"
           >
+            Our mission
+          </h1>
+          <img
+            class="mob-ver object-cover min-h-[955px]"
+            src="~/assets/our-mission/our-mission-1-mob-x.png"
+            alt=""
+            srcset=""
+          />
+          <div class="om-first" style="">
+            We focus on building a more inclusive and sustainable world by
+            delivering innovative high quality non-formal education, supporting
+            marginalized and refugee youth, and enhancing the quality of youth
+            work, international exchange and volunteering programs.
+          </div>
+          <div class="mob-ver om-second">
+            Located in the breathtaking Izery Mountains region, our diverse team
+            is a bland of individuals from Poland, Ukraine, Germany and Czech
+            Republic.
+          </div>
+          <img
+            class="pc-ver"
+            src="~/assets/our-mission/our-mission-2.png"
+            alt=""
+            srcset=""
+          />
+          <div class="pc-ver" style="font-size: 14px; text-align: left">
+            *all the photos you see are from activities and projects we have
+            organised
+          </div>
+        </div>
+      </div>
+    </RevealOnScroll>
+
+    <RevealOnScroll :delay="90">
+      <div class="our-activities-block flex flex-row pc-ver gap-12">
+        <div class="our-activities-left">
+          <div
+            class="our-activities-title bg-[var(--bg-light-green)] text-black text-4xl"
+          >
+            OUR ACTIVITIES
+          </div>
+          <div class="our-activities-pictures">
             <img
-              v-if="item.new_img"
-              :src="item.new_img"
-              :alt="item.new_title || 'Windmill Tree news image'"
-              class="news-card-image"
+              class="img-up"
+              src="~/assets/our-activities/our-activities-img-up.png"
+              alt=""
+              srcset=""
             />
-
-            <div class="news-card-copy">
-              <time
-                v-if="item.created_at"
-                :datetime="item.created_at"
-                class="news-card-date"
-              >
-                {{ formatDate(item.created_at) }}
-              </time>
-              <h3 class="news-card-title text-black">
-                {{ item.new_title || "Untitled update" }}
-              </h3>
-              <p v-if="item.preview" class="news-card-excerpt">
-                {{ item.preview }}
-              </p>
-
-              <NuxtLink to="/latest-news" class="news-card-link">
-                Read more
-              </NuxtLink>
-            </div>
-          </article>
+            <img
+              class="img-mid-l"
+              src="~/assets/our-activities/our-activities-img-mid-l.png"
+              alt=""
+              srcset=""
+            />
+            <img
+              class="img-mid-r"
+              src="~/assets/our-activities/our-activities-img-mid-r.png"
+              alt=""
+              srcset=""
+            />
+            <img
+              class="img-bot-l"
+              src="~/assets/our-activities/our-activities-img-bot-l.png"
+              alt=""
+              srcset=""
+            />
+            <img
+              class="img-bot-r"
+              src="~/assets/our-activities/our-activities-img-bot-r.png"
+              alt=""
+              srcset=""
+            />
+          </div>
         </div>
 
-        <div class="news-footer">
-          <NuxtLink to="/latest-news" class="section-link">
-            Browse all updates
-          </NuxtLink>
-        </div>
-      </section>
-    </div>
+        <div class="our-activities-right">
+          <div class="our-activities-r-title">Local Projects & Initiatives</div>
+          <ul>
+            <li>
+              Art, eco and social initiatives of youth in Jelenia Góra and region
+              (Solidarity projects, happenings, charity actions ) Inclusive,
+              mixed-ability mountain trips
+            </li>
+          </ul>
 
-    <div class="our-mission-block text-2xl gap-12">
-      <div class="our-mission-left pc-ver" style="position: relative">
-        <img
-          class=""
-          src="~/assets/our-mission/our-mission-1.png"
-          alt=""
-          srcset=""
-        />
-        <p class="">
-          Located in the breathtaking Izery Mountains region, our diverse team
-          is a bland of individuals from Poland, Ukraine, Germany and Czech
-          Republic.
-        </p>
-      </div>
-      <div class="our-mission-right">
-        <h1
-          style=""
-          class="text-[var(--bg-green)] text-3xl pb-10 max-900:py-6 max-900:bg-white"
-        >
-          Our mission
-        </h1>
-        <img
-          class="mob-ver object-cover min-h-[955px]"
-          src="~/assets/our-mission/our-mission-1-mob-x.png"
-          alt=""
-          srcset=""
-        />
-        <div class="om-first" style="">
-          We focus on building a more inclusive and sustainable world by
-          delivering innovative high quality non-formal education, supporting
-          marginalized and refugee youth, and enhancing the quality of youth
-          work, international exchange and volunteering programs.
-        </div>
-        <div class="mob-ver om-second">
-          Located in the breathtaking Izery Mountains region, our diverse team
-          is a bland of individuals from Poland, Ukraine, Germany and Czech
-          Republic.
-        </div>
-        <img
-          class="pc-ver"
-          src="~/assets/our-mission/our-mission-2.png"
-          alt=""
-          srcset=""
-        />
-        <div class="pc-ver" style="font-size: 14px; text-align: left">
-          *all the photos you see are from activities and projects we have
-          organised
+          <div class="our-activities-r-title">International projects</div>
+          <ul>
+            <li>Accreditation in Erasmus+ Youth Sector</li>
+            <li>
+              Around 100 participants from Europe, Africa, South America annually;
+            </li>
+            <li>
+              Trainings and Youth exchanges; Topics: Non-formal education, Youth
+              work,
+            </li>
+            <li>Mental health, Nature, Inclusion, Creative art forms</li>
+          </ul>
+
+          <div class="our-activities-r-title">
+            Educational and Mental health support for Ukrainian refugee children
+            and youth
+          </div>
+          <ul>
+            <li>
+              Outdoor activities, including mountain trips, summer camps, and art
+              therapy sessions.
+            </li>
+            <li>
+              Regular programs for children living in collective housing centers
+              in rural areas (around 100 children)
+            </li>
+          </ul>
+
+          <div class="our-activities-r-title">
+            International volunteering program
+          </div>
+          <ul>
+            <li>European Solidarity Corps Program</li>
+            <li>
+              Hosting and coordinating international volunteers in the Sudety
+              region (local sport clubs, schools, culture centers in rural areas)
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </RevealOnScroll>
 
-    <div class="our-activities-block flex flex-row pc-ver gap-12">
-      <div class="our-activities-left">
-        <div
-          class="our-activities-title bg-[var(--bg-light-green)] text-black text-4xl"
-        >
-          OUR ACTIVITIES
-        </div>
-        <div class="our-activities-pictures">
-          <img
-            class="img-up"
-            src="~/assets/our-activities/our-activities-img-up.png"
-            alt=""
-            srcset=""
-          />
-          <img
-            class="img-mid-l"
-            src="~/assets/our-activities/our-activities-img-mid-l.png"
-            alt=""
-            srcset=""
-          />
-          <img
-            class="img-mid-r"
-            src="~/assets/our-activities/our-activities-img-mid-r.png"
-            alt=""
-            srcset=""
-          />
-          <img
-            class="img-bot-l"
-            src="~/assets/our-activities/our-activities-img-bot-l.png"
-            alt=""
-            srcset=""
-          />
-          <img
-            class="img-bot-r"
-            src="~/assets/our-activities/our-activities-img-bot-r.png"
-            alt=""
-            srcset=""
-          />
-        </div>
-      </div>
+    <RevealOnScroll :delay="90">
+      <div class="our-activities-mob mob-ver">
+        <div class="our-activities-title">OUR ACTIVITIES</div>
 
-      <div class="our-activities-right">
-        <div class="our-activities-r-title">Local Projects & Initiatives</div>
+        <div class="our-activities-subtitle our-activities-subtitle-1">
+          Local activities & initiatives
+        </div>
         <ul>
           <li>
             Art, eco and social initiatives of youth in Jelenia Góra and region
-            (Solidarity projects, happenings, charity actions ) Inclusive,
-            mixed-ability mountain trips
+            (Solidarity projects, happenings, charity actions );
           </li>
+          <li>Inclusive, mixed-ability mountain trips</li>
         </ul>
 
-        <div class="our-activities-r-title">International projects</div>
-        <ul>
-          <li>Accreditation in Erasmus+ Youth Sector</li>
-          <li>
-            Around 100 participants from Europe, Africa, South America annually;
-          </li>
-          <li>
-            Trainings and Youth exchanges; Topics: Non-formal education, Youth
-            work,
-          </li>
-          <li>Mental health, Nature, Inclusion, Creative art forms</li>
-        </ul>
-
-        <div class="our-activities-r-title">
-          Educational and Mental health support for Ukrainian refugee children
-          and youth
+        <div class="our-activities-subtitle our-activities-subtitle-2">
+          Educational and Mental health support for Ukrainian refugee children and
+          youth
         </div>
         <ul>
+          <li>
+            Regular programs for children living in collective housing centers in
+            rural areas (around 100 children)
+          </li>
           <li>
             Outdoor activities, including mountain trips, summer camps, and art
             therapy sessions.
           </li>
+        </ul>
+        <div class="our-activities-subtitle our-activities-subtitle-3">
+          International projects
+        </div>
+        <ul>
           <li>
-            Regular programs for children living in collective housing centers
-            in rural areas (around 100 children)
+            Accreditation in Erasmus+ Youth Sector Around 100 participants from
+            Europe, Africa, South America annually;
+          </li>
+          <li>
+            Trainings and Youth exchanges; Topics: Non-formal education, Youth
+            work, Mental health, Nature, Inclusion, Creative art forms
           </li>
         </ul>
-
-        <div class="our-activities-r-title">
+        <div class="our-activities-subtitle our-activities-subtitle-4">
           International volunteering program
         </div>
         <ul>
           <li>European Solidarity Corps Program</li>
           <li>
-            Hosting and coordinating international volunteers in the Sudety
-            region (local sport clubs, schools, culture centers in rural areas)
+            Hosting and coordinating international volunteers in the Sudety region
+            (local sport clubs, schools, culture centers in rural areas)
           </li>
         </ul>
       </div>
-    </div>
+    </RevealOnScroll>
 
-    <div class="our-activities-mob mob-ver">
-      <div class="our-activities-title">OUR ACTIVITIES</div>
+    <RevealOnScroll :delay="120">
+      <div class="numbers-title">A Bit Of Numbers...</div>
+      <div class="numbers-images pc-ver">
+        <div class="numbers-image">
+          <img src="~/assets/numbers/numbers-1.png" alt="" srcset="" />
+          <div class="number">400+</div>
+          <div class="number-text">
+            Participants from all around the world took part in our projects
+          </div>
+        </div>
 
-      <div class="our-activities-subtitle our-activities-subtitle-1">
-        Local activities & initiatives
-      </div>
-      <ul>
-        <li>
-          Art, eco and social initiatives of youth in Jelenia Góra and region
-          (Solidarity projects, happenings, charity actions );
-        </li>
-        <li>Inclusive, mixed-ability mountain trips</li>
-      </ul>
-      <div class="our-activities-subtitle our-activities-subtitle-2">
-        Educational and Mental health support for Ukrainian refugee children and
-        youth
-      </div>
-      <ul>
-        <li>
-          Regular programs for children living in collective housing centers in
-          rural areas (around 100 children)
-        </li>
-        <li>
-          Outdoor activities, including mountain trips, summer camps, and art
-          therapy sessions.
-        </li>
-      </ul>
-      <div class="our-activities-subtitle our-activities-subtitle-3">
-        International projects
-      </div>
-      <ul>
-        <li>
-          Accreditation in Erasmus+ Youth Sector Around 100 participants from
-          Europe, Africa, South America annually;
-        </li>
-        <li>
-          Trainings and Youth exchanges; Topics: Non-formal education, Youth
-          work, Mental health, Nature, Inclusion, Creative art forms
-        </li>
-      </ul>
-      <div class="our-activities-subtitle our-activities-subtitle-4">
-        International volunteering program
-      </div>
-      <ul>
-        <li>European Solidarity Corps Program</li>
-        <li>
-          Hosting and coordinating international volunteers in the Sudety region
-          (local sport clubs, schools, culture centers in rural areas)
-        </li>
-      </ul>
-    </div>
+        <div class="numbers-image">
+          <img src="~/assets/numbers/numbers-2.png" alt="" srcset="" />
+          <div class="number">20+</div>
+          <div class="number-text" style="height: 70px">Projects organised</div>
+        </div>
 
-    <div class="numbers-title">A Bit Of Numbers...</div>
-    <div class="numbers-images pc-ver">
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-1.png" alt="" srcset="" />
-        <div class="number">400+</div>
-        <div class="number-text">
-          Participants from all around the world took part in our projects
+        <div class="numbers-image">
+          <img src="~/assets/numbers/numbers-3.png" alt="" srcset="" />
+          <div class="number">20+</div>
+          <div class="number-text" style="height: 70px">
+            International partners
+          </div>
         </div>
       </div>
 
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-2.png" alt="" srcset="" />
-        <div class="number">20+</div>
-        <div class="number-text" style="height: 70px">Projects organised</div>
-      </div>
+      <div class="numbers-images-mob mob-ver">
+        <div class="numbers-image">
+          <img src="~/assets/numbers/numbers-1-mob.png" alt="" srcset="" />
+          <div class="number">400+</div>
+          <div class="number-text" style="height: 55px">
+            Participants from all around the world took part in our projects
+          </div>
+        </div>
 
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-3.png" alt="" srcset="" />
-        <div class="number">20+</div>
-        <div class="number-text" style="height: 70px">
-          International partners
+        <div class="numbers-image">
+          <img src="~/assets/numbers/numbers-2-mob.png" alt="" srcset="" />
+          <div class="number">20+</div>
+          <div class="number-text" style="height: 55px; font-size: 20px">
+            Projects organised
+          </div>
+        </div>
+
+        <div class="numbers-image">
+          <img src="~/assets/numbers/numbers-3-mob.png" alt="" srcset="" />
+          <div class="number">20+</div>
+          <div class="number-text" style="height: 55px; font-size: 20px">
+            International partners
+          </div>
         </div>
       </div>
-    </div>
+    </RevealOnScroll>
 
-    <div class="numbers-images-mob mob-ver">
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-1-mob.png" alt="" srcset="" />
-        <div class="number">400+</div>
-        <div class="number-text" style="height: 55px">
-          Participants from all around the world took part in our projects
+    <RevealOnScroll :delay="150">
+      <div class="our-partners">
+        <div class="our-partners-title">Our Partners</div>
+        <div class="pc-ver">
+          <div class="partners-logos bg-[var(--bg-light-green)]">
+            <img
+              src="~/assets/partners/partners-1.png"
+              alt=""
+              srcset=""
+              style="padding-right: 50px"
+            />
+            <img src="~/assets/partners/partners-2.png" alt="" srcset="" />
+          </div>
+        </div>
+
+        <div class="mob-ver">
+          <div class="partners-logos">
+            <img
+              src="~/assets/partners/partners-1-mob.png"
+              alt=""
+              style="align-self: flex-start"
+            />
+            <img
+              src="~/assets/partners/partners-2-mob.png"
+              alt=""
+              style="align-self: flex-end"
+            />
+          </div>
         </div>
       </div>
-
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-2-mob.png" alt="" srcset="" />
-        <div class="number">20+</div>
-        <div class="number-text" style="height: 55px; font-size: 20px">
-          Projects organised
-        </div>
-      </div>
-
-      <div class="numbers-image">
-        <img src="~/assets/numbers/numbers-3-mob.png" alt="" srcset="" />
-        <div class="number">20+</div>
-        <div class="number-text" style="height: 55px; font-size: 20px">
-          International partners
-        </div>
-      </div>
-    </div>
-
-    <div class="our-partners">
-      <div class="our-partners-title">Our Partners</div>
-      <div class="pc-ver">
-        <div class="partners-logos bg-[var(--bg-light-green)]">
-          <img
-            src="~/assets/partners/partners-1.png"
-            alt=""
-            srcset=""
-            style="padding-right: 50px"
-          />
-          <img src="~/assets/partners/partners-2.png" alt="" srcset="" />
-        </div>
-      </div>
-
-      <div class="mob-ver">
-        <div class="partners-logos">
-          <img
-            src="~/assets/partners/partners-1-mob.png"
-            alt=""
-            style="align-self: flex-start"
-          />
-          <img
-            src="~/assets/partners/partners-2-mob.png"
-            alt=""
-            style="align-self: flex-end"
-          />
-        </div>
-      </div>
-    </div>
+    </RevealOnScroll>
 
     <div></div>
   </div>
