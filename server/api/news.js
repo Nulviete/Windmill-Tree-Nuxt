@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 
     const client = await serverSupabaseClient(event)
 
-    const { data: latestNews, error: error1 } = await client.from('News').select('*').order('id', { ascending: false }).limit(2)  
+    const { data: latestNews, error: error1 } = await client.from('News').select('*').order('id', { ascending: false }).limit(4)  
 
     const { data: allNews, error: error2 } = await client.from('News').select('*').order('id', { ascending: false })
         

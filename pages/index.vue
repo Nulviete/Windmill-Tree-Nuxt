@@ -95,7 +95,7 @@
               >
                 {{ formatDate(item.created_at) }}
               </time>
-              <h3 class="news-card-title">
+              <h3 class="news-card-title text-black">
                 {{ item.new_title || "Untitled update" }}
               </h3>
               <p v-if="item.preview" class="news-card-excerpt">
@@ -434,7 +434,7 @@ const normalizedNews = computed(() => {
   });
 });
 
-const latestNews = computed(() => normalizedNews.value.slice(0, 2));
+const latestNews = computed(() => normalizedNews.value.slice(0, 4));
 
 function formatDate(dateStr) {
   if (!dateStr) {
@@ -498,8 +498,8 @@ function formatDate(dateStr) {
 
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .news-card,
@@ -520,24 +520,26 @@ function formatDate(dateStr) {
 }
 
 .news-card-copy {
-  padding: 22px 22px 26px;
+  padding: 18px 18px 22px;
 }
 
 .news-card-date {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: rgb(71, 70, 70);
+  font-size: 14px;
 }
 
 .news-card-title {
-  margin-bottom: 14px;
-  font-size: 31px;
-  line-height: 1.1;
+  margin-bottom: 12px;
+  font-size: clamp(22px, 1.8vw, 30px);
+  line-height: 1.15;
 }
 
 .news-card-excerpt {
   color: rgb(71, 70, 70);
-  line-height: 1.75;
+  line-height: 1.6;
+  font-size: 15px;
 }
 
 .news-card-link,
@@ -668,6 +670,12 @@ function formatDate(dateStr) {
 
   .hero-text-hl {
     white-space: nowrap;
+  }
+}
+
+@media (max-width: 1280px) {
+  .news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
