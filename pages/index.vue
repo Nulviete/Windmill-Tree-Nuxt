@@ -82,34 +82,13 @@
               :delay="index * 90"
               :distance="22"
             >
-              <article class="news-card">
-                <img
-                  v-if="item.new_img"
-                  :src="item.new_img"
-                  :alt="item.new_title || 'Windmill Tree news image'"
-                  class="news-card-image"
-                />
-
-                <div class="news-card-copy">
-                  <time
-                    v-if="item.created_at"
-                    :datetime="item.created_at"
-                    class="news-card-date"
-                  >
-                    {{ formatDate(item.created_at) }}
-                  </time>
-                  <h3 class="news-card-title text-black">
-                    {{ item.new_title || "Untitled update" }}
-                  </h3>
-                  <p v-if="item.preview" class="news-card-excerpt">
-                    {{ item.preview }}
-                  </p>
-
-                  <NuxtLink to="/latest-news" class="news-card-link">
-                    Read more
-                  </NuxtLink>
-                </div>
-              </article>
+              <NewsCard
+                :title="item.new_title"
+                :date="item.created_at"
+                :image="item.new_img"
+                :excerpt="item.preview"
+                link="/latest-news"
+              />
             </RevealOnScroll>
           </div>
 
@@ -451,24 +430,6 @@ const normalizedNews = computed(() => {
 });
 
 const latestNews = computed(() => normalizedNews.value.slice(0, 4));
-
-function formatDate(dateStr) {
-  if (!dateStr) {
-    return "";
-  }
-
-  const date = new Date(dateStr);
-
-  if (Number.isNaN(date.getTime())) {
-    return dateStr;
-  }
-
-  return date.toLocaleDateString("cs-CZ", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-}
 </script>
 
 <style lang="scss" scoped>
@@ -518,47 +479,6 @@ function formatDate(dateStr) {
   gap: 20px;
 }
 
-.news-card,
-.news-card {
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.84);
-  box-shadow: 0 18px 45px rgba(72, 55, 26, 0.08);
-}
-
-.news-card {
-  overflow: hidden;
-}
-
-.news-card-image {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-}
-
-.news-card-copy {
-  padding: 18px 18px 22px;
-}
-
-.news-card-date {
-  display: block;
-  margin-bottom: 8px;
-  color: rgb(71, 70, 70);
-  font-size: 14px;
-}
-
-.news-card-title {
-  margin-bottom: 12px;
-  font-size: clamp(22px, 1.8vw, 30px);
-  line-height: 1.15;
-}
-
-.news-card-excerpt {
-  color: rgb(71, 70, 70);
-  line-height: 1.6;
-  font-size: 15px;
-}
-
-.news-card-link,
 .section-link {
   display: inline-flex;
   margin-top: 18px;
@@ -664,10 +584,6 @@ function formatDate(dateStr) {
 
   .news-grid {
     grid-template-columns: 1fr;
-  }
-
-  .news-card-title {
-    font-size: 25px;
   }
 
   .news-footer {
