@@ -36,6 +36,7 @@
         :interview-links="item.new_link_interview"
         :link="item.path"
         link-label="Open article"
+        image-sizes="(max-width: 900px) 100vw, 40vw"
       />
 
       <UPagination

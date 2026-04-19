@@ -25,7 +25,7 @@
             </div>
 
             <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-550:flex-col">
-                <img src="~/assets/projects/for-ukraine/1.png" alt="" class="">
+                <img src="~/assets/projects/for-ukraine/1.webp" alt="" class="" loading="lazy" decoding="async">
                 <div>Intercultural, intergenerational treasures hunt games.
                 <br><br>
                  # Co-finansed by International Organization for Migration / United States of America
@@ -53,7 +53,7 @@
             <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-550:flex-col">
                 <div>International trainings attended by, among others, educators, youth workers from Ukraine (aim: exchange of experience of tools for working with young people, mental health support, etc. ) as well as young people who had the opportunity to develop mental resilience through participation in various valuable outdoor activities, artistic activities, etc.
                 </div>
-                <img src="~/assets/projects/for-ukraine/2.png" alt="" class="max-w-24">
+                <img src="~/assets/projects/for-ukraine/2.webp" alt="" class="max-w-24" loading="lazy" decoding="async">
             </div>
 
             <hr class="hr-right pc-ver">
@@ -72,7 +72,7 @@
             </div>
 
             <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-md:flex-col">
-                <img src="~/assets/projects/for-ukraine/3.png" alt="">
+                <img src="~/assets/projects/for-ukraine/3.webp" alt="" loading="lazy" decoding="async">
                 <div>A series of workshops on Addiction and Family Violence for Ukrainian women and their children, cooperation with the Municipal Commission for the Solution of Alcohol Problems (Leśna).
                 <br><br>
                 Regular meetings and activities of the Support Group for adults and children from Ukraine in the Municipal Center for Culture, Activity and Community Promotion Station (Świeradów Zdrój).
@@ -91,7 +91,7 @@
             <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-md:flex-col">
                 <div>Implementation of Airbnb.org's Rapid Response Tool Program. We provided free temporary accommodations for about 400 people in our Lower Silesia region, as well as in various cities in Poland.
                 </div>
-                <img src="~/assets/projects/for-ukraine/4.png" alt="">
+                <img src="~/assets/projects/for-ukraine/4.webp" alt="" loading="lazy" decoding="async">
             </div>
 
             <hr class="hr-right pc-ver">
@@ -110,11 +110,11 @@
             <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-md:flex-col">
                 <div>The summer camp program included various art therapy activities for the children, such as music, theater, pottery, drum playing, as well as trips to the mountains, archery classes, etc. <br><br> For mothers, there were meetings with psychologists, as well as classes in ceramics, singing, massage, sewing and making natural cosmetics.
                 </div>
-                <img src="~/assets/projects/for-ukraine/5.png" alt="">
+                <img src="~/assets/projects/for-ukraine/5.webp" alt="" loading="lazy" decoding="async">
             </div>
 
             <div class="flex flex-row gap-10 py-10 md:pr-10 items-center max-md:flex-col-reverse">
-                <img src="~/assets/projects/for-ukraine/6.png" alt="">
+                <img src="~/assets/projects/for-ukraine/6.webp" alt="" loading="lazy" decoding="async">
                 <div>Under the project, we organized summer camps for in a total of 40 women and 70 children with refugee experience. <br> Total amount of funding: PLN 166,000
                 </div>
             </div>
@@ -141,7 +141,7 @@ const attrs = useAttrs()
     font-size: 24px;
 }
 .header {
-    background-image: url('~/assets/projects/for-ukraine/header-img.png');
+    background-image: url('~/assets/projects/for-ukraine/header-img.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

@@ -23,19 +23,19 @@
                 <div class="flex flex-col items-start justify-between" style="">
                     <div class="proj-p">In our first year we hosted 4 long-term international volunteers:</div>
                     <div class="proj-volunteers">Dani from Italy,<br> Rodrigo from Spain,<br> Milana from Ukraine.</div>
-                    <img class="mt-36" src="~/assets/projects/volunteering-projects/1.png" style="max-width: 100%; object-fit: contain;" alt="">
+                    <img class="mt-36" src="~/assets/projects/volunteering-projects/1.webp" style="max-width: 100%; object-fit: contain;" alt="" loading="lazy" decoding="async">
                 </div>
 
                 <!-- pravy sloupec -->
                 <div class="flex flex-col items-end justify-between" style="">
-                    <img src="~/assets/projects/volunteering-projects/2.png" class="" alt="" style="max-width: 50%; min-width: 368px;">
+                    <img src="~/assets/projects/volunteering-projects/2.webp" class="" alt="" style="max-width: 50%; min-width: 368px;" loading="lazy" decoding="async">
                     <div class="proj-p-2">These young changemakers were actively involved in a wide range of activities, including helping at Leśna Świetlica, leading activities for Ukrainian children with refugee backgrounds, and contributing to our international projects.  <br><br>Their involvement not only enhanced our projects but also provided vital support in the daily operations of Windmill Tree.</div>
                 </div>
             </div>
 
              <!-- phone version -->
             <div class="mob-ver">
-                <img src="~/assets/projects/volunteering-projects/2.png" class="" alt="" style="">
+                <img src="~/assets/projects/volunteering-projects/2.webp" class="" alt="" style="" loading="lazy" decoding="async">
                 <div class="proj-p">In our first year we hosted 4 long-term international volunteers:</div>
                 <div class="proj-volunteers">Dani from Italy,<br> Rodrigo from Spain,<br> Milana from Ukraine.</div>
                 <div class="proj-p-2">These young changemakers were actively involved in a wide range of activities, including helping at Leśna Świetlica, leading activities for Ukrainian children with refugee backgrounds, and contributing to our international projects.  <br><br>Their involvement not only enhanced our projects but also provided vital support in the daily operations of Windmill Tree.</div>
@@ -49,12 +49,12 @@
             <!-- PC ver -->
             <div class="flex flex-row gap-12 pb-24 pc-ver">
                 <div style="font-size: 26px; padding-right: 100px;">During the summer, our team joined 2 short-term volunteers, Alvaro and Yassim from Spain. They brought international dimension to our summer activities for children. <br><br>Their presence not only enhanced the quality of the activities but also fostered cross-cultural understanding and created unforgettable memories for everyone involved.</div>
-                <img src="~/assets/projects/volunteering-projects/3.png" class="" alt="" style="max-width: 50%; min-width: 368px; height: auto; object-fit: contain;">
+                <img src="~/assets/projects/volunteering-projects/3.webp" class="" alt="" style="max-width: 50%; min-width: 368px; height: auto; object-fit: contain;" loading="lazy" decoding="async">
             </div>
 
             <!-- phone ver -->
              <div class="mob-ver flex flex-col">
-                <img src="~/assets/projects/volunteering-projects/3.png" class="" alt="" style="">
+                <img src="~/assets/projects/volunteering-projects/3.webp" class="" alt="" style="" loading="lazy" decoding="async">
                 <div style="" class="proj-p-2">During the summer, our team joined 2 short-term volunteers, Alvaro and Yassim from Spain. They brought international dimension to our summer activities for children. <br><br>Their presence not only enhanced the quality of the activities but also fostered cross-cultural understanding and created unforgettable memories for everyone involved.</div>
              </div>
 
@@ -68,7 +68,7 @@
             <div class="flex flex-row gap-12 mb-24 pc-ver">
             <!-- prvni sloupec -->
             <div class="flex flex-row gap-10" style="">
-                <img src="~/assets/projects/volunteering-projects/4.png" class="" alt="" style="max-width: 50%; object-fit: contain;">
+                <img src="~/assets/projects/volunteering-projects/4.webp" class="" alt="" style="max-width: 50%; object-fit: contain;" loading="lazy" decoding="async">
 
             <!-- pravy sloupec -->
             <div class="flex flex-col items-end justify-between">
@@ -86,7 +86,7 @@
 
         <!-- mob version -->
          <div class="mob-ver">
-            <img src="~/assets/projects/volunteering-projects/4.png" class="" alt="" style="">
+            <img src="~/assets/projects/volunteering-projects/4.webp" class="" alt="" style="" loading="lazy" decoding="async">
             <div class="proj-p">The center welcomed three international volunteers:  </div>
                 <div class="proj-volunteers mb-20">Justine from France<br> Yana from Ukraine<br> Alexander from Luxembourg</div>
                 <div class="proj-p-2">They helped with daily activities like macramé workshops, dance classes, and other creative programs. Their energy and ideas added an international touch to the center, making the activities more exciting and inspiring for everyone.</div>
@@ -98,12 +98,12 @@
         <!-- PC version -->
         <div class="flex flex-row gap-10 mb-24 pc-ver">
             <div class="text-2xl">05.06.2023-04.08.2023 10 volunteers from different countries such as France (3), Germany (2), Netherlands, Spain, Kosovo, Belgium, and Italy were hosted in Atelier Wolimierz. <br><br> During their 2 months stay, the volunteers had the chance to experience life in the countryside while helping local community with a variety of activities such as gardening, cooking, and building/construction etc. Their main task included preparing for 2 cultural festivals where they cooked and served food for big groups of people, prepared the facilities and stages for the events, as well as supported and assisted international guest artists.</div>
-            <img src="~/assets/projects/volunteering-projects/5.png" class="" alt="" style="max-width: 50%; object-fit: contain;">
+            <img src="~/assets/projects/volunteering-projects/5.webp" class="" alt="" style="max-width: 50%; object-fit: contain;" loading="lazy" decoding="async">
         </div>
 
         <!-- phone version -->
          <div class="flex flex-col mob-ver">
-            <img src="~/assets/projects/volunteering-projects/5.png" class="" alt="" style="">
+            <img src="~/assets/projects/volunteering-projects/5.webp" class="" alt="" style="" loading="lazy" decoding="async">
             <div class="proj-p-2">
                 05.06.2023-04.08.2023 10 volunteers from different countries such as France (3), Germany (2), Netherlands, Spain, Kosovo, Belgium, and Italy were hosted in Atelier Wolimierz. <br><br> During their 2 months stay, the volunteers had the chance to experience life in the countryside while helping local community with a variety of activities such as gardening, cooking, and building/construction etc. Their main task included preparing for 2 cultural festivals where they cooked and served food for big groups of people, prepared the facilities and stages for the events, as well as supported and assisted international guest artists.
             </div>
@@ -135,13 +135,13 @@
 
                 <!-- pravy sloupec -->
                 <div class="flex flex-col items-end justify-between">
-                    <img src="~/assets/projects/volunteering-projects/6.png" class="" alt="" style="max-width: 70%; object-fit: contain; margin-top: -15px;">
+                    <img src="~/assets/projects/volunteering-projects/6.webp" class="" alt="" style="max-width: 70%; object-fit: contain; margin-top: -15px;" loading="lazy" decoding="async">
                 </div>
             </div>
 
             <!-- phone ver -->
              <div class="flex flex-col mob-ver">
-                <img src="~/assets/projects/volunteering-projects/6.png" class="" alt="" style="">
+                <img src="~/assets/projects/volunteering-projects/6.webp" class="" alt="" style="" loading="lazy" decoding="async">
                 <div class="proj-p">In our second year we as well hosted 4 long-term international volunteers:</div>
                 <div class="proj-volunteers" style="background-color: rgba(255,122,117, 0.34);">Oryna from Ukraine <br> Uxia from Spain <br> Kateryna from Ukraine <br> Caoimhe from Ireland</div>
                 <div class="proj-p-2"></div>
@@ -151,14 +151,14 @@
 
             <!-- PC ver -->
             <div class="text-2xl mb-24 pc-ver">
-                <img src="~/assets/projects/volunteering-projects/7.png" class="ml-5 mb-5" alt="" style="max-width: 30%; object-fit: contain; float: right;">
+                <img src="~/assets/projects/volunteering-projects/7.webp" class="ml-5 mb-5" alt="" style="max-width: 30%; object-fit: contain; float: right;" loading="lazy" decoding="async">
                 Volunteers in Pobiedna prepared for the Punk Eco Festival by building eco-friendly infrastructure like fences, platforms, and bathhouse walls using recycled materials while learning skills such as tool use, waste sorting, and furniture building. <br><br>They also created festival flags, posters, and maps, set up tents, stages, and a kitchen, and supported various festival operations. In their free time, they enjoyed mountain hikes, concerts, and cultural trips to nearby towns. <br><br>
                 The festival itself was a whirlwind of music, fun, and teamwork, followed by cleanup and a well-deserved rest, leaving volunteers with unforgettable memories and valuable experiences.
             </div>
 
             <!-- mob ver -->
              <div class="mob-ver flex flex-col">
-                <img src="~/assets/projects/volunteering-projects/7.png" class="" alt="" style="">
+                <img src="~/assets/projects/volunteering-projects/7.webp" class="" alt="" style="" loading="lazy" decoding="async">
                 <div class="proj-p-2">
                     Volunteers in Pobiedna prepared for the Punk Eco Festival by building eco-friendly infrastructure like fences, platforms, and bathhouse walls using recycled materials while learning skills such as tool use, waste sorting, and furniture building. <br><br>They also created festival flags, posters, and maps, set up tents, stages, and a kitchen, and supported various festival operations. In their free time, they enjoyed mountain hikes, concerts, and cultural trips to nearby towns. <br><br>
                 The festival itself was a whirlwind of music, fun, and teamwork, followed by cleanup and a well-deserved rest, leaving volunteers with unforgettable memories and valuable experiences.

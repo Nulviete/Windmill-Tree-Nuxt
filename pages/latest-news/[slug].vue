@@ -31,6 +31,9 @@
         :related-links="article.new_links"
         :interview-links="article.new_link_interview"
         :show-link="false"
+        image-loading="eager"
+        image-fetchpriority="high"
+        image-sizes="(max-width: 900px) 100vw, 50vw"
       />
 
       <nav
@@ -84,6 +87,7 @@
             :image="item.new_img"
             :excerpt="item.preview"
             :link="item.path"
+            image-sizes="(max-width: 900px) 100vw, 33vw"
           />
         </div>
       </section>

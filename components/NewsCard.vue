@@ -4,6 +4,10 @@
       v-if="image"
       :src="image"
       :alt="title || 'Windmill Tree news image'"
+      :loading="imageLoading"
+      :decoding="imageDecoding"
+      :fetchpriority="imageFetchpriority"
+      :sizes="imageSizes || undefined"
       class="news-card-image"
     />
 
@@ -95,6 +99,22 @@ const props = defineProps({
     default: "",
   },
   image: {
+    type: String,
+    default: "",
+  },
+  imageLoading: {
+    type: String,
+    default: "lazy",
+  },
+  imageDecoding: {
+    type: String,
+    default: "async",
+  },
+  imageFetchpriority: {
+    type: String,
+    default: "auto",
+  },
+  imageSizes: {
     type: String,
     default: "",
   },
