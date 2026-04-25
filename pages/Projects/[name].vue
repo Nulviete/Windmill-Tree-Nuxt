@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="proj-des">
+        <div class="proj-des pt-6 pb-10">
           {{ project.description }}
         </div>
       </div>
@@ -102,41 +102,42 @@
           >
             ▶
           </button>
-
-          <!-- Fullscreen Overlay -->
-          <div
-            v-if="fullscreenPhoto"
-            class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
-            @click="closeFullscreenOnBackground"
-          >
-            <button
-              class="absolute top-4 right-4 text-white text-4xl font-bold z-50"
-              @click.stop="closeFullscreen"
-            >
-              &times;
-            </button>
-            <button
-              class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
-              @click.stop="prevFullscreenSlide"
-              v-if="currentFullscreenIndex > 0"
-            >
-              ◀
-            </button>
-            <img
-              :src="fullscreenPhoto"
-              class="max-w-full max-h-full"
-            />
-            <button
-              class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
-              @click.stop="nextFullscreenSlide"
-              v-if="currentFullscreenIndex < project.photos.length - 1"
-            >
-              ▶
-            </button>
-          </div>
         </div>
       </div>
     </RevealOnScroll>
+
+    <Teleport to="body">
+      <div
+        v-if="fullscreenPhoto"
+        class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[9999]"
+        @click="closeFullscreenOnBackground"
+      >
+        <button
+          class="absolute top-4 right-4 text-white text-4xl font-bold z-[10000]"
+          @click.stop="closeFullscreen"
+        >
+          &times;
+        </button>
+        <button
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+          @click.stop="prevFullscreenSlide"
+          v-if="currentFullscreenIndex > 0"
+        >
+          ◀
+        </button>
+        <img
+          :src="fullscreenPhoto"
+          class="max-w-full max-h-full"
+        />
+        <button
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+          @click.stop="nextFullscreenSlide"
+          v-if="currentFullscreenIndex < project.photos.length - 1"
+        >
+          ▶
+        </button>
+      </div>
+    </Teleport>
 
     <RevealOnScroll :distance="20" :delay="140">
       <div class="pl-24 pt-12 max-900:pl-4">
