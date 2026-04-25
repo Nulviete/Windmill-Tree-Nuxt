@@ -176,11 +176,26 @@ import LoadingSpinner from "~/components/Icons/LoadingSpinner.vue";
 
 const route = useRoute();
 const projectName = ref(route.params.name);
-const project = ref(null);
-const dataLoaded = ref(false);
+const canonicalUrl = computed(() => `https://windmilltree.org${route.path}`);
+
+const { data, pending, error } = await useAsyncData(
+  () => `project-${String(route.params.name)}`,
+  () =>
+    $fetch("/api/project", {
+      query: { name: String(route.params.name) },
+      headers: useRequestHeaders(["cookie"]),
+    }),
+  {
+    watch: [() => route.params.name],
+    default: () => ({ data: [] }),
+  }
+);
+
+const project = computed(() => data.value?.data?.[0] ?? null);
+const dataLoaded = computed(() => !pending.value && !!project.value);
 
 const bgUrl = computed(() => {
-  const key = project.value.bg_img;
+  const key = project.value?.bg_img;
   return key ? `/projects/international/ip_bg_${key}.webp` : "https://i.imgur.com/FlJnzka.png";
 })
 
@@ -203,17 +218,6 @@ const slider = ref(null);
 
 const updatePhotosPerSlide = () => {
   photosPerSlide.value = window.innerWidth <= 768 ? 1 : 4;
-};
-
-const fetchData = async () => {
-  const { data } = await $fetch(`/api/project?name=${projectName.value}`, {
-    query: { projectName },
-    headers: useRequestHeaders(["cookie"]),
-    key: "data-from-server",
-    transform: (data) => data.data,
-  });
-  project.value = data[0];
-  dataLoaded.value = true;
 };
 
 const maxIndex = computed(() => {
@@ -283,7 +287,6 @@ const handleTouchEnd = (event) => {
 };
 
 onMounted(async () => {
-  await fetchData();
   updatePhotosPerSlide();
 
   window.addEventListener("resize", updatePhotosPerSlide);
@@ -302,6 +305,61 @@ onMounted(async () => {
 onUnmounted(() => {
   window.removeEventListener("resize", updatePhotosPerSlide);
   window.removeEventListener("keydown", handleKeyDown);
+});
+
+if (error.value?.statusCode === 404) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Project not found",
+  });
+}
+
+if (!pending.value && !project.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Project not found",
+  });
+}
+
+const projectTitle = computed(() =>
+  project.value?.name
+    ? `${project.value.name} | Windmill Tree`
+    : "Project | Windmill Tree"
+);
+
+const projectDescription = computed(() => {
+  const description = String(project.value?.description ?? "").trim();
+  if (description) {
+    return description.slice(0, 160);
+  }
+
+  return "Explore Windmill Tree projects, activities, and international initiatives.";
+});
+
+useSeoMeta({
+  title: () => projectTitle.value,
+  description: () => projectDescription.value,
+  ogTitle: () => projectTitle.value,
+  ogDescription: () => projectDescription.value,
+  ogType: "article",
+  ogUrl: () => canonicalUrl.value,
+  ogImage: () => project.value?.video_image || project.value?.main_photo || undefined,
+  twitterCard: () =>
+    project.value?.video_image || project.value?.main_photo
+      ? "summary_large_image"
+      : "summary",
+  twitterTitle: () => projectTitle.value,
+  twitterDescription: () => projectDescription.value,
+  twitterImage: () => project.value?.video_image || project.value?.main_photo || undefined,
+});
+
+useHead({
+  link: [
+    {
+      rel: "canonical",
+      href: canonicalUrl,
+    },
+  ],
 });
 </script>
 

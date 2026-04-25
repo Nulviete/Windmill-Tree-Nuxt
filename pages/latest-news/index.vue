@@ -1,13 +1,15 @@
 <template>
   <section v-bind="$attrs" class="latest-news-page">
-    <header class="latest-news-header">
+    <RevealOnScroll :distance="24">
+      <header class="latest-news-header">
       <p class="latest-news-kicker">Foundation updates</p>
       <h1 class="latest-news-title">LATEST NEWS</h1>
       <p class="latest-news-intro">
         Stories, reflections and fresh updates from the Windmill Tree
         community.
       </p>
-    </header>
+      </header>
+    </RevealOnScroll>
 
     <div v-if="pending" class="latest-news-status">
       <LoadingSpinner />
@@ -22,22 +24,27 @@
     </div>
 
     <div v-else class="latest-news-content">
-      <NewsCard
+      <RevealOnScroll
         v-for="item in news"
         :key="item.id"
-        variant="full"
-        heading-tag="h2"
-        :title="item.new_title"
-        :date="item.created_at"
-        :image="item.new_img"
-        :body="item.new_body"
-        :signature="item.new_signature"
-        :related-links="item.new_links"
-        :interview-links="item.new_link_interview"
-        :link="item.path"
-        link-label="Open article"
-        image-sizes="(max-width: 900px) 100vw, 40vw"
-      />
+        :delay="getRevealDelay(item)"
+        :distance="22"
+      >
+        <NewsCard
+          variant="full"
+          heading-tag="h2"
+          :title="item.new_title"
+          :date="item.created_at"
+          :image="item.new_img"
+          :body="item.new_body"
+          :signature="item.new_signature"
+          :related-links="item.new_links"
+          :interview-links="item.new_link_interview"
+          :link="item.path"
+          link-label="Open article"
+          image-sizes="(max-width: 900px) 100vw, 40vw"
+        />
+      </RevealOnScroll>
 
       <UPagination
         v-if="totalItems > itemsPerPage"
@@ -98,6 +105,18 @@ const news = computed(() =>
 );
 const totalItems = computed(() => Number(data.value?.totalItems ?? 0));
 const totalPages = computed(() => Number(data.value?.totalPages ?? 1) || 1);
+
+usePageSeo({
+  title: "Latest News | Windmill Tree Foundation",
+  description:
+    "Read the latest updates, stories, reflections, and community news from Windmill Tree Foundation.",
+  path: "/latest-news",
+});
+
+const getRevealDelay = (item) => {
+  const index = news.value.findIndex((newsItem) => newsItem.id === item.id);
+  return Math.max(index, 0) * 70;
+};
 
 watch(
   () => route.query.page,

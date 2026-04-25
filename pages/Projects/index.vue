@@ -23,9 +23,10 @@
                 <img src="~/assets/projects/esc-pc.webp" alt="European Solidarity Corps projects" loading="lazy" decoding="async">
             </NuxtLink>
 
-            <NuxtLink to="/projects/from-partners-projects" class="">
-              <img src="~/assets/projects/from-partners-pc.webp" alt="Projects from partners" style="" loading="lazy" decoding="async">
-            </NuxtLink>
+            <div class="project-card project-card--coming-soon" aria-disabled="true">
+              <img src="~/assets/projects/from-partners-pc.webp" alt="Projects from partners coming soon" style="" loading="lazy" decoding="async">
+              <div class="coming-soon-badge pc-ver">Coming soon</div>
+            </div>
             
             
           </div>
@@ -51,10 +52,11 @@
               <p style="background-color: #FF7A75; color: white;">European Solidarity Corps</p>
             </NuxtLink>
 
-            <NuxtLink to="/projects/from-partners-projects" class="fill">
+            <div class="fill project-card project-card--coming-soon" aria-disabled="true">
               <img src="~/assets/projects/from-partners-mob.webp" alt="From Partners" loading="lazy" decoding="async" />
               <p style="background-color: #CC3396; color: white;">From Partners</p>
-            </NuxtLink>
+              <span class="coming-soon-badge coming-soon-badge--mobile">Coming soon</span>
+            </div>
 
             <NuxtLink to="/projects/for-ukraine-projects" class="fill">
               <img src="~/assets/projects/4ukraine-mob.webp" alt="For Ukraine" loading="lazy" decoding="async" />
@@ -72,6 +74,11 @@
 <script setup>
 import { ref } from 'vue'
 
+usePageSeo({
+  title: "Projects | Windmill Tree Foundation",
+  description:
+    "Explore Windmill Tree Foundation projects across local initiatives, international exchanges, volunteering, and support for Ukraine.",
+});
 </script>
 
 
@@ -84,6 +91,27 @@ a {
 .page-title {
   font-size: 64px;
   text-align: center;
+}
+
+.project-card {
+  position: relative;
+}
+
+.project-card--coming-soon img {
+  filter: saturate(0.92);
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(29, 29, 29, 0.82);
+  color: rgb(210, 224, 15);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 img:hover {
@@ -123,6 +151,13 @@ img:hover {
   border-radius: 50vh;
   font-size: 20px;
   margin-top: -17px;
+}
+
+.coming-soon-badge--mobile {
+  position: static;
+  margin-top: 10px;
+  padding: 7px 12px;
+  font-size: 11px;
 }
 }
 </style>

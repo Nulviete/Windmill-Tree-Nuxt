@@ -27,12 +27,6 @@ export default defineNuxtConfig({
     }
    
   },
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-    }
-  },
-
   runtimeConfig: {
     public: {
       heroImg: process.env.HERO_IMG || 'b',
@@ -46,7 +40,7 @@ export default defineNuxtConfig({
     storageKey: 'color-mode'
   },
 
-  ssr: false,
+  ssr: true,
 
   devtools: { enabled: true },
 

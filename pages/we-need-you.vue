@@ -45,6 +45,11 @@
 </template>
 
 <script setup>
+usePageSeo({
+  title: "We Need You | Windmill Tree Foundation",
+  description:
+    "Current call for participants and opportunities to join Windmill Tree Foundation projects, trainings, and international activities.",
+});
 </script>
 
 <style lang="scss" scoped>

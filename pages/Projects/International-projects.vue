@@ -28,28 +28,28 @@ import { ref } from 'vue'
 import LoadingSpinner from '~/components/Icons/LoadingSpinner.vue'
 
 const yearSel = ref(2025)
-const projects = ref([])
-const dataLoaded = ref(false)
-
-const fetchData = async () => {
-    const { data } = await $fetch(`/api/projects?year=${yearSel.value}`, {
-        headers: useRequestHeaders(['cookie']),
-        key: 'data-from-server',
-        transform: data => data.data
-    })
-    projects.value = data
-    dataLoaded.value = true
-}
-
-onMounted(async () => {
-    await fetchData()
-})
-
-watchEffect(async () => {
-  if (yearSel.value) {
-    await fetchData()
+const { data, pending } = await useAsyncData(
+  () => `international-projects-${yearSel.value}`,
+  () =>
+    $fetch('/api/projects', {
+      headers: useRequestHeaders(['cookie']),
+      query: { year: yearSel.value },
+    }),
+  {
+    default: () => ({ data: [] }),
+    watch: [yearSel],
   }
-})
+)
+
+const projects = computed(() =>
+  Array.isArray(data.value?.data) ? data.value.data : []
+)
+
+usePageSeo({
+  title: "International Projects | Windmill Tree Foundation",
+  description:
+    "Discover Windmill Tree Foundation international youth exchanges, trainings, and cross-border projects.",
+});
 
 </script>
 

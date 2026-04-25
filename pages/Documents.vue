@@ -50,7 +50,11 @@
 </template>
 
 <script setup>
-
+usePageSeo({
+  title: "Documents | Windmill Tree Foundation",
+  description:
+    "Browse statutes, reports, financial statements, policies, and downloadable documents published by Windmill Tree Foundation.",
+});
 </script>
 
 <style lang="scss" scoped>

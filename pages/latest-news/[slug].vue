@@ -16,81 +16,100 @@
     </div>
 
     <div v-else class="latest-news-detail-content">
-      <NuxtLink to="/latest-news" class="latest-news-detail-back">
-        Back to latest news
-      </NuxtLink>
+      <RevealOnScroll :distance="24">
+        <div class="latest-news-detail-hero">
+          <NuxtLink to="/latest-news" class="latest-news-detail-back">
+            Back to latest news
+          </NuxtLink>
 
-      <NewsCard
-        variant="full"
-        heading-tag="h1"
-        :title="article.new_title"
-        :date="article.created_at"
-        :image="article.new_img"
-        :body="article.new_body"
-        :signature="article.new_signature"
-        :related-links="article.new_links"
-        :interview-links="article.new_link_interview"
-        :show-link="false"
-        image-loading="eager"
-        image-fetchpriority="high"
-        image-sizes="(max-width: 900px) 100vw, 50vw"
-      />
-
-      <nav
-        v-if="previousArticle || nextArticle"
-        class="latest-news-detail-nav"
-        aria-label="Article navigation"
-      >
-        <NuxtLink
-          v-if="previousArticle"
-          :to="previousArticle.path"
-          class="latest-news-detail-nav-link"
-        >
-          <span class="latest-news-detail-nav-label">Previous article</span>
-          <span class="latest-news-detail-nav-title">
-            {{ previousArticle.new_title }}
-          </span>
-        </NuxtLink>
-
-        <div v-else class="latest-news-detail-nav-spacer" aria-hidden="true" />
-
-        <NuxtLink
-          v-if="nextArticle"
-          :to="nextArticle.path"
-          class="latest-news-detail-nav-link latest-news-detail-nav-link--next"
-        >
-          <span class="latest-news-detail-nav-label">Next article</span>
-          <span class="latest-news-detail-nav-title">
-            {{ nextArticle.new_title }}
-          </span>
-        </NuxtLink>
-      </nav>
-
-      <section
-        v-if="relatedArticles.length"
-        class="latest-news-more"
-        aria-labelledby="latest-news-more-title"
-      >
-        <div class="latest-news-more-header">
-          <p class="latest-news-more-kicker">Keep reading</p>
-          <h2 id="latest-news-more-title" class="latest-news-more-title">
-            More updates
-          </h2>
-        </div>
-
-        <div class="latest-news-more-grid">
           <NewsCard
-            v-for="item in relatedArticles"
-            :key="item.id"
-            :title="item.new_title"
-            :date="item.created_at"
-            :image="item.new_img"
-            :excerpt="item.preview"
-            :link="item.path"
-            image-sizes="(max-width: 900px) 100vw, 33vw"
+            variant="full"
+            heading-tag="h1"
+            :title="article.new_title"
+            :date="article.created_at"
+            :image="article.new_img"
+            :body="article.new_body"
+            :signature="article.new_signature"
+            :related-links="article.new_links"
+            :interview-links="article.new_link_interview"
+            :show-link="false"
+            image-loading="eager"
+            image-fetchpriority="high"
+            image-sizes="(max-width: 900px) 100vw, 50vw"
           />
         </div>
-      </section>
+      </RevealOnScroll>
+
+      <RevealOnScroll
+        v-if="previousArticle || nextArticle"
+        :distance="20"
+        :delay="70"
+      >
+        <nav
+          class="latest-news-detail-nav"
+          aria-label="Article navigation"
+        >
+          <NuxtLink
+            v-if="previousArticle"
+            :to="previousArticle.path"
+            class="latest-news-detail-nav-link"
+          >
+            <span class="latest-news-detail-nav-label">Previous article</span>
+            <span class="latest-news-detail-nav-title">
+              {{ previousArticle.new_title }}
+            </span>
+          </NuxtLink>
+
+          <div v-else class="latest-news-detail-nav-spacer" aria-hidden="true" />
+
+          <NuxtLink
+            v-if="nextArticle"
+            :to="nextArticle.path"
+            class="latest-news-detail-nav-link latest-news-detail-nav-link--next"
+          >
+            <span class="latest-news-detail-nav-label">Next article</span>
+            <span class="latest-news-detail-nav-title">
+              {{ nextArticle.new_title }}
+            </span>
+          </NuxtLink>
+        </nav>
+      </RevealOnScroll>
+
+      <RevealOnScroll
+        v-if="relatedArticles.length"
+        :distance="20"
+        :delay="110"
+      >
+        <section
+          class="latest-news-more"
+          aria-labelledby="latest-news-more-title"
+        >
+          <div class="latest-news-more-header">
+            <p class="latest-news-more-kicker">Keep reading</p>
+            <h2 id="latest-news-more-title" class="latest-news-more-title">
+              More updates
+            </h2>
+          </div>
+
+          <div class="latest-news-more-grid">
+            <RevealOnScroll
+              v-for="(item, index) in relatedArticles"
+              :key="item.id"
+              :delay="index * 80"
+              :distance="18"
+            >
+              <NewsCard
+                :title="item.new_title"
+                :date="item.created_at"
+                :image="item.new_img"
+                :excerpt="item.preview"
+                :link="item.path"
+                image-sizes="(max-width: 900px) 100vw, 33vw"
+              />
+            </RevealOnScroll>
+          </div>
+        </section>
+      </RevealOnScroll>
     </div>
   </section>
 </template>
@@ -185,6 +204,12 @@ useHead({
 }
 
 .latest-news-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.latest-news-detail-hero {
   display: flex;
   flex-direction: column;
   gap: 24px;

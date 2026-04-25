@@ -180,6 +180,12 @@ import { ref } from 'vue'
 
 const menuSel = ref(1)
 
+usePageSeo({
+  title: "Volunteering Projects | Windmill Tree Foundation",
+  description:
+    "Explore Windmill Tree Foundation volunteering projects, international volunteers, and European Solidarity Corps activities.",
+});
+
 </script>
 
 <style lang="scss" scoped>

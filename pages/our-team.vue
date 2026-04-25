@@ -155,6 +155,12 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("resize", updateCardsPerRow);
 });
+
+usePageSeo({
+  title: "Our Team | Windmill Tree Foundation",
+  description:
+    "Meet the board, coordinators, volunteers, creatives, and supporters behind Windmill Tree Foundation.",
+});
 </script>
 
 <style lang="scss" scoped>

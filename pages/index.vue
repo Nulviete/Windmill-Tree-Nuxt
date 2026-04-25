@@ -470,6 +470,13 @@ const { data, pending } = await useAsyncData("homepage-latest-news", () =>
 const latestNews = computed(() =>
   Array.isArray(data.value) ? data.value.slice(0, 4) : []
 );
+
+usePageSeo({
+  title: "Windmill Tree Foundation | Youth, Inclusion and International Projects",
+  description:
+    "Windmill Tree Foundation supports youth, inclusion, refugee communities, international exchange, volunteering, and creative education projects in Poland and beyond.",
+  image: "/hero/hero_second_ver.webp",
+});
 </script>
 
 <style lang="scss" scoped>

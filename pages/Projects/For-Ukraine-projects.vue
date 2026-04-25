@@ -133,6 +133,12 @@ import { ref } from 'vue'
 const menuSel = ref(2024)
 const attrs = useAttrs()
 
+usePageSeo({
+  title: "For Ukraine Projects | Windmill Tree Foundation",
+  description:
+    "Learn about Windmill Tree Foundation support projects for Ukrainian children, youth, women, and refugee communities.",
+});
+
 </script>
 
 <style lang="scss" scoped>

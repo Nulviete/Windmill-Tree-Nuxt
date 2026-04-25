@@ -59,7 +59,11 @@
 </template>
 
 <script setup>
-
+usePageSeo({
+  title: "Local Projects | Windmill Tree Foundation",
+  description:
+    "See Windmill Tree Foundation local initiatives, community activities, youth engagement, and creative projects in the region.",
+});
 </script>
 
 <style lang="scss" scoped>
