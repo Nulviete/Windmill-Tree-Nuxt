@@ -82,7 +82,7 @@ onBeforeUnmount(() => {
 
 .reveal-on-scroll--visible {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

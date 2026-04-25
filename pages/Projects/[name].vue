@@ -1,167 +1,164 @@
 <template>
   <div v-if="dataLoaded && project" class="pb-24">
-    <!-- <div class="">
-            <div class="font-bold text-4xl p-10" :class="{ hidden: fullscreenMode}">{{ project[0].name }}</div>
-            <div class="year pb-5 text-gray-500" :class="{ hidden: fullscreenMode}"> {{ project[0].year }}</div>
-            <div class="text-lg" :class="{ hidden: fullscreenMode}">{{ project[0].projectDescription }}</div>
-
-                <div class="gallery" :class="{ galleryfull: fullscreenMode }" >
-                <Carousel class="max-h-3" :photos="project[0].photos"  />
-                </div>
-         
-        </div>    -->
-
-    <div
-      class="header text-white -mt-[160px] pl-12 pt-[160px]"
-      :style="headerStyle"
-    >
+    <RevealOnScroll :distance="28">
       <div
-        class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl ml-4 mb-6"
+        class="header text-white -mt-[160px]"
+        :style="headerStyle"
       >
-        <div class="header-1 text-center">International projects</div>
-      </div>
-      <div
-        class="text-center pb-24 max-900:pb-12 flex-col flex items-center justify-center"
-      >
-        <div
-          class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl"
-        >
-          <div class="proj-cat">{{ project.category }}</div>
-        </div>
-        <div
-          class="inline-block backdrop-blur-sm bg-black/30 px-5 py-1 rounded-xl mt-4"
-        >
-          <div class="proj-nam">"{{ project.name }}"</div>
-        </div>
-        <div
-          class="vid mx-auto overflow-hidden mt-12 shadow-[0_60px_140px_rgba(0,0,0,0.85),0_20px_50px_rgba(0,0,0,0.7)] ring-1 ring-white/40 rounded-3xl"
-        >
-          <img
-            v-if="project.video_image"
-            :src="project.video_image"
-            alt=""
-            class="object-cover"
-          />
-        </div>
-      </div>
-    </div>
+        <div class="header-overlay">
+          <div class="header-inner">
+            <NuxtLink to="/projects" class="project-back-link">
+              Back to projects
+            </NuxtLink>
 
-    <div class="proj-info pl-12 mt-12 py-6 text-black">
-      <div>{{ project.place }}</div>
-      <div>{{ project.date }}</div>
-      <div>Number of participants: {{ project.number_of_participants }}</div>
-    </div>
+            <div class="header-copy">
+              <p class="header-kicker">Windmill Tree project</p>
+              <div class="header-badges">
+                <span v-if="project.category" class="header-badge">
+                  {{ project.category }}
+                </span>
+                <span v-if="project.place" class="header-badge header-badge--soft">
+                  {{ project.place }}
+                </span>
+              </div>
+              <h1 class="proj-nam">{{ project.name }}</h1>
+              <p v-if="projectSummary" class="project-summary">
+                {{ projectSummary }}
+              </p>
+            </div>
 
-    <div class="flex justify-end pb-36 max-900:pb-6">
-      <div
-        class="proj-participants py-6 pl-12 pr-6 -mt-4"
-      >
-        Participants from: {{ project.participants_countries }}
-      </div>
-    </div>
-
-    <div class="proj-des px-12 pb-24 max-900:mb-6">
-      {{ project.description }}
-    </div>
-
-    <!-- gallery slideshow -->
-    <div class="bg-green-900 py-6">
-      <div class="relative w-full max-w-[920px] mx-auto">
-        <!-- Slider -->
-        <div class="overflow-hidden w-full rounded-xl">
-          <div
-            v-if="project.photos && project.photos.length"
-            ref="slider"
-            class="flex transition-transform duration-300"
-            :style="{
-              transform: `translateX(-${
-                currentIndex * (100 / (project.photos.length / photosPerSlide))
-              }%)`,
-              width: `${
-                Math.ceil((project.photos?.length || 0) / photosPerSlide) * 100
-              }%`,
-            }"
-          >
             <div
-              v-for="(photo, index) in project.photos"
-              :key="index"
-              class="w-full md:w-1/4 px-1 cursor-pointer"
-              @click="openFullscreen(photo)"
+              class="vid mx-auto overflow-hidden shadow-[0_60px_140px_rgba(0,0,0,0.65),0_20px_50px_rgba(0,0,0,0.45)] ring-1 ring-white/30 rounded-3xl"
             >
-              <img :src="photo" class="object-cover w-full h-64 rounded-lg" />
+              <img
+                v-if="project.video_image"
+                :src="project.video_image"
+                alt=""
+                class="object-cover"
+              />
             </div>
           </div>
         </div>
+      </div>
+    </RevealOnScroll>
 
-        <!-- Arrows -->
-        <button
-          class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
-          @click="prevSlide"
-          v-if="currentIndex > 0"
-        >
-          ◀
-        </button>
-        <button
-          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
-          @click="nextSlide"
-          v-if="currentIndex < maxIndex"
-        >
-          ▶
-        </button>
+    <RevealOnScroll :distance="24" :delay="70">
+      <div class="project-overview">
+        <div class="project-meta-card">
+          <div v-for="item in metaItems" :key="item.label" class="project-meta-item">
+            <span class="project-meta-label">{{ item.label }}</span>
+            <span class="project-meta-value">{{ item.value }}</span>
+          </div>
+        </div>
 
-        <!-- Fullscreen Overlay -->
-        <div
-          v-if="fullscreenPhoto"
-          class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
-          @click="closeFullscreenOnBackground"
-        >
-          <button
-            class="absolute top-4 right-4 text-white text-4xl font-bold z-50"
-            @click.stop="closeFullscreen"
-          >
-            &times;
-          </button>
+        <div class="proj-des">
+          {{ project.description }}
+        </div>
+      </div>
+    </RevealOnScroll>
+
+    <!-- gallery slideshow -->
+    <RevealOnScroll :distance="24" :delay="110">
+      <div class="bg-green-900 py-6">
+        <div class="relative w-full max-w-[920px] mx-auto">
+          <!-- Slider -->
+          <div class="overflow-hidden w-full rounded-xl">
+            <div
+              v-if="project.photos && project.photos.length"
+              ref="slider"
+              class="flex transition-transform duration-300"
+              :style="{
+                transform: `translateX(-${
+                  currentIndex * (100 / (project.photos.length / photosPerSlide))
+                }%)`,
+                width: `${
+                  Math.ceil((project.photos?.length || 0) / photosPerSlide) * 100
+                }%`,
+              }"
+            >
+              <div
+                v-for="(photo, index) in project.photos"
+                :key="index"
+                class="w-full md:w-1/4 px-1 cursor-pointer"
+                @click="openFullscreen(photo)"
+              >
+                <img :src="photo" class="object-cover w-full h-64 rounded-lg" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrows -->
           <button
             class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
-            @click.stop="prevFullscreenSlide"
-            v-if="currentFullscreenIndex > 0"
+            @click="prevSlide"
+            v-if="currentIndex > 0"
           >
             ◀
           </button>
-          <img
-            :src="fullscreenPhoto"
-            class="max-w-full max-h-full"
-          />
           <button
             class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
-            @click.stop="nextFullscreenSlide"
-            v-if="currentFullscreenIndex < project.photos.length - 1"
+            @click="nextSlide"
+            v-if="currentIndex < maxIndex"
           >
             ▶
           </button>
-        </div>
-      </div>
-    </div>
 
-    <div class="pl-24 pt-12 max-900:pl-4">
-      <span class="text-3xl max-900:text-xl">Video links:</span>
-      <div v-if="project.fb_videos" class="pt-3">
-        <div
-          v-for="(video, index) in project.fb_videos"
-          :key="index"
-          class="pl-6 py-1 max-900:pl-2"
-        >
-          <IconsFacebook class="inline-block w-6 h-6 mr-2 text-blue-600" />
-          <a
-            :href="video"
-            target="_blank"
-            class="text-blue-800 underline max-900:text-xs"
-            >{{ video }}</a
+          <!-- Fullscreen Overlay -->
+          <div
+            v-if="fullscreenPhoto"
+            class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+            @click="closeFullscreenOnBackground"
           >
+            <button
+              class="absolute top-4 right-4 text-white text-4xl font-bold z-50"
+              @click.stop="closeFullscreen"
+            >
+              &times;
+            </button>
+            <button
+              class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+              @click.stop="prevFullscreenSlide"
+              v-if="currentFullscreenIndex > 0"
+            >
+              ◀
+            </button>
+            <img
+              :src="fullscreenPhoto"
+              class="max-w-full max-h-full"
+            />
+            <button
+              class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+              @click.stop="nextFullscreenSlide"
+              v-if="currentFullscreenIndex < project.photos.length - 1"
+            >
+              ▶
+            </button>
+          </div>
         </div>
       </div>
-      <div v-else>No video links available :(</div>
-    </div>
+    </RevealOnScroll>
+
+    <RevealOnScroll :distance="20" :delay="140">
+      <div class="pl-24 pt-12 max-900:pl-4">
+        <span class="text-3xl max-900:text-xl">Video links:</span>
+        <div v-if="project.fb_videos" class="pt-3">
+          <div
+            v-for="(video, index) in project.fb_videos"
+            :key="index"
+            class="pl-6 py-1 max-900:pl-2"
+          >
+            <IconsFacebook class="inline-block w-6 h-6 mr-2 text-blue-600" />
+            <a
+              :href="video"
+              target="_blank"
+              class="text-blue-800 underline max-900:text-xs"
+              >{{ video }}</a
+            >
+          </div>
+        </div>
+        <div v-else>No video links available :(</div>
+      </div>
+    </RevealOnScroll>
   </div>
   <div v-else class="">
     <LoadingSpinner />
@@ -193,6 +190,39 @@ const { data, pending, error } = await useAsyncData(
 
 const project = computed(() => data.value?.data?.[0] ?? null);
 const dataLoaded = computed(() => !pending.value && !!project.value);
+const projectSummary = computed(() => {
+  const description = String(project.value?.description ?? "").trim();
+
+  if (!description) {
+    return "";
+  }
+
+  return description.length > 220
+    ? `${description.slice(0, 217).trim()}...`
+    : description;
+});
+const metaItems = computed(() =>
+  [
+    {
+      label: "Location",
+      value: project.value?.place,
+    },
+    {
+      label: "Date",
+      value: project.value?.date,
+    },
+    {
+      label: "Participants",
+      value: project.value?.number_of_participants
+        ? String(project.value.number_of_participants)
+        : "",
+    },
+    {
+      label: "Countries",
+      value: project.value?.participants_countries,
+    },
+  ].filter((item) => String(item.value ?? "").trim())
+);
 
 const bgUrl = computed(() => {
   const key = project.value?.bg_img;
@@ -384,73 +414,176 @@ useHead({
 //     display: none;
 // }
 
-.header-1 {
-  font-size: 24px;
+.header {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
-.proj-cat {
-  font-size: 24px;
+
+.header-overlay {
+  padding: 160px 48px 88px;
+  background:
+    linear-gradient(180deg, rgba(8, 12, 18, 0.24), rgba(8, 12, 18, 0.72)),
+    linear-gradient(90deg, rgba(8, 12, 18, 0.5), rgba(8, 12, 18, 0.14));
 }
+
+.header-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 32px;
+  align-items: end;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.project-back-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.header-copy {
+  max-width: 620px;
+}
+
+.header-kicker {
+  margin-bottom: 14px;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(236, 243, 158, 0.92);
+}
+
+.header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.header-badge {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  font-size: 14px;
+}
+
+.header-badge--soft {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .proj-nam {
-  font-size: 32px;
+  font-size: clamp(36px, 5vw, 68px);
+  line-height: 0.98;
+  font-weight: 700;
+  text-wrap: balance;
 }
+
+.project-summary {
+  max-width: 58ch;
+  margin-top: 16px;
+  font-size: 19px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.84);
+}
+
 .vid {
-  width: 714.66px;
-  height: 402px;
-  background-color: rgb(211, 202, 202);
+  width: 100%;
+  max-width: 520px;
+  min-height: 320px;
+  background-color: rgba(211, 202, 202, 0.3);
   border-radius: 30px;
 }
 
-.proj-info {
-  background-color: #ecf39e;
-  font-size: 32px;
+.project-overview {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 34px 48px 0;
+}
+
+.project-meta-card {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: -48px;
+  margin-bottom: 36px;
+  padding: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 60px rgba(22, 32, 19, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.project-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-meta-label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(31, 28, 23, 0.56);
+}
+
+.project-meta-value {
+  font-size: 20px;
+  line-height: 1.4;
   font-weight: 600;
-  width: 60%;
-  min-width: max-content;
-  display: inline-block;
-  white-space: nowrap;
-  padding-right: 30px;
+  color: #1f1c17;
 }
-.proj-participants {
-  font-size: 24px;
-  background-color: #c99fff;
-}
+
 .proj-des {
-  font-size: 32px;
+  max-width: 880px;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.85;
+  color: #1f1c17;
 }
 
 @media (max-width: 900px) {
+  .header-overlay {
+    padding: 118px 16px 48px;
+  }
+
+  .header-inner {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
   .vid {
-    width: 90%;
-    height: auto;
+    min-height: auto;
   }
-  .proj-info {
-    font-size: 11px;
-    padding: 15px;
+
+  .project-summary {
+    font-size: 15px;
   }
-  .proj-participants {
-    font-size: 10px;
-    margin-left: 30%;
-    margin-top: -10px;
-    padding: 10px;
+
+  .project-overview {
+    padding: 18px 16px 0;
   }
+
+  .project-meta-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: -26px;
+    margin-bottom: 22px;
+    padding: 16px;
+  }
+
+  .project-meta-value {
+    font-size: 14px;
+  }
+
   .proj-des {
-    font-size: 12px;
-    padding: 15px;
-  }
-  .header-1 {
-    font-size: 12px;
-    
-  }
-  .proj-cat {
-    font-size: 16px;
-  }
-  .proj-nam {
-    font-size: 16px;
-  }
-  .header {
-    padding-left: 0;
-    padding-top: 100px;
-    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.75;
   }
 }
 </style>
