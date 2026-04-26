@@ -7,24 +7,22 @@
       >
         <div class="header-overlay">
           <div class="header-inner">
-            <NuxtLink to="/projects" class="project-back-link">
-              Back to projects
-            </NuxtLink>
-
-            <div class="header-copy">
-              <p class="header-kicker">Windmill Tree project</p>
-              <div class="header-badges">
-                <span v-if="project.category" class="header-badge">
-                  {{ project.category }}
-                </span>
-                <span v-if="project.place" class="header-badge header-badge--soft">
-                  {{ project.place }}
-                </span>
+            <div class="header-copy-column">
+              <div class="header-copy">
+                <p class="header-kicker">Windmill Tree project</p>
+                <div class="header-badges">
+                  <span v-if="project.category" class="header-badge">
+                    {{ project.category }}
+                  </span>
+                  <span v-if="project.place" class="header-badge header-badge--soft">
+                    {{ project.place }}
+                  </span>
+                </div>
+                <h1 class="proj-nam">{{ project.name }}</h1>
+                <p v-if="projectSummary" class="project-summary">
+                  {{ projectSummary }}
+                </p>
               </div>
-              <h1 class="proj-nam">{{ project.name }}</h1>
-              <p v-if="projectSummary" class="project-summary">
-                {{ projectSummary }}
-              </p>
             </div>
 
             <div
@@ -57,53 +55,76 @@
       </div>
     </RevealOnScroll>
 
+    <RevealOnScroll v-if="interviewVideoEmbedUrl" :distance="24" :delay="95">
+      <section class="project-section interview-video-section">
+        <div class="project-section-inner">
+          <div class="interview-video-wrap">
+            <iframe
+              :src="interviewVideoEmbedUrl"
+              title="Project interview video"
+              class="interview-video"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </RevealOnScroll>
+
     <!-- gallery slideshow -->
     <RevealOnScroll :distance="24" :delay="110">
-      <div class="bg-green-900 py-6">
-        <div class="relative w-full max-w-[920px] mx-auto">
-          <!-- Slider -->
-          <div class="overflow-hidden w-full rounded-xl">
-            <div
-              v-if="project.photos && project.photos.length"
-              ref="slider"
-              class="flex transition-transform duration-300"
-              :style="{
-                transform: `translateX(-${
-                  currentIndex * (100 / (project.photos.length / photosPerSlide))
-                }%)`,
-                width: `${
-                  Math.ceil((project.photos?.length || 0) / photosPerSlide) * 100
-                }%`,
-              }"
-            >
+      <section class="project-section gallery-section">
+        <div class="project-section-inner">
+          <div class="project-section-heading project-section-heading--dark">
+            <p class="project-section-kicker">Project moments</p>
+            <h2>Gallery</h2>
+          </div>
+          <div class="relative w-full">
+            <!-- Slider -->
+            <div class="overflow-hidden w-full rounded-xl">
               <div
-                v-for="(photo, index) in project.photos"
-                :key="index"
-                class="w-full md:w-1/4 px-1 cursor-pointer"
-                @click="openFullscreen(photo)"
+                v-if="project.photos && project.photos.length"
+                ref="slider"
+                class="flex transition-transform duration-300"
+                :style="{
+                  transform: `translateX(-${
+                    currentIndex * (100 / (project.photos.length / photosPerSlide))
+                  }%)`,
+                  width: `${
+                    Math.ceil((project.photos?.length || 0) / photosPerSlide) * 100
+                  }%`,
+                }"
               >
-                <img :src="photo" class="object-cover w-full h-64 rounded-lg" />
+                <div
+                  v-for="(photo, index) in project.photos"
+                  :key="index"
+                  class="w-full md:w-1/4 px-1 cursor-pointer"
+                  @click="openFullscreen(photo)"
+                >
+                  <img :src="photo" class="object-cover w-full h-64 rounded-lg" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Arrows -->
-          <button
-            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
-            @click="prevSlide"
-            v-if="currentIndex > 0"
-          >
-            ◀
-          </button>
-          <button
-            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
-            @click="nextSlide"
-            v-if="currentIndex < maxIndex"
-          >
-            ▶
-          </button>
+            <!-- Arrows -->
+            <button
+              class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+              @click="prevSlide"
+              v-if="currentIndex > 0"
+            >
+              ◀
+            </button>
+            <button
+              class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+              @click="nextSlide"
+              v-if="currentIndex < maxIndex"
+            >
+              ▶
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
     </RevealOnScroll>
 
     <Teleport to="body">
@@ -140,25 +161,54 @@
     </Teleport>
 
     <RevealOnScroll :distance="20" :delay="140">
-      <div class="pl-24 pt-12 max-900:pl-4">
-        <span class="text-3xl max-900:text-xl">Video links:</span>
-        <div v-if="project.fb_videos" class="pt-3">
-          <div
-            v-for="(video, index) in project.fb_videos"
-            :key="index"
-            class="pl-6 py-1 max-900:pl-2"
-          >
-            <IconsFacebook class="inline-block w-6 h-6 mr-2 text-blue-600" />
-            <a
-              :href="video"
-              target="_blank"
-              class="text-blue-800 underline max-900:text-xs"
-              >{{ video }}</a
-            >
+      <section class="project-section video-links-section">
+        <div class="project-section-inner">
+          <div class="project-section-heading">
+            <p class="project-section-kicker">Watch more</p>
+            <h2>Video links</h2>
+          </div>
+
+          <div class="video-links-list">
+            <div v-if="project.fb_videos">
+              <div
+                v-for="(video, index) in project.fb_videos"
+                :key="index"
+                class="video-link-row"
+              >
+                <IconsFacebook class="video-link-icon video-link-icon--facebook" />
+                <a
+                  :href="video"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="video-link"
+                  >{{ video }}</a
+                >
+              </div>
+            </div>
+
+            <div v-if="project.yt_videos">
+              <div
+                v-for="(video, index) in project.yt_videos"
+                :key="index"
+                class="video-link-row"
+              >
+                <IconsYoutube class="video-link-icon video-link-icon--youtube" />
+                <a
+                  :href="video"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="video-link"
+                  >{{ video }}</a
+                >
+              </div>
+            </div>
+
+            <div v-if="!project.fb_videos && !project.yt_videos" class="video-links-empty">
+              No video links available :(
+            </div>
           </div>
         </div>
-        <div v-else>No video links available :(</div>
-      </div>
+      </section>
     </RevealOnScroll>
   </div>
   <div v-else class="">
@@ -224,6 +274,44 @@ const metaItems = computed(() =>
     },
   ].filter((item) => String(item.value ?? "").trim())
 );
+
+const interviewVideoEmbedUrl = computed(() => {
+  return getYouTubeEmbedUrl(project.value?.interview_video);
+});
+
+function getYouTubeEmbedUrl(videoUrl) {
+  const value = String(videoUrl ?? "").trim();
+
+  if (!value) {
+    return "";
+  }
+
+  try {
+    const url = new URL(value);
+    const hostname = url.hostname.replace(/^www\./, "");
+    let videoId = "";
+
+    if (hostname === "youtu.be") {
+      videoId = url.pathname.split("/").filter(Boolean)[0] || "";
+    } else if (hostname === "youtube.com" || hostname === "m.youtube.com") {
+      if (url.pathname.startsWith("/embed/")) {
+        videoId = url.pathname.split("/").filter(Boolean)[1] || "";
+      } else if (url.pathname.startsWith("/shorts/")) {
+        videoId = url.pathname.split("/").filter(Boolean)[1] || "";
+      } else {
+        videoId = url.searchParams.get("v") || "";
+      }
+    }
+
+    if (!/^[\w-]{11}$/.test(videoId)) {
+      return "";
+    }
+
+    return `https://www.youtube.com/embed/${videoId}`;
+  } catch {
+    return "";
+  }
+}
 
 const bgUrl = computed(() => {
   const key = project.value?.bg_img;
@@ -429,21 +517,17 @@ useHead({
 }
 
 .header-inner {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   gap: 32px;
-  align-items: end;
+  align-items: center;
   max-width: 1240px;
   margin: 0 auto;
 }
 
-.project-back-link {
-  display: inline-flex;
-  width: fit-content;
-  margin-bottom: 18px;
-  color: rgba(255, 255, 255, 0.92);
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.header-copy-column {
+  align-self: center;
 }
 
 .header-copy {
@@ -497,6 +581,7 @@ useHead({
   width: 100%;
   max-width: 520px;
   min-height: 320px;
+  margin-top: 18px;
   background-color: rgba(211, 202, 202, 0.3);
   border-radius: 30px;
 }
@@ -542,10 +627,136 @@ useHead({
 }
 
 .proj-des {
-  max-width: 880px;
+  max-width: 920px;
+  margin-right: auto;
+  margin-left: auto;
   font-size: clamp(18px, 2vw, 24px);
   line-height: 1.85;
   color: #1f1c17;
+}
+
+.project-section {
+  padding: 40px 48px;
+}
+
+.project-section-inner {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.project-section-heading {
+  margin-bottom: 18px;
+  color: #1f1c17;
+}
+
+.project-section-heading--dark {
+  color: white;
+}
+
+.project-section-kicker {
+  margin-bottom: 6px;
+  color: rgba(31, 28, 23, 0.56);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.project-section-heading--dark .project-section-kicker {
+  color: rgba(236, 243, 158, 0.88);
+}
+
+.project-section-heading h2 {
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.interview-video-section {
+  padding-top: 18px;
+  padding-bottom: 34px;
+}
+
+.interview-video-wrap {
+  overflow: hidden;
+  border-radius: 28px;
+  background: #111;
+  box-shadow: 0 24px 70px rgba(22, 32, 19, 0.18);
+}
+
+.interview-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.gallery-section {
+  padding-top: 34px;
+  padding-bottom: 40px;
+  background: rgb(20, 83, 45);
+}
+
+.video-links-section {
+  padding-top: 46px;
+  padding-bottom: 0;
+}
+
+.video-links-list {
+  display: grid;
+  gap: 0;
+}
+
+.video-link-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 0px 0;
+}
+
+.video-link-icon {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+}
+
+.video-link-icon--facebook {
+  color: #2563eb;
+}
+
+.video-link-icon--youtube {
+  color: #dc2626;
+}
+
+.video-link {
+  min-width: 0;
+  color: #1d4ed8;
+  font-size: 17px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition:
+    color 0.25s ease,
+    text-underline-offset 0.25s ease;
+}
+
+.video-link:hover,
+.video-link:focus-visible {
+  color: #163aa7;
+  text-underline-offset: 5px;
+}
+
+.video-link:focus-visible {
+  outline: 3px solid rgba(29, 78, 216, 0.22);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.video-links-empty {
+  color: rgba(31, 28, 23, 0.68);
+  font-size: 17px;
+  line-height: 1.6;
 }
 
 @media (max-width: 900px) {
@@ -560,6 +771,7 @@ useHead({
 
   .vid {
     min-height: auto;
+    margin-top: 0;
   }
 
   .project-summary {
@@ -585,6 +797,49 @@ useHead({
   .proj-des {
     font-size: 14px;
     line-height: 1.75;
+  }
+
+  .project-section {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .project-section-heading {
+    margin-bottom: 14px;
+  }
+
+  .interview-video-section {
+    padding-top: 10px;
+    padding-bottom: 24px;
+  }
+
+  .interview-video-wrap {
+    border-radius: 18px;
+  }
+
+  .gallery-section {
+    padding-top: 24px;
+    padding-bottom: 30px;
+  }
+
+  .video-links-section {
+    padding-top: 34px;
+    padding-bottom: 0;
+  }
+
+  .video-link-row {
+    gap: 10px;
+    padding: 4px 0;
+  }
+
+  .video-link-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .video-link,
+  .video-links-empty {
+    font-size: 13px;
   }
 }
 </style>

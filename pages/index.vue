@@ -87,6 +87,7 @@
               :distance="22"
             >
               <NewsCard
+                class="homepage-news-card"
                 :title="item.new_title"
                 :date="item.created_at"
                 :image="item.new_img"
@@ -574,7 +575,10 @@ usePageSeo({
 
 @media (max-width: 900px) {
   .section-heading {
-    display: block;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
   }
 
   .hero-block {
@@ -622,15 +626,22 @@ usePageSeo({
   }
 
   .socials {
-    justify-content: flex-start;
-    margin-top: 8px;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    margin-top: 2px;
   }
   .socials-under {
-    gap: 12px;
+    gap: 8px;
+    padding: 5px 10px;
   }
 
   .news-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  :deep(.homepage-news-card) {
+    border-radius: 14px;
   }
 
   .news-footer {

@@ -154,8 +154,8 @@ img:hover {
 }
 
 .coming-soon-badge--mobile {
-  position: static;
-  margin-top: 10px;
+  top: 14px;
+  right: 14px;
   padding: 7px 12px;
   font-size: 11px;
 }
