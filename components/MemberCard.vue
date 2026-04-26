@@ -14,29 +14,32 @@
       class="photo"
       @click="onTap"
     />
-    <div class="name w-fit self-center bg-green-600 text-center text-white rounded-3xl px-7 w-auto"> {{ member.name }}</div>
+    <div class="name">
+      <span>{{ member.name }}</span>
+    </div>
 
     <!-- OVERLAY -->
     <div class="overlay" :class="{ open }" @click.stop>
       <div class="overlay-box">
-        <div class="overlay-title pb-8 max-900:hidden">{{ member.name }}</div>
+        <div class="overlay-title">{{ member.name }}</div>
 
         <div class="overlay-text">
-          <div v-if="member.country">Country: {{ member.country }}</div>
-          <div v-if="member.volunteering_from">
+          <div v-if="member.country" class="overlay-line">Country: {{ member.country }}</div>
+          <div v-if="member.volunteering_from" class="overlay-line">
             Volunteering: {{ member.volunteering_from }} – {{ member.volunteering_to }}
           </div>
-          <div v-if="member.role" class="max-900:text-sm">
+          <div v-if="member.role" class="overlay-role">
             {{ member.role }}
           </div>
 
-          <div v-if="member.field_of_work" class="pt-8 max-900:text-sm max-900:pt-0 max-900:leading-4 ">
-            <span class="max-900:hidden">Field of work:</span><br />
-            <div v-for="m in member.field_of_work" :key="m.id" class="overlay-small">
-            {{ m }}
+          <div v-if="member.field_of_work" class="overlay-fields">
+            <span>Field of work</span>
+            <div class="overlay-tags">
+              <div v-for="m in member.field_of_work" :key="m.id" class="overlay-small">
+                {{ m }}
+              </div>
+            </div>
           </div>
-          </div>
-          
         </div>
       </div>
     </div>
@@ -67,87 +70,140 @@ const onTap = (e) => {
 
 <style scoped>
 .card {
+  position: relative;
+  overflow: hidden;
   width: 444px;
   height: 457px;
-  border-radius: 30px;
-  border: #119928 solid 3px;
+  border-radius: 22px;
+  border: 1px solid rgba(17, 153, 40, 0.24);
   cursor: pointer;
-  background: #000; /* fallback když se nenačte obrázek */
+  background: #102016;
+  box-shadow: 0 18px 46px rgba(22, 32, 19, 0.16);
+  transition:
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    transform 260ms ease;
 }
 
 .photo {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: inherit;
   transition: transform 600ms ease;
 }
 
-/* Jméno nahoře */
 .name {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  min-height: 42%;
+  padding: 28px 22px 20px;
+  color: white;
+  font-size: 22px;
   font-weight: 600;
-  z-index: 0;
+  line-height: 1.1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(16, 32, 22, 0) 0%, rgba(16, 32, 22, 0.82) 100%);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
 }
 
-/* OVERLAY — výchozí stav = skrytý */
 .overlay {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 16px;
+  z-index: 2;
+  padding: 18px;
 
   transform: translateY(110%);
   opacity: 0;
   transition: transform 600ms cubic-bezier(.22,.9,.3,1), opacity 400ms ease;
 }
 
-/* Glass box */
 .overlay-box {
   width: 100%;
-  border-radius: 26px;
-  padding: 20px;
+  max-height: 100%;
+  overflow: auto;
+  border-radius: 18px;
+  padding: 20px 20px 18px;
   color: white;
-
-  background: rgba(84, 194, 143, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+  background:
+    linear-gradient(180deg, rgba(20, 83, 45, 0.82), rgba(16, 32, 22, 0.94));
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 28px 80px rgba(0,0,0,0.42);
 }
 
 .overlay-title {
-  font-size: 28px;
+  font-size: 26px;
+  line-height: 1.05;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .overlay-text {
-  font-size: 18px;
-  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.overlay-role {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.overlay-fields {
+  padding-top: 8px;
+}
+
+.overlay-fields > span {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.overlay-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .overlay-small {
-  font-size: 14px;
-  opacity: 0.9;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 13px;
+  line-height: 1.2;
 }
 
 /* Desktop hover otevření */
 @media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(17, 153, 40, 0.52);
+    box-shadow: 0 24px 70px rgba(22, 32, 19, 0.22);
+  }
+
   .card:hover .overlay {
     transform: translateY(0);
     opacity: 1;
   }
 
-  .card:hover .photo img {
+  .card:hover .photo {
     transform: scale(1.05);
   }
- 
 }
 
 .photo img {
@@ -165,44 +221,55 @@ const onTap = (e) => {
   .card {
     width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 16px;
   }
 
   .photo {
-    border-radius: 12px;
+    border-radius: 16px;
   }
 
   .name {
-    font-size: 10px;
+    min-height: 44%;
+    padding: 22px 12px 10px;
+    font-size: 13px;
   }
 
   .overlay {
-    padding: 10px;
+    padding: 8px;
   }
 
   .overlay-box {
-    border-radius: 16px;
-    padding: 12px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 10px;
   }
 
   .overlay-title {
     font-size: 16px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .overlay-text {
+    gap: 6px;
     font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .overlay-fields {
+    padding-top: 2px;
+  }
+
+  .overlay-fields > span {
+    display: none;
   }
 
   .overlay-small {
+    padding: 3px 7px;
     font-size: 11px;
   }
 }
 @media (max-width: 550px) {
   .card {
-    border: #119928 solid 2px;
+    border-width: 1px;
   }
 }
 </style>
