@@ -29,8 +29,8 @@
               class="vid mx-auto overflow-hidden shadow-[0_60px_140px_rgba(0,0,0,0.65),0_20px_50px_rgba(0,0,0,0.45)] ring-1 ring-white/30 rounded-3xl"
             >
               <img
-                v-if="project.video_image"
-                :src="project.video_image"
+                v-if="project.group_photo"
+                :src="project.group_photo"
                 alt=""
                 class="object-cover"
               />
@@ -55,13 +55,13 @@
       </div>
     </RevealOnScroll>
 
-    <RevealOnScroll v-if="interviewVideoEmbedUrl" :distance="24" :delay="95">
+    <RevealOnScroll v-if="projectVideoEmbedUrl" :distance="24" :delay="95">
       <section class="project-section interview-video-section">
         <div class="project-section-inner">
           <div class="interview-video-wrap">
             <iframe
-              :src="interviewVideoEmbedUrl"
-              title="Project interview video"
+              :src="projectVideoEmbedUrl"
+              title="Project video"
               class="interview-video"
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -73,7 +73,7 @@
     </RevealOnScroll>
 
     <!-- gallery slideshow -->
-    <RevealOnScroll :distance="24" :delay="110">
+    <RevealOnScroll v-if="hasGalleryPhotos" :distance="24" :delay="110">
       <section class="project-section gallery-section">
         <div class="project-section-inner">
           <div class="project-section-heading project-section-heading--dark">
@@ -84,7 +84,7 @@
             <!-- Slider -->
             <div class="overflow-hidden w-full rounded-xl">
               <div
-                v-if="project.photos && project.photos.length"
+                v-if="hasGalleryPhotos"
                 ref="slider"
                 class="flex transition-transform duration-300"
                 :style="{
@@ -160,7 +160,7 @@
       </div>
     </Teleport>
 
-    <RevealOnScroll :distance="20" :delay="140">
+    <RevealOnScroll v-if="hasVideoLinks" :distance="20" :delay="140">
       <section class="project-section video-links-section">
         <div class="project-section-inner">
           <div class="project-section-heading">
@@ -169,7 +169,7 @@
           </div>
 
           <div class="video-links-list">
-            <div v-if="project.fb_videos">
+            <div v-if="hasFacebookVideos">
               <div
                 v-for="(video, index) in project.fb_videos"
                 :key="index"
@@ -186,7 +186,7 @@
               </div>
             </div>
 
-            <div v-if="project.yt_videos">
+            <div v-if="hasYouTubeVideos">
               <div
                 v-for="(video, index) in project.yt_videos"
                 :key="index"
@@ -203,9 +203,6 @@
               </div>
             </div>
 
-            <div v-if="!project.fb_videos && !project.yt_videos" class="video-links-empty">
-              No video links available :(
-            </div>
           </div>
         </div>
       </section>
@@ -275,8 +272,24 @@ const metaItems = computed(() =>
   ].filter((item) => String(item.value ?? "").trim())
 );
 
-const interviewVideoEmbedUrl = computed(() => {
-  return getYouTubeEmbedUrl(project.value?.interview_video);
+const hasGalleryPhotos = computed(() => {
+  return Array.isArray(project.value?.photos) && project.value.photos.length > 0;
+});
+
+const hasFacebookVideos = computed(() => {
+  return Array.isArray(project.value?.fb_videos) && project.value.fb_videos.length > 0;
+});
+
+const hasYouTubeVideos = computed(() => {
+  return Array.isArray(project.value?.yt_videos) && project.value.yt_videos.length > 0;
+});
+
+const hasVideoLinks = computed(() => {
+  return hasFacebookVideos.value || hasYouTubeVideos.value;
+});
+
+const projectVideoEmbedUrl = computed(() => {
+  return getYouTubeEmbedUrl(project.value?.video_link);
 });
 
 function getYouTubeEmbedUrl(videoUrl) {
@@ -462,14 +475,14 @@ useSeoMeta({
   ogDescription: () => projectDescription.value,
   ogType: "article",
   ogUrl: () => canonicalUrl.value,
-  ogImage: () => project.value?.video_image || project.value?.main_photo || undefined,
+  ogImage: () => project.value?.group_photo || project.value?.main_photo || undefined,
   twitterCard: () =>
-    project.value?.video_image || project.value?.main_photo
+    project.value?.group_photo || project.value?.main_photo
       ? "summary_large_image"
       : "summary",
   twitterTitle: () => projectTitle.value,
   twitterDescription: () => projectDescription.value,
-  twitterImage: () => project.value?.video_image || project.value?.main_photo || undefined,
+  twitterImage: () => project.value?.group_photo || project.value?.main_photo || undefined,
 });
 
 useHead({

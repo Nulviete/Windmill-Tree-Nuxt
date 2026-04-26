@@ -2,7 +2,7 @@
 
     <div class="card flex flex-col bg-white/60 backdrop-blur-sm ring-1 ring-black/5 overflow-hidden">
         <img :src="props.project.main_photo || props.project.video_image" alt="" style="">
-        <div class="flex flex-col ml-4 grow justify-around mb-6 mt-2">
+        <div class="project-card-copy flex flex-col grow justify-around">
             <div class="proj-cat"> {{ props.project.category }}</div>
             <div class="proj-nam"> {{ props.project.name }}</div>
             <div class="hashtags w-fit"> {{ props.project.hashtags }}</div> 
@@ -45,6 +45,9 @@ const props = defineProps({
 transform: scale(1.04);
 transition: all 0.7s;
 }
+.project-card-copy {
+    padding: 10px 22px 24px;
+}
 .proj-cat {
     font-size: 24px;
 }
@@ -62,6 +65,9 @@ transition: all 0.7s;
 @media (max-width: 900px) {
     .card {
         height: 380px;
+    }
+    .project-card-copy {
+        padding: 10px 16px 18px;
     }
     .proj-cat {
         font-size: 10px;
