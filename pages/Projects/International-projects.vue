@@ -9,6 +9,7 @@
             <button @click="yearSel=2023" class="menu-button menu-button-3 hidden" :class="{ menuButtonActive: yearSel === 2023 }">2023</button>
             <button @click="yearSel=2024" class="menu-button menu-button-4" :class="{ menuButtonActive: yearSel === 2024 }">2024</button>
             <button @click="yearSel=2025" class="menu-button menu-button-5" :class="{ menuButtonActive: yearSel === 2025 }">2025</button>
+            <button @click="yearSel=2026" class="menu-button menu-button-6" :class="{ menuButtonActive: yearSel === 2026 }">2026</button>
         </div>
 
         <div class="flex flex-row gap-4 flex-wrap">
@@ -32,7 +33,7 @@
 import { ref } from 'vue'
 import LoadingSpinner from '~/components/Icons/LoadingSpinner.vue'
 
-const yearSel = ref(2025)
+const yearSel = ref(2026)
 const { data, pending } = await useAsyncData(
   () => `international-projects-${yearSel.value}`,
   () =>
