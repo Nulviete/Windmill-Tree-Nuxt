@@ -93,6 +93,10 @@ const toolboxItems = [
     label: "Przewodnik Kregi kobiece (Polish and Ukrainian language)",
     href: "/docs/przewodnik.pdf",
   },
+  {
+    label: "Scenariusze: Trening Umiejetnosci Spolecznych (Polish and Ukrainian language)",
+    href: "/docs/SCENARIUSZE_Trening_Umiejetnosci_Spolecznych-PL_UA.pdf",
+  },
 ];
 
 usePageSeo({
