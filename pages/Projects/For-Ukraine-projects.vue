@@ -88,12 +88,37 @@
                 </p>
 
                 <div class="project-gallery">
-                    <img src="~/assets/projects/for-ukraine/2025/tus 1.jpg" alt="Zajęcia TUS w ramach projektu KOS" loading="lazy" decoding="async">
-                    <img src="~/assets/projects/for-ukraine/2025/tus 2.jpg" alt="Praca grupowa dzieci podczas zajęć TUS" loading="lazy" decoding="async">
-                    <img src="~/assets/projects/for-ukraine/2025/tus 3.jpg" alt="Ćwiczenia integracyjne dla dzieci z Ukrainy" loading="lazy" decoding="async">
-                    <img src="~/assets/projects/for-ukraine/2025/psych 1.jpg" alt="Wsparcie psychospołeczne dla dzieci z Ukrainy" loading="lazy" decoding="async">
-                    <img src="~/assets/projects/for-ukraine/2025/psych 2.jpg" alt="Zajęcia wspierające emocje i relacje dzieci" loading="lazy" decoding="async">
-                    <img src="~/assets/projects/for-ukraine/2025/psych 3.jpg" alt="Konsultacje i działania wspierające w projekcie KOS" loading="lazy" decoding="async">
+                    <button
+                        v-if="currentGalleryIndex > 0"
+                        class="project-gallery-button project-gallery-button--prev"
+                        type="button"
+                        aria-label="Previous photos"
+                        @click="prevGallerySlide"
+                    >
+                        &#10094;
+                    </button>
+
+                    <div class="project-gallery-viewport">
+                        <div class="project-gallery-track" :style="galleryTrackStyle">
+                            <div
+                                v-for="photo in galleryPhotos"
+                                :key="photo.src"
+                                class="project-gallery-slide"
+                            >
+                                <img :src="photo.src" :alt="photo.alt" loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        v-if="currentGalleryIndex < maxGalleryIndex"
+                        class="project-gallery-button project-gallery-button--next"
+                        type="button"
+                        aria-label="Next photos"
+                        @click="nextGallerySlide"
+                    >
+                        &#10095;
+                    </button>
                 </div>
             </div>
 
@@ -150,9 +175,9 @@
             </div>
 
             <div class="project-logos md:pr-10" aria-label="Project partners and funders">
-                <img src="~/assets/projects/for-ukraine/2025/logo_1.jpg" alt="Fundacja Edukacja dla Demokracji" loading="lazy" decoding="async">
-                <img src="~/assets/projects/for-ukraine/2025/logo_2.png" alt="Polsko-Amerykańska Fundacja Wolności" loading="lazy" decoding="async">
-                <img src="~/assets/projects/for-ukraine/2025/logo_3.png" alt="Wspieramy Ukrainę" loading="lazy" decoding="async">
+                <img src="~/assets/projects/for-ukraine/2025/logos/fundacja-edukacja-dla-demokracji.jpg" alt="Fundacja Edukacja dla Demokracji" loading="lazy" decoding="async">
+                <img src="~/assets/projects/for-ukraine/2025/logos/polsko-amerykanska-fundacja-wolnosci.png" alt="Polsko-Amerykańska Fundacja Wolności" loading="lazy" decoding="async">
+                <img src="~/assets/projects/for-ukraine/2025/logos/wspieramy-ukraine.png" alt="Wspieramy Ukrainę" loading="lazy" decoding="async">
             </div>
 
             <hr class="hr-right pc-ver">
@@ -273,10 +298,101 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 const menuSel = ref(2025)
 const attrs = useAttrs()
+const currentGalleryIndex = ref(0)
+const galleryItemsPerView = ref(3)
+
+const galleryPhotos = [
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/tus-workshop-1.webp', import.meta.url).href,
+    alt: 'Zajęcia TUS w ramach projektu KOS',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/tus-workshop-2.webp', import.meta.url).href,
+    alt: 'Praca grupowa dzieci podczas zajęć TUS',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/tus-workshop-3.webp', import.meta.url).href,
+    alt: 'Ćwiczenia integracyjne dla dzieci z Ukrainy',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/psych-support-1.webp', import.meta.url).href,
+    alt: 'Wsparcie psychospołeczne dla dzieci z Ukrainy',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/psych-support-2.webp', import.meta.url).href,
+    alt: 'Zajęcia wspierające emocje i relacje dzieci',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/psych-support-3.webp', import.meta.url).href,
+    alt: 'Konsultacje i działania wspierające w projekcie KOS',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/team-photo.webp', import.meta.url).href,
+    alt: 'Zespół projektu KOS',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/body-outline-workshop.webp', import.meta.url).href,
+    alt: 'Dzieci tworzące kontury postaci podczas warsztatów',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/drawing-circle.webp', import.meta.url).href,
+    alt: 'Dzieci prezentujące prace plastyczne w kręgu',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/group-with-drawings.webp', import.meta.url).href,
+    alt: 'Grupa dzieci z gotowymi pracami plastycznymi',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/peer-drawing-activity.webp', import.meta.url).href,
+    alt: 'Wspólna praca dzieci nad rysunkami',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/children-with-drawings.webp', import.meta.url).href,
+    alt: 'Dzieci pokazujące własne rysunki',
+  },
+  {
+    src: new URL('~/assets/projects/for-ukraine/2025/photos/collaborative-portrait-activity.webp', import.meta.url).href,
+    alt: 'Dzieci podczas wspólnego ćwiczenia plastycznego',
+  },
+]
+
+const maxGalleryIndex = computed(() =>
+  Math.max(0, Math.ceil(galleryPhotos.length / galleryItemsPerView.value) - 1)
+)
+
+const galleryTrackStyle = computed(() => ({
+  transform: `translateX(-${currentGalleryIndex.value * 100}%)`,
+}))
+
+const updateGalleryItemsPerView = () => {
+  galleryItemsPerView.value = window.innerWidth <= 900 ? 1 : 3
+  currentGalleryIndex.value = Math.min(currentGalleryIndex.value, maxGalleryIndex.value)
+}
+
+const nextGallerySlide = () => {
+  if (currentGalleryIndex.value < maxGalleryIndex.value) {
+    currentGalleryIndex.value++
+  }
+}
+
+const prevGallerySlide = () => {
+  if (currentGalleryIndex.value > 0) {
+    currentGalleryIndex.value--
+  }
+}
+
+onMounted(() => {
+  updateGalleryItemsPerView()
+  window.addEventListener('resize', updateGalleryItemsPerView)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateGalleryItemsPerView)
+})
 
 usePageSeo({
   title: "For Ukraine Projects | Windmill Tree Foundation",
@@ -360,10 +476,22 @@ hr {
     max-width: 1040px;
 }
 .project-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    position: relative;
     margin-top: 18px;
+}
+.project-gallery-viewport {
+    overflow: hidden;
+}
+.project-gallery-track {
+    display: flex;
+    transition: transform 300ms ease;
+}
+.project-gallery-slide {
+    min-width: calc(100% / 3);
+    padding-right: 14px;
+}
+.project-gallery-slide:last-child {
+    padding-right: 0;
 }
 .project-gallery img {
     width: 100%;
@@ -371,6 +499,28 @@ hr {
     aspect-ratio: 4 / 3;
     border-radius: 18px;
     object-fit: cover;
+}
+.project-gallery-button {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+    transform: translateY(-50%);
+    font-size: 28px;
+    line-height: 1;
+}
+.project-gallery-button--prev {
+    left: -10px;
+}
+.project-gallery-button--next {
+    right: 4px;
 }
 .project-funder {
     padding: 18px 20px;
@@ -469,12 +619,23 @@ hr {
 .project-stats {
     grid-template-columns: 1fr;
 }
-.project-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+.project-gallery-slide {
+    min-width: 100%;
+    padding-right: 0;
 }
 .project-gallery img {
     border-radius: 14px;
+}
+.project-gallery-button {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+}
+.project-gallery-button--prev {
+    left: 8px;
+}
+.project-gallery-button--next {
+    right: 8px;
 }
 .project-logos {
     gap: 16px;
@@ -508,9 +669,6 @@ hr {
 
 img {
     max-width: 100%;
-}
-.project-gallery {
-    grid-template-columns: 1fr;
 }
 .project-logos {
     align-items: center;
