@@ -105,7 +105,13 @@
                                 :key="photo.src"
                                 class="project-gallery-slide"
                             >
-                                <img :src="photo.src" :alt="photo.alt" loading="lazy" decoding="async">
+                                <img
+                                    :src="photo.src"
+                                    :alt="photo.alt"
+                                    loading="lazy"
+                                    decoding="async"
+                                    @click="openFullscreen(photo)"
+                                >
                             </div>
                         </div>
                     </div>
@@ -294,68 +300,126 @@
 
         </div>
     </div>
+
+    <Teleport to="body">
+        <div
+            v-if="fullscreenPhoto"
+            class="project-fullscreen"
+            @click="closeFullscreenOnBackground"
+        >
+            <button
+                class="project-fullscreen-close"
+                type="button"
+                aria-label="Close fullscreen gallery"
+                @click.stop="closeFullscreen"
+            >
+                &times;
+            </button>
+
+            <button
+                v-if="currentFullscreenIndex > 0"
+                class="project-fullscreen-button project-fullscreen-button--prev"
+                type="button"
+                aria-label="Previous photo"
+                @click.stop="prevFullscreenSlide"
+            >
+                &#10094;
+            </button>
+
+            <img
+                :src="fullscreenPhoto.src"
+                :alt="fullscreenPhoto.alt"
+                class="project-fullscreen-image"
+            >
+
+            <button
+                v-if="currentFullscreenIndex < galleryPhotos.length - 1"
+                class="project-fullscreen-button project-fullscreen-button--next"
+                type="button"
+                aria-label="Next photo"
+                @click.stop="nextFullscreenSlide"
+            >
+                &#10095;
+            </button>
+        </div>
+    </Teleport>
 </div>
 </template>
 
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import bodyOutlineWorkshopPhoto from '~/assets/projects/for-ukraine/2025/photos/body-outline-workshop.webp?url'
+import childrenWithDrawingsPhoto from '~/assets/projects/for-ukraine/2025/photos/children-with-drawings.webp?url'
+import collaborativePortraitActivityPhoto from '~/assets/projects/for-ukraine/2025/photos/collaborative-portrait-activity.webp?url'
+import drawingCirclePhoto from '~/assets/projects/for-ukraine/2025/photos/drawing-circle.webp?url'
+import groupWithDrawingsPhoto from '~/assets/projects/for-ukraine/2025/photos/group-with-drawings.webp?url'
+import peerDrawingActivityPhoto from '~/assets/projects/for-ukraine/2025/photos/peer-drawing-activity.webp?url'
+import psychSupport1Photo from '~/assets/projects/for-ukraine/2025/photos/psych-support-1.webp?url'
+import psychSupport2Photo from '~/assets/projects/for-ukraine/2025/photos/psych-support-2.webp?url'
+import psychSupport3Photo from '~/assets/projects/for-ukraine/2025/photos/psych-support-3.webp?url'
+import teamPhoto from '~/assets/projects/for-ukraine/2025/photos/team-photo.webp?url'
+import tusWorkshop1Photo from '~/assets/projects/for-ukraine/2025/photos/tus-workshop-1.webp?url'
+import tusWorkshop2Photo from '~/assets/projects/for-ukraine/2025/photos/tus-workshop-2.webp?url'
+import tusWorkshop3Photo from '~/assets/projects/for-ukraine/2025/photos/tus-workshop-3.webp?url'
 
 const menuSel = ref(2025)
 const attrs = useAttrs()
 const currentGalleryIndex = ref(0)
 const galleryItemsPerView = ref(3)
+const fullscreenPhoto = ref(null)
+const currentFullscreenIndex = ref(0)
 
 const galleryPhotos = [
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/tus-workshop-1.webp', import.meta.url).href,
+    src: tusWorkshop1Photo,
     alt: 'Zajęcia TUS w ramach projektu KOS',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/tus-workshop-2.webp', import.meta.url).href,
+    src: tusWorkshop2Photo,
     alt: 'Praca grupowa dzieci podczas zajęć TUS',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/tus-workshop-3.webp', import.meta.url).href,
+    src: tusWorkshop3Photo,
     alt: 'Ćwiczenia integracyjne dla dzieci z Ukrainy',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/psych-support-1.webp', import.meta.url).href,
+    src: psychSupport1Photo,
     alt: 'Wsparcie psychospołeczne dla dzieci z Ukrainy',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/psych-support-2.webp', import.meta.url).href,
+    src: psychSupport2Photo,
     alt: 'Zajęcia wspierające emocje i relacje dzieci',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/psych-support-3.webp', import.meta.url).href,
+    src: psychSupport3Photo,
     alt: 'Konsultacje i działania wspierające w projekcie KOS',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/team-photo.webp', import.meta.url).href,
+    src: teamPhoto,
     alt: 'Zespół projektu KOS',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/body-outline-workshop.webp', import.meta.url).href,
+    src: bodyOutlineWorkshopPhoto,
     alt: 'Dzieci tworzące kontury postaci podczas warsztatów',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/drawing-circle.webp', import.meta.url).href,
+    src: drawingCirclePhoto,
     alt: 'Dzieci prezentujące prace plastyczne w kręgu',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/group-with-drawings.webp', import.meta.url).href,
+    src: groupWithDrawingsPhoto,
     alt: 'Grupa dzieci z gotowymi pracami plastycznymi',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/peer-drawing-activity.webp', import.meta.url).href,
+    src: peerDrawingActivityPhoto,
     alt: 'Wspólna praca dzieci nad rysunkami',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/children-with-drawings.webp', import.meta.url).href,
+    src: childrenWithDrawingsPhoto,
     alt: 'Dzieci pokazujące własne rysunki',
   },
   {
-    src: new URL('~/assets/projects/for-ukraine/2025/photos/collaborative-portrait-activity.webp', import.meta.url).href,
+    src: collaborativePortraitActivityPhoto,
     alt: 'Dzieci podczas wspólnego ćwiczenia plastycznego',
   },
 ]
@@ -385,13 +449,53 @@ const prevGallerySlide = () => {
   }
 }
 
+const openFullscreen = (photo) => {
+  fullscreenPhoto.value = photo
+  currentFullscreenIndex.value = galleryPhotos.indexOf(photo)
+}
+
+const closeFullscreen = () => {
+  fullscreenPhoto.value = null
+  currentFullscreenIndex.value = 0
+}
+
+const nextFullscreenSlide = () => {
+  if (currentFullscreenIndex.value < galleryPhotos.length - 1) {
+    currentFullscreenIndex.value++
+    fullscreenPhoto.value = galleryPhotos[currentFullscreenIndex.value]
+  }
+}
+
+const prevFullscreenSlide = () => {
+  if (currentFullscreenIndex.value > 0) {
+    currentFullscreenIndex.value--
+    fullscreenPhoto.value = galleryPhotos[currentFullscreenIndex.value]
+  }
+}
+
+const closeFullscreenOnBackground = (event) => {
+  if (event.target === event.currentTarget) {
+    closeFullscreen()
+  }
+}
+
+const handleGalleryKeydown = (event) => {
+  if (!fullscreenPhoto.value) return
+
+  if (event.key === 'ArrowRight') nextFullscreenSlide()
+  else if (event.key === 'ArrowLeft') prevFullscreenSlide()
+  else if (event.key === 'Escape') closeFullscreen()
+}
+
 onMounted(() => {
   updateGalleryItemsPerView()
   window.addEventListener('resize', updateGalleryItemsPerView)
+  window.addEventListener('keydown', handleGalleryKeydown)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', updateGalleryItemsPerView)
+  window.removeEventListener('keydown', handleGalleryKeydown)
 })
 
 usePageSeo({
@@ -499,6 +603,7 @@ hr {
     aspect-ratio: 4 / 3;
     border-radius: 18px;
     object-fit: cover;
+    cursor: zoom-in;
 }
 .project-gallery-button {
     position: absolute;
@@ -521,6 +626,54 @@ hr {
 }
 .project-gallery-button--next {
     right: 4px;
+}
+.project-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-color: rgba(0, 0, 0, 0.92);
+}
+.project-fullscreen-image {
+    width: auto;
+    max-width: min(100%, 1200px);
+    max-height: calc(100vh - 48px);
+    object-fit: contain;
+}
+.project-fullscreen-close,
+.project-fullscreen-button {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: #ffffff;
+}
+.project-fullscreen-close {
+    top: 18px;
+    right: 18px;
+    width: 48px;
+    height: 48px;
+    font-size: 40px;
+    line-height: 1;
+}
+.project-fullscreen-button {
+    top: 50%;
+    width: 46px;
+    height: 46px;
+    background-color: rgba(255, 255, 255, 0.18);
+    transform: translateY(-50%);
+    font-size: 28px;
+}
+.project-fullscreen-button--prev {
+    left: 18px;
+}
+.project-fullscreen-button--next {
+    right: 18px;
 }
 .project-funder {
     padding: 18px 20px;
@@ -636,6 +789,30 @@ hr {
 }
 .project-gallery-button--next {
     right: 8px;
+}
+.project-fullscreen {
+    padding: 16px;
+}
+.project-fullscreen-image {
+    max-height: calc(100vh - 32px);
+}
+.project-fullscreen-close {
+    top: 10px;
+    right: 10px;
+    width: 42px;
+    height: 42px;
+    font-size: 34px;
+}
+.project-fullscreen-button {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+}
+.project-fullscreen-button--prev {
+    left: 10px;
+}
+.project-fullscreen-button--next {
+    right: 10px;
 }
 .project-logos {
     gap: 16px;
