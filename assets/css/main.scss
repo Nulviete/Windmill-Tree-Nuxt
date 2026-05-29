@@ -310,9 +310,8 @@ a {
 .partners-logos {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    padding-left: 120px;
-    padding-right: 360px;
+    justify-content: center;
+    gap: 150px;
     padding-top: 80px;
     padding-bottom: 40px;
 }

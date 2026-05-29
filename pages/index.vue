@@ -107,8 +107,10 @@
       </RevealOnScroll>
     </div>
 
-    <RevealOnScroll :delay="60">
-      <div class="our-mission-block text-2xl gap-12">
+    <div class="homepage-framed-section">
+      <div class="homepage-framed-section__inner">
+        <RevealOnScroll :delay="60" :threshold="0.01">
+          <div class="our-mission-block text-2xl gap-12">
         <div class="our-mission-left pc-ver" style="position: relative">
           <img
             class=""
@@ -160,11 +162,15 @@
             organised
           </div>
         </div>
+          </div>
+        </RevealOnScroll>
       </div>
-    </RevealOnScroll>
+    </div>
 
-    <RevealOnScroll :delay="90">
-      <div class="our-activities-block flex flex-row pc-ver gap-12">
+    <div class="homepage-framed-section pc-ver">
+      <div class="homepage-framed-section__inner">
+        <RevealOnScroll :delay="90" :threshold="0.01">
+          <div class="our-activities-block flex flex-row gap-12">
         <div class="our-activities-left">
           <div
             class="our-activities-title bg-[var(--bg-light-green)] text-black text-4xl"
@@ -259,8 +265,10 @@
             </li>
           </ul>
         </div>
+          </div>
+        </RevealOnScroll>
       </div>
-    </RevealOnScroll>
+    </div>
 
     <RevealOnScroll :delay="90">
       <div class="our-activities-mob mob-ver">
@@ -317,8 +325,10 @@
       </div>
     </RevealOnScroll>
 
-    <RevealOnScroll :delay="120">
-      <div ref="numbersSection" class="numbers-section">
+    <div class="homepage-framed-section">
+      <div class="homepage-framed-section__inner">
+        <RevealOnScroll :delay="120" :threshold="0.01">
+          <div ref="numbersSection" class="numbers-section">
         <div class="numbers-title">A Bit Of Numbers...</div>
         <div class="numbers-images pc-ver">
           <div class="numbers-image">
@@ -399,8 +409,10 @@
             </div>
           </div>
         </div>
+          </div>
+        </RevealOnScroll>
       </div>
-    </RevealOnScroll>
+    </div>
 
     <RevealOnScroll :delay="150">
       <div class="our-partners">
@@ -412,7 +424,6 @@
               alt="Partner logos supporting Windmill Tree Foundation"
               loading="lazy"
               decoding="async"
-              style="padding-right: 50px"
             />
             <img
               src="~/assets/partners/partners-2.png"
@@ -603,6 +614,64 @@ usePageSeo({
   justify-content: center;
   text-align: center;
   color: rgb(71, 70, 70);
+}
+
+.homepage-framed-section {
+  box-sizing: border-box;
+  width: min(calc(100% - 96px), 1360px);
+  margin-right: auto;
+  margin-left: auto;
+  background-color: var(--bg-page);
+}
+
+.homepage-framed-section__inner {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.our-mission-block,
+.our-activities-block,
+.numbers-section {
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: clamp(24px, 5vw, 80px);
+  padding-left: 0;
+}
+
+.our-activities-block {
+  align-items: flex-start;
+}
+
+.our-activities-left,
+.our-activities-right {
+  min-width: 0;
+}
+
+.our-activities-left {
+  flex: 1 1 0;
+  width: auto;
+}
+
+.our-activities-right {
+  flex: 0 0 clamp(360px, 32vw, 480px);
+  padding-right: 0;
+}
+
+@media (max-width: 900px) {
+  .homepage-framed-section {
+    width: 100%;
+  }
+
+  .homepage-framed-section__inner {
+    width: 100%;
+  }
+
+  .our-mission-block,
+  .our-activities-block,
+  .numbers-section {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 .hero-title {
