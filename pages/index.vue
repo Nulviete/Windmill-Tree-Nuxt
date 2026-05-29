@@ -794,6 +794,12 @@ usePageSeo({
   }
 }
 
+@media (max-width: 900px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 520px) {
   .hero-block img {
     min-height: 560px;
