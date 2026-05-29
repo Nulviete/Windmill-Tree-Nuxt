@@ -3,27 +3,34 @@
     class="navbar flex flex-row w-full justify-between px-10 max-900:px-3 items-center bg-[var(--nav-color)]"
     id="navbar"
   >
-    <div class="navbar-logo">
-      <img src="~/assets/logo/logoWindmilltree_color.png" alt="" />
-    </div>
+    <NuxtLink to="/" class="navbar-logo" aria-label="Windmill Tree Foundation homepage">
+      <img src="~/assets/logo/logoWindmilltree_color.png" alt="Windmill Tree Foundation" />
+    </NuxtLink>
 
     <div class="links">
-      <NuxtLink to="/" class="navbar-link" style=""> Who are we </NuxtLink>
-      <NuxtLink to="/projects" class="navbar-link"> Projects </NuxtLink>
-      <NuxtLink to="/our-team" class="navbar-link"> Our Team </NuxtLink>
-      <NuxtLink to="/latest-news" class="navbar-link"> Latest news </NuxtLink>
-      <NuxtLink to="/we-need-you" class="navbar-link">
-        We need you (Open call)
+      <NuxtLink
+        v-for="item in navItems"
+        :key="item.to"
+        :to="item.to"
+        class="navbar-link"
+      >
+        {{ item.label }}
       </NuxtLink>
-      <NuxtLink to="/documents" class="navbar-link"> Documents / Toolbox </NuxtLink>
     </div>
 
-    <div class="flex items-center gap-2 max-768:gap-1">
-            <button @click="toggleFont()"
-              class="px-2 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm max-768:text-xs max-768:px-2"><span class="text-[var(--con-black)]" :aria-pressed="labelFont">{{ labelFont }}</span></button>
+    <div class="navbar-actions">
+      <button
+        @click="toggleFont()"
+        class="navbar-action"
+        :aria-pressed="labelFont"
+      >
+        {{ labelFont }}
+      </button>
 
-      <button @click="toggleContrast()"
-              class="px-3 py-1 rounded bg-black text-yellow-300 hover:text-yellow-200 text-sm max-768:text-xs max-768:px-2">
+      <button
+        @click="toggleContrast()"
+        class="navbar-action navbar-action--contrast"
+      >
         Contrast
       </button>
     </div>
@@ -40,15 +47,25 @@
           <img src="~/assets/icons/yt-nav.png" alt="" srcset="" />
         </a>
       </div>
-      <UDropdown :items="menuItems" :popper="{ placement: 'bottom-start' }" :ui="{
-        background: 'bg-[var(--bg-green)]',
-        item: {
-          active: 'bg-green-700 text-white',
-          inactive: 'text-gray-800',
-        }   
-        }
-      ">
-        <IconsMenu class="menu" />
+      <UDropdown
+        :items="menuItems"
+        :popper="{ placement: 'bottom-start' }"
+        :ui="{
+          width: 'w-56',
+          rounded: 'rounded-lg',
+          background: 'bg-[var(--bg-green)]',
+          ring: 'ring-1 ring-black/10',
+          item: {
+            base: 'px-3 py-2 text-sm',
+            rounded: 'rounded-md',
+            active: 'bg-white/30 text-black',
+            inactive: 'text-gray-900',
+          },
+        }"
+      >
+        <button class="navbar-menu-button" type="button" aria-label="Open navigation menu">
+          <IconsMenu class="menu" />
+        </button>
       </UDropdown>
     </div>
     <div class="choose-lang" style="">
@@ -60,88 +77,65 @@
 <script setup>
 const { labelFont, toggleFont, toggleContrast } = useA11y();
 
-const items = [
-  [
-    {
-      label: "English",
-    },
-  ],
-  [
-    {
-      label: "Polish",
-    },
-  ],
-  [
-    {
-      label: "Ukrainian",
-    },
-  ],
+const navItems = [
+  {
+    label: "Who are we",
+    to: "/",
+  },
+  {
+    label: "Projects",
+    to: "/projects",
+  },
+  {
+    label: "Our Team",
+    to: "/our-team",
+  },
+  {
+    label: "Latest news",
+    to: "/latest-news",
+  },
+  {
+    label: "Open call",
+    to: "/we-need-you",
+  },
+  {
+    label: "Documents & Toolbox",
+    to: "/documents",
+  },
 ];
 
-const menuItems = [
-  [
-    {
-      label: "Who are we?",
-      to: "/",
-    },
-  ],
-  [
-    {
-      label: "Projects",
-      to: "/projects",
-    },
-  ],
-  [
-    {
-      label: "Latest news",
-      to: "/latest-news",
-    },
-  ],
-  [
-    {
-      label: "We need You",
-      to: "/we-need-you",
-    },
-  ],
-  [
-    {
-      label: "Our Team",
-      to: "/our-team",
-    },
-  ],
-  [
-    {
-      label: "Documents",
-      to: "/documents",
-    },
-  ],
-];
+const menuItems = navItems.map((item) => [item]);
+let lastScroll = 0;
 
-const selected = ref(menuItems[0]);
+const handleNavbarScroll = () => {
+  const navbar = document.getElementById("navbar");
+  if (!navbar) return;
+
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll <= 0) {
+    navbar.classList.remove("scroll-up");
+  }
+
+  if (currentScroll > lastScroll && !navbar.classList.contains("scroll-down")) {
+    navbar.classList.remove("scroll-up");
+    navbar.classList.add("scroll-down");
+  }
+
+  if (currentScroll < lastScroll && navbar.classList.contains("scroll-down")) {
+    navbar.classList.remove("scroll-down");
+    navbar.classList.add("scroll-up");
+  }
+
+  lastScroll = currentScroll;
+};
 
 onMounted(() => {
-  const body = document.getElementById("navbar");
-  let lastScroll = 0;
+  window.addEventListener("scroll", handleNavbarScroll);
+});
 
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll <= 0) {
-      body.classList.remove("scroll-up");
-    }
-
-    if (currentScroll > lastScroll && !body.classList.contains("scroll-down")) {
-      body.classList.remove("scroll-up");
-      body.classList.add("scroll-down");
-    }
-
-    if (currentScroll < lastScroll && body.classList.contains("scroll-down")) {
-      body.classList.remove("scroll-down");
-      body.classList.add("scroll-up");
-    }
-
-    lastScroll = currentScroll;
-  });
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleNavbarScroll);
 });
 </script>
 
@@ -159,10 +153,69 @@ a:hover {
   position: fixed;
   top: 0;
   z-index: 9999;
+  min-height: 72px;
+  gap: 16px;
   transition: all 300ms ease-in-out;
 }
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.navbar-logo img {
+  display: block;
+}
+.links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 .navbar-link {
-  padding: 5px;
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.navbar-link.router-link-active {
+  background-color: rgba(255, 255, 255, 0.24);
+  color: black;
+}
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-action {
+  min-height: 32px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.26);
+  color: var(--con-black);
+  font-size: 0.875rem;
+  line-height: 1;
+}
+.navbar-action:hover {
+  background-color: rgba(255, 255, 255, 0.42);
+}
+.navbar-action--contrast {
+  background-color: rgba(0, 0, 0, 0.72);
+  color: #fff176;
+}
+.navbar-action--contrast:hover {
+  background-color: rgba(0, 0, 0, 0.86);
+  color: #fff59d;
+}
+.navbar-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.26);
+  color: var(--con-black);
+}
+.navbar-menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.42);
 }
 .choose-lang {
     display: none;
@@ -196,6 +249,7 @@ a:hover {
   .burger-menu {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
   .navbar-logo img {
     width: 100px;
@@ -203,13 +257,24 @@ a:hover {
     min-width: 100px;
   }
   .navbar {
-    height: 71px;
+    min-height: 71px;
   }
   .navbar-link {
     display: none;
   }
   .choose-lang {
     display: none;
+  }
+  .burger-menu .nav-socials {
+    display: none;
+  }
+  .navbar-actions {
+    gap: 4px;
+  }
+  .navbar-action {
+    min-height: 30px;
+    padding: 5px 8px;
+    font-size: 0.75rem;
   }
 }
 
