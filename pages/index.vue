@@ -318,83 +318,85 @@
     </RevealOnScroll>
 
     <RevealOnScroll :delay="120">
-      <div class="numbers-title">A Bit Of Numbers...</div>
-      <div class="numbers-images pc-ver">
-        <div class="numbers-image">
-          <img
-            src="~/assets/numbers/numbers-1.png"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="number">400+</div>
-          <div class="number-text">
-            Participants from all around the world took part in our projects
+      <div ref="numbersSection" class="numbers-section">
+        <div class="numbers-title">A Bit Of Numbers...</div>
+        <div class="numbers-images pc-ver">
+          <div class="numbers-image">
+            <img
+              src="~/assets/numbers/numbers-1.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="number">{{ animatedNumbers[0] }}+</div>
+            <div class="number-text">
+              Participants from all around the world took part in our projects
+            </div>
+          </div>
+
+          <div class="numbers-image">
+            <img
+              src="~/assets/numbers/numbers-2.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="number">{{ animatedNumbers[1] }}+</div>
+            <div class="number-text" style="height: 70px">Projects organised</div>
+          </div>
+
+          <div class="numbers-image">
+            <img
+              src="~/assets/numbers/numbers-3.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="number">{{ animatedNumbers[2] }}+</div>
+            <div class="number-text" style="height: 70px">
+              International partners
+            </div>
           </div>
         </div>
 
-        <div class="numbers-image">
-          <img
-            src="~/assets/numbers/numbers-2.png"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="number">20+</div>
-          <div class="number-text" style="height: 70px">Projects organised</div>
-        </div>
-
-        <div class="numbers-image">
-          <img
-            src="~/assets/numbers/numbers-3.png"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="number">20+</div>
-          <div class="number-text" style="height: 70px">
-            International partners
+        <div class="numbers-images-mob mob-ver">
+          <div class="numbers-image">
+            <img
+              src="~/assets/numbers/numbers-1-mob.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="number">{{ animatedNumbers[0] }}+</div>
+            <div class="number-text" style="height: 55px">
+              Participants from all around the world took part in our projects
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="numbers-images-mob mob-ver">
-        <div class="numbers-image">
-          <img
-            src="~/assets/numbers/numbers-1-mob.png"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="number">400+</div>
-          <div class="number-text" style="height: 55px">
-            Participants from all around the world took part in our projects
+          <div class="numbers-image">
+            <img
+              src="~/assets/numbers/numbers-2-mob.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="number">{{ animatedNumbers[1] }}+</div>
+            <div class="number-text" style="height: 55px; font-size: 20px">
+              Projects organised
+            </div>
           </div>
-        </div>
 
-        <div class="numbers-image">
-          <img
-            src="~/assets/numbers/numbers-2-mob.png"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="number">20+</div>
-          <div class="number-text" style="height: 55px; font-size: 20px">
-            Projects organised
-          </div>
-        </div>
-
-        <div class="numbers-image">
-          <img
-            src="~/assets/numbers/numbers-3-mob.png"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="number">20+</div>
-          <div class="number-text" style="height: 55px; font-size: 20px">
-            International partners
+          <div class="numbers-image">
+            <img
+              src="~/assets/numbers/numbers-3-mob.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="number">{{ animatedNumbers[2] }}+</div>
+            <div class="number-text" style="height: 55px; font-size: 20px">
+              International partners
+            </div>
           </div>
         </div>
       </div>
@@ -471,6 +473,60 @@ const { data, pending } = await useAsyncData("homepage-latest-news", () =>
 const latestNews = computed(() =>
   Array.isArray(data.value) ? data.value.slice(0, 4) : []
 );
+
+const numbersSection = ref(null);
+const numberTargets = [400, 20, 20];
+const animatedNumbers = ref(numberTargets.map(() => 0));
+const hasAnimatedNumbers = ref(false);
+let numbersObserver;
+let numbersAnimationFrame;
+
+const animateHomepageNumbers = () => {
+  if (hasAnimatedNumbers.value) return;
+
+  hasAnimatedNumbers.value = true;
+  const duration = 1400;
+  const startTime = performance.now();
+
+  const tick = (currentTime) => {
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+    animatedNumbers.value = numberTargets.map((target) =>
+      Math.round(target * easedProgress)
+    );
+
+    if (progress < 1) {
+      numbersAnimationFrame = requestAnimationFrame(tick);
+    }
+  };
+
+  numbersAnimationFrame = requestAnimationFrame(tick);
+};
+
+onMounted(() => {
+  if (!numbersSection.value) return;
+
+  numbersObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) return;
+
+      animateHomepageNumbers();
+      numbersObserver?.disconnect();
+    },
+    { threshold: 0.35 }
+  );
+
+  numbersObserver.observe(numbersSection.value);
+});
+
+onUnmounted(() => {
+  numbersObserver?.disconnect();
+
+  if (numbersAnimationFrame) {
+    cancelAnimationFrame(numbersAnimationFrame);
+  }
+});
 
 usePageSeo({
   title: "Windmill Tree Foundation | Youth, Inclusion and International Projects",
