@@ -245,22 +245,21 @@ a:hover {
   margin-left: 20px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1130px) {
+  .navbar {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  .links {
+    display: none;
+  }
   .burger-menu {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
-  .navbar-logo img {
-    width: 100px;
-    min-height: 50px;
-    min-width: 100px;
-  }
   .navbar {
     min-height: 71px;
-  }
-  .navbar-link {
-    display: none;
   }
   .choose-lang {
     display: none;
@@ -278,7 +277,15 @@ a:hover {
   }
 }
 
-@media (min-width: 900px) {
+@media (max-width: 900px) {
+  .navbar-logo img {
+    width: 100px;
+    min-height: 50px;
+    min-width: 100px;
+  }
+}
+
+@media (min-width: 1131px) {
   .burger-menu {
     display: none;
   }
