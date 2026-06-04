@@ -31,31 +31,72 @@
         :distance="22"
       >
         <NewsCard
-          variant="full"
+          class="latest-news-list-card"
+          variant="preview"
           heading-tag="h2"
           :title="item.new_title"
           :date="item.created_at"
           :image="item.new_img"
-          :body="item.new_body"
-          :signature="item.new_signature"
-          :related-links="item.new_links"
-          :interview-links="item.new_link_interview"
+          :excerpt="item.preview"
           :link="item.path"
           link-label="Open article"
           image-sizes="(max-width: 900px) 100vw, 40vw"
         />
       </RevealOnScroll>
 
-      <UPagination
+      <nav
         v-if="totalItems > itemsPerPage"
-        v-model="page"
-        :total="totalItems"
-        :items-per-page="itemsPerPage"
-        :sibling-count="1"
-        show-last
-        show-first
         class="latest-news-pagination"
-      />
+        aria-label="Latest news pagination"
+      >
+        <button
+          type="button"
+          class="latest-news-pagination-control"
+          :disabled="page <= 1"
+          @click="goToPage(page - 1)"
+        >
+          <span aria-hidden="true">‹</span>
+          Previous
+        </button>
+
+        <div class="latest-news-pagination-pages">
+          <template v-for="item in paginationItems" :key="item.key">
+            <span
+              v-if="item.type === 'ellipsis'"
+              class="latest-news-pagination-ellipsis"
+              aria-hidden="true"
+            >
+              …
+            </span>
+
+            <button
+              v-else
+              type="button"
+              class="latest-news-pagination-page"
+              :class="{ 'latest-news-pagination-page--active': item.value === page }"
+              :aria-current="item.value === page ? 'page' : undefined"
+              :aria-label="`Go to page ${item.value}`"
+              @click="goToPage(item.value)"
+            >
+              {{ item.value }}
+            </button>
+          </template>
+        </div>
+
+        <button
+          type="button"
+          class="latest-news-pagination-control"
+          :disabled="page >= totalPages"
+          @click="goToPage(page + 1)"
+        >
+          Next
+          <span aria-hidden="true">›</span>
+        </button>
+
+        <p class="latest-news-pagination-status">
+          Page {{ page }} of {{ totalPages }}
+        </p>
+      </nav>
     </div>
   </section>
 </template>
@@ -105,6 +146,44 @@ const news = computed(() =>
 );
 const totalItems = computed(() => Number(data.value?.totalItems ?? 0));
 const totalPages = computed(() => Number(data.value?.totalPages ?? 1) || 1);
+const paginationItems = computed(() => {
+  const total = totalPages.value;
+  const current = page.value;
+
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, index) => ({
+      key: `page-${index + 1}`,
+      type: "page",
+      value: index + 1,
+    }));
+  }
+
+  const pages = new Set([1, total, current, current - 1, current + 1]);
+  const sortedPages = [...pages]
+    .filter((item) => item >= 1 && item <= total)
+    .sort((a, b) => a - b);
+
+  return sortedPages.flatMap((item, index) => {
+    const previous = sortedPages[index - 1];
+    const pageItem = {
+      key: `page-${item}`,
+      type: "page",
+      value: item,
+    };
+
+    if (index > 0 && item - previous > 1) {
+      return [
+        {
+          key: `ellipsis-${previous}-${item}`,
+          type: "ellipsis",
+        },
+        pageItem,
+      ];
+    }
+
+    return [pageItem];
+  });
+});
 
 usePageSeo({
   title: "Latest News | Windmill Tree Foundation",
@@ -116,6 +195,10 @@ usePageSeo({
 const getRevealDelay = (item) => {
   const index = news.value.findIndex((newsItem) => newsItem.id === item.id);
   return Math.max(index, 0) * 70;
+};
+
+const goToPage = (value) => {
+  page.value = Math.min(Math.max(value, 1), totalPages.value);
 };
 
 watch(
@@ -214,6 +297,40 @@ watch(
   gap: 28px;
 }
 
+:deep(.latest-news-list-card) {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  padding: 22px;
+}
+
+:deep(.latest-news-list-card .news-card-image-frame) {
+  height: 100%;
+  min-height: 250px;
+  border-radius: 22px;
+}
+
+:deep(.latest-news-list-card .news-card-copy) {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 8px 4px 0;
+}
+
+:deep(.latest-news-list-card .news-card-title) {
+  font-size: clamp(25px, 2.4vw, 36px);
+}
+
+:deep(.latest-news-list-card .news-card-excerpt) {
+  -webkit-line-clamp: 3;
+}
+
+:deep(.latest-news-list-card .news-card-link) {
+  margin-top: 16px;
+}
+
 .latest-news-status {
   min-height: 260px;
   display: flex;
@@ -225,8 +342,87 @@ watch(
 }
 
 .latest-news-pagination {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  width: min(100%, 760px);
+  margin: 18px auto 0;
+  padding: 14px;
+  border: 1px solid rgba(144, 169, 85, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 14px 35px rgba(72, 55, 26, 0.08);
+}
+
+.latest-news-pagination-pages {
+  display: flex;
   justify-content: center;
-  margin-top: 12px;
+  gap: 8px;
+}
+
+.latest-news-pagination-control,
+.latest-news-pagination-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 999px;
+  color: #172015;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.latest-news-pagination-control {
+  gap: 8px;
+  padding: 0 18px;
+  border: 1px solid rgba(23, 32, 21, 0.12);
+  background: rgba(236, 243, 158, 0.4);
+  font-weight: 700;
+}
+
+.latest-news-pagination-control:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.latest-news-pagination-control:not(:disabled):hover,
+.latest-news-pagination-page:hover {
+  background: rgba(144, 169, 85, 0.22);
+}
+
+.latest-news-pagination-page {
+  width: 42px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-weight: 700;
+}
+
+.latest-news-pagination-page--active {
+  background: var(--bg-green);
+  color: white;
+}
+
+.latest-news-pagination-page--active:hover {
+  background: var(--bg-green);
+}
+
+.latest-news-pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  color: rgb(71, 70, 70);
+}
+
+.latest-news-pagination-status {
+  grid-column: 1 / -1;
+  margin: -4px 0 0;
+  color: rgb(71, 70, 70);
+  font-size: 13px;
+  text-align: center;
 }
 
 @media (max-width: 900px) {
@@ -241,6 +437,36 @@ watch(
 
   .latest-news-intro {
     font-size: 17px;
+  }
+
+  :deep(.latest-news-list-card) {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  :deep(.latest-news-list-card .news-card-image-frame) {
+    min-height: 0;
+    border-radius: 0;
+  }
+
+  :deep(.latest-news-list-card .news-card-copy) {
+    padding: 18px 18px 22px;
+  }
+
+  .latest-news-pagination {
+    grid-template-columns: 1fr;
+    width: 100%;
+    border-radius: 24px;
+  }
+
+  .latest-news-pagination-pages {
+    order: -1;
+    flex-wrap: wrap;
+  }
+
+  .latest-news-pagination-control {
+    width: 100%;
   }
 }
 </style>

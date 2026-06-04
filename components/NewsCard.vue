@@ -1,15 +1,28 @@
 <template>
-  <article class="news-card" :class="[`news-card--${variant}`]">
-    <img
-      v-if="image"
-      :src="image"
-      :alt="title || 'Windmill Tree news image'"
-      :loading="imageLoading"
-      :decoding="imageDecoding"
-      :fetchpriority="imageFetchpriority"
-      :sizes="imageSizes || undefined"
-      class="news-card-image"
-    />
+  <article
+    class="news-card"
+    :class="[
+      `news-card--${variant}`,
+      { 'news-card--clickable': hasCardLink },
+    ]"
+    :role="hasCardLink ? 'link' : undefined"
+    :tabindex="hasCardLink ? 0 : undefined"
+    :aria-label="hasCardLink ? `Open article: ${title || 'Untitled update'}` : undefined"
+    @click="openCard"
+    @keydown.enter="openCard"
+    @keydown.space="openCard"
+  >
+    <div v-if="image" class="news-card-image-frame">
+      <img
+        :src="image"
+        :alt="title || 'Windmill Tree news image'"
+        :loading="imageLoading"
+        :decoding="imageDecoding"
+        :fetchpriority="imageFetchpriority"
+        :sizes="imageSizes || undefined"
+        class="news-card-image"
+      />
+    </div>
 
     <div class="news-card-copy">
       <time v-if="date" :datetime="date" class="news-card-date">
@@ -152,6 +165,36 @@ const props = defineProps({
   },
 })
 
+const hasCardLink = computed(() => props.showLink && Boolean(props.link))
+
+const isInteractiveTarget = (target, card) => {
+  if (!(target instanceof Element)) {
+    return false
+  }
+
+  const interactiveElement = target.closest(
+    'a, button, input, textarea, select, summary, [role="button"], [role="link"]'
+  )
+
+  return Boolean(interactiveElement && interactiveElement !== card)
+}
+
+const openCard = (event) => {
+  if (!hasCardLink.value || event.defaultPrevented) {
+    return
+  }
+
+  if (isInteractiveTarget(event.target, event.currentTarget)) {
+    return
+  }
+
+  if (event.type === 'keydown') {
+    event.preventDefault()
+  }
+
+  navigateTo(props.link)
+}
+
 function formatDate(dateStr) {
   if (!dateStr) {
     return ""
@@ -178,10 +221,15 @@ function formatDate(dateStr) {
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.84);
   box-shadow: 0 18px 45px rgba(72, 55, 26, 0.08);
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    background-color 0.35s ease;
+}
+
+.news-card--clickable {
+  cursor: pointer;
+}
+
+.news-card--clickable:focus-visible {
+  outline: 3px solid rgba(29, 78, 216, 0.28);
+  outline-offset: 4px;
 }
 
 .news-card--full {
@@ -194,14 +242,20 @@ function formatDate(dateStr) {
     linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 244, 238, 0.92));
 }
 
-.news-card-image {
+.news-card-image-frame {
   width: 100%;
   aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.news-card-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.news-card--full .news-card-image {
+.news-card--full .news-card-image-frame {
   aspect-ratio: 3 / 2;
   border-radius: 24px;
 }
@@ -306,20 +360,6 @@ function formatDate(dateStr) {
     text-underline-offset 0.25s ease;
 }
 
-.news-card:hover,
-.news-card:focus-within {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 55px rgba(72, 55, 26, 0.16);
-  background: rgba(255, 255, 255, 0.96);
-}
-
-.news-card--full:hover,
-.news-card--full:focus-within {
-  transform: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 244, 238, 0.92));
-}
-
 .news-card:hover .news-card-image,
 .news-card:focus-within .news-card-image {
   transform: scale(1.05);
@@ -330,18 +370,6 @@ function formatDate(dateStr) {
   transform: none;
 }
 
-.news-card:hover .news-card-link,
-.news-card:focus-within .news-card-link,
-.news-card:hover .news-card-title-link,
-.news-card:focus-within .news-card-title-link {
-  color: #163aa7;
-}
-
-.news-card:hover .news-card-link,
-.news-card:focus-within .news-card-link {
-  text-underline-offset: 5px;
-}
-
 .news-card-link:focus-visible,
 .news-card-title-link:focus-visible {
   outline: 3px solid rgba(29, 78, 216, 0.28);
@@ -350,7 +378,6 @@ function formatDate(dateStr) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .news-card,
   .news-card-image,
   .news-card-link,
   .news-card-title-link {

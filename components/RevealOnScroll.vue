@@ -22,6 +22,11 @@ const props = defineProps({
     type: Number,
     default: 36,
   },
+  direction: {
+    type: String,
+    default: 'up',
+    validator: (value) => ['up', 'down', 'left', 'right'].includes(value),
+  },
   threshold: {
     type: Number,
     default: 0.16,
@@ -93,9 +98,28 @@ function scheduleFallbackCheck() {
   fallbackFrame = requestAnimationFrame(checkVisibility)
 }
 
+const offsetByDirection = computed(() => {
+  const distance = `${props.distance}px`
+
+  if (props.direction === 'down') {
+    return { x: '0px', y: `-${distance}` }
+  }
+
+  if (props.direction === 'left') {
+    return { x: `-${distance}`, y: '0px' }
+  }
+
+  if (props.direction === 'right') {
+    return { x: distance, y: '0px' }
+  }
+
+  return { x: '0px', y: distance }
+})
+
 const rootStyle = computed(() => ({
   '--reveal-delay': `${props.delay}ms`,
-  '--reveal-distance': `${props.distance}px`,
+  '--reveal-x': offsetByDirection.value.x,
+  '--reveal-y': offsetByDirection.value.y,
 }))
 
 onMounted(() => {
@@ -146,7 +170,7 @@ onBeforeUnmount(() => {
 
 .reveal-on-scroll--ready:not(.reveal-on-scroll--visible) {
   opacity: 0;
-  transform: translate3d(0, var(--reveal-distance), 0);
+  transform: translate3d(var(--reveal-x), var(--reveal-y), 0);
 }
 
 .reveal-on-scroll--visible {

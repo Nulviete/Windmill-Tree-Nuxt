@@ -352,7 +352,7 @@
               decoding="async"
             />
             <div class="number">{{ animatedNumbers[1] }}+</div>
-            <div class="number-text" style="height: 70px">Projects organised</div>
+            <div class="number-text number-text--short">Projects organised</div>
           </div>
 
           <div class="numbers-image">
@@ -363,7 +363,7 @@
               decoding="async"
             />
             <div class="number">{{ animatedNumbers[2] }}+</div>
-            <div class="number-text" style="height: 70px">
+            <div class="number-text number-text--short">
               International partners
             </div>
           </div>
@@ -414,46 +414,73 @@
       </div>
     </div>
 
-    <RevealOnScroll :delay="150">
-      <div class="our-partners">
+    <div class="our-partners">
+      <RevealOnScroll :delay="150">
         <div class="our-partners-title">Our Partners</div>
+      </RevealOnScroll>
+
         <div class="pc-ver">
           <div class="partners-logos bg-[var(--bg-light-green)]">
-            <img
-              src="~/assets/partners/partners-1.png"
-              alt="Partner logos supporting Windmill Tree Foundation"
-              loading="lazy"
-              decoding="async"
-            />
-            <img
-              src="~/assets/partners/partners-2.png"
-              alt="Additional partner logos supporting Windmill Tree Foundation"
-              loading="lazy"
-              decoding="async"
-            />
+            <RevealOnScroll
+              class="partner-logo-reveal"
+              direction="left"
+              :distance="320"
+              :delay="120"
+            >
+              <img
+                src="~/assets/partners/partners-1.png"
+                alt="Partner logos supporting Windmill Tree Foundation"
+                loading="lazy"
+                decoding="async"
+              />
+            </RevealOnScroll>
+            <RevealOnScroll
+              class="partner-logo-reveal"
+              direction="right"
+              :distance="320"
+              :delay="120"
+            >
+              <img
+                src="~/assets/partners/partners-2.png"
+                alt="Additional partner logos supporting Windmill Tree Foundation"
+                loading="lazy"
+                decoding="async"
+              />
+            </RevealOnScroll>
           </div>
         </div>
 
         <div class="mob-ver">
           <div class="partners-logos">
-            <img
-              src="~/assets/partners/partners-1-mob.png"
-              alt="Partner logos supporting Windmill Tree Foundation"
-              loading="lazy"
-              decoding="async"
-              style="align-self: flex-start"
-            />
-            <img
-              src="~/assets/partners/partners-2-mob.png"
-              alt="Additional partner logos supporting Windmill Tree Foundation"
-              loading="lazy"
-              decoding="async"
-              style="align-self: flex-end"
-            />
+            <RevealOnScroll
+              class="partner-logo-reveal partner-logo-reveal--start"
+              direction="left"
+              :distance="220"
+              :delay="100"
+            >
+              <img
+                src="~/assets/partners/partners-1-mob.png"
+                alt="Partner logos supporting Windmill Tree Foundation"
+                loading="lazy"
+                decoding="async"
+              />
+            </RevealOnScroll>
+            <RevealOnScroll
+              class="partner-logo-reveal partner-logo-reveal--end"
+              direction="right"
+              :distance="220"
+              :delay="100"
+            >
+              <img
+                src="~/assets/partners/partners-2-mob.png"
+                alt="Additional partner logos supporting Windmill Tree Foundation"
+                loading="lazy"
+                decoding="async"
+              />
+            </RevealOnScroll>
           </div>
         </div>
       </div>
-    </RevealOnScroll>
 
     <div></div>
   </div>
@@ -640,6 +667,7 @@ usePageSeo({
 
 .our-activities-block {
   align-items: flex-start;
+  gap: clamp(24px, 3vw, 48px);
 }
 
 .our-activities-left,
@@ -652,9 +680,146 @@ usePageSeo({
   width: auto;
 }
 
+.our-activities-title {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.our-activities-pictures {
+  min-height: 1080px;
+}
+
+.our-activities-pictures img {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-up {
+  left: 42%;
+}
+
+.img-mid-r {
+  right: 0;
+}
+
+.img-bot-l {
+  top: 610px;
+  left: 0;
+}
+
+.img-bot-r {
+  top: 790px;
+  right: 0;
+}
+
 .our-activities-right {
   flex: 0 0 clamp(360px, 32vw, 480px);
   padding-right: 0;
+}
+
+.numbers-section {
+  padding-left: clamp(24px, 5vw, 80px);
+}
+
+.numbers-images {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 40px);
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.numbers-image {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  aspect-ratio: 16 / 9;
+}
+
+.numbers-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.number {
+  top: 43%;
+  font-size: clamp(3.75rem, 8vw, 7.5rem);
+  line-height: 0.9;
+}
+
+.number-text {
+  bottom: clamp(8px, 1.2vw, 16px);
+  box-sizing: border-box;
+  padding: 0 clamp(10px, 1.4vw, 20px);
+  font-size: clamp(1rem, 1.6vw, 1.5rem);
+  line-height: 1.22;
+}
+
+.number-text--short {
+  bottom: clamp(14px, 2.2vw, 28px);
+}
+
+@media (max-width: 1180px) and (min-width: 901px) {
+  .homepage-framed-section {
+    width: min(calc(100% - 48px), 1360px);
+  }
+
+  .our-activities-block {
+    padding-right: 24px;
+  }
+
+  .our-activities-right {
+    flex-basis: clamp(320px, 34vw, 380px);
+  }
+
+  .our-activities-r-title {
+    font-size: clamp(1.75rem, 2.8vw, 2.1rem);
+  }
+
+  .our-activities-right ul {
+    padding-left: 32px;
+  }
+
+  .our-activities-right ul li {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+  }
+
+  .our-activities-pictures {
+    min-height: 1040px;
+  }
+
+  .img-up {
+    left: 38%;
+  }
+
+  .img-mid-l {
+    width: min(58%, 282px);
+  }
+
+  .img-mid-r {
+    top: 360px;
+    width: min(40%, 193px);
+  }
+
+  .img-bot-l {
+    width: min(44%, 213px);
+  }
+
+  .img-bot-r {
+    top: 760px;
+    width: min(58%, 281px);
+  }
+
+  .numbers-section {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .numbers-title {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+  }
 }
 
 @media (max-width: 900px) {
@@ -671,6 +836,27 @@ usePageSeo({
   .numbers-section {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  .numbers-images {
+    display: flex;
+  }
+
+  .numbers-image {
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  .number {
+    top: 50%;
+    font-size: 3.5rem;
+  }
+
+  .number-text {
+    bottom: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: normal;
   }
 }
 

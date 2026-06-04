@@ -2,7 +2,11 @@
     <div>
         
         <div class="pc-ver">
-          <div class="page-title">Projects</div>
+          <header class="projects-header">
+            <p class="projects-kicker">Windmill Tree Foundation</p>
+            <h1 class="page-title">Projects</h1>
+            <div class="projects-title-rule" aria-hidden="true"></div>
+          </header>
 
           <div class="flex justify-center gap-6">
             <NuxtLink to="/projects/local-projects" class="">
@@ -34,7 +38,11 @@
 
 <!-- mob ver -->
         <div class="mob-ver">
-          <div class="page-title">Projects</div>
+          <header class="projects-header">
+            <p class="projects-kicker">Windmill Tree Foundation</p>
+            <h1 class="page-title">Projects</h1>
+            <div class="projects-title-rule" aria-hidden="true"></div>
+          </header>
 
           <div class="flex flex-col p-6 gap-6">
             <NuxtLink to="/projects/international-projects" class="fill">
@@ -72,8 +80,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
 usePageSeo({
   title: "Projects | Windmill Tree Foundation",
   description:
@@ -88,9 +94,40 @@ a {
   margin: 0;
 }
 
-.page-title {
-  font-size: 64px;
+.projects-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(48vh - 72px);
+  padding: 72px 24px 32px;
   text-align: center;
+}
+
+.projects-kicker {
+  margin: 0 0 10px;
+  color: #6c7600;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-title {
+  margin: 0;
+  color: #171717;
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 800;
+  line-height: 0.95;
+  text-align: center;
+}
+
+.projects-title-rule {
+  width: min(180px, 42vw);
+  height: 8px;
+  margin-top: 22px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #90a955 0%, #ecf39e 55%, #81b1ff 100%);
 }
 
 .project-card {
@@ -133,6 +170,27 @@ img:hover {
 
 /* 900 */
 @media (max-width: 900px) {
+.projects-header {
+  min-height: calc(34vh - 71px);
+  padding: 71px 18px 18px;
+}
+
+.projects-kicker {
+  margin-bottom: 8px;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.page-title {
+  font-size: clamp(42px, 16vw, 64px);
+}
+
+.projects-title-rule {
+  width: 128px;
+  height: 6px;
+  margin-top: 14px;
+}
+
 .fill {
   display: flex;
   flex-direction: column;

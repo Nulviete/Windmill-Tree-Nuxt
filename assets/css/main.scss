@@ -314,6 +314,11 @@ a {
     gap: 150px;
     padding-top: 80px;
     padding-bottom: 40px;
+    overflow: hidden;
+}
+.partner-logo-reveal {
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 1030px) {
@@ -512,6 +517,12 @@ a {
     }
     .partners-logos img {
         padding: 10px 15px;
+    }
+    .partner-logo-reveal--start {
+        align-self: flex-start;
+    }
+    .partner-logo-reveal--end {
+        align-self: flex-end;
     }
 
     .footer-mob {
