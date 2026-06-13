@@ -761,6 +761,80 @@ usePageSeo({
   bottom: clamp(14px, 2.2vw, 28px);
 }
 
+:global(html.a11y-contrast) .foundation-sec,
+:global(html.a11y-contrast) .homepage-framed-section {
+  background-color: #000 !important;
+  color: #fde047 !important;
+}
+
+:global(html.a11y-contrast) .homepage-framed-section {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+:global(html.a11y-contrast) .homepage-news,
+:global(html.a11y-contrast) .homepage-status,
+:global(html.a11y-contrast) .our-mission-block,
+:global(html.a11y-contrast) .our-mission-block *,
+:global(html.a11y-contrast) .our-activities-right,
+:global(html.a11y-contrast) .our-activities-right *,
+:global(html.a11y-contrast) .numbers-title,
+:global(html.a11y-contrast) .our-partners-title {
+  color: #fde047 !important;
+}
+
+:global(html.a11y-contrast) .section-link {
+  color: #fde047;
+}
+
+:global(html.a11y-contrast) .hero-txt {
+  border: 1px solid #fff;
+  background: #000;
+  color: #fde047;
+}
+
+:global(html.a11y-contrast) .hero-text-hl {
+  color: #fde047;
+}
+
+:global(html.a11y-contrast) .socials-under {
+  border-color: #fff;
+  background: #000;
+}
+
+:global(html.a11y-contrast) .our-activities-title,
+:global(html.a11y-contrast) .our-partners-title {
+  background-color: #000 !important;
+  color: #fde047 !important;
+  text-shadow: none !important;
+}
+
+:global(html.a11y-contrast) .numbers-image img {
+  filter: none;
+}
+
+:global(html.a11y-contrast) .number,
+:global(html.a11y-contrast) .number-text {
+  color: #fde047;
+  text-shadow: 0 2px 8px #000;
+}
+
+:global(html.a11y-contrast) :deep(.homepage-news-card) {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: #000;
+  box-shadow: none;
+}
+
+:global(html.a11y-contrast) :deep(.homepage-news-card .news-card-title),
+:global(html.a11y-contrast) :deep(.homepage-news-card .news-card-date),
+:global(html.a11y-contrast) :deep(.homepage-news-card .news-card-excerpt) {
+  color: #fde047;
+}
+
+:global(html.a11y-contrast) :deep(.homepage-news-card .news-card-link),
+:global(html.a11y-contrast) :deep(.homepage-news-card .news-card-title-link) {
+  color: #fde047;
+}
+
 @media (max-width: 1180px) and (min-width: 901px) {
   .homepage-framed-section {
     width: min(calc(100% - 48px), 1360px);

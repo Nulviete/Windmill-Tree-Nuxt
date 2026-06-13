@@ -1,6 +1,7 @@
 <template>
   <div
     class="navbar flex flex-row w-full justify-between px-10 max-900:px-3 items-center bg-[var(--nav-color)]"
+    :class="{ 'navbar--contrast': contrast }"
     id="navbar"
   >
     <NuxtLink to="/" class="navbar-logo" aria-label="Windmill Tree Foundation homepage">
@@ -22,7 +23,7 @@
       <button
         @click="toggleFont()"
         class="navbar-action"
-        :aria-pressed="labelFont"
+        :aria-pressed="labelFont === 'A−'"
       >
         {{ labelFont }}
       </button>
@@ -30,6 +31,8 @@
       <button
         @click="toggleContrast()"
         class="navbar-action navbar-action--contrast"
+        :class="{ 'navbar-action--active': contrast }"
+        :aria-pressed="contrast"
       >
         Contrast
       </button>
@@ -75,7 +78,7 @@
 </template>
 
 <script setup>
-const { labelFont, toggleFont, toggleContrast } = useA11y();
+const { labelFont, contrast, toggleFont, toggleContrast } = useA11y();
 
 const navItems = [
   {
@@ -157,6 +160,10 @@ a:hover {
   gap: 16px;
   transition: all 300ms ease-in-out;
 }
+.navbar--contrast {
+  background-color: #000 !important;
+  border-bottom: 6px solid #fde047;
+}
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -203,6 +210,10 @@ a:hover {
 .navbar-action--contrast:hover {
   background-color: rgba(0, 0, 0, 0.86);
   color: #fff59d;
+}
+.navbar-action--active {
+  outline: 2px solid #fff59d;
+  outline-offset: 2px;
 }
 .navbar-menu-button {
   display: flex;

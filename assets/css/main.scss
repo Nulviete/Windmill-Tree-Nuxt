@@ -22,16 +22,75 @@
     html { font-size: var(--a11y-font); }
 
     /* Contrast */
-    html.a11y-contrast body { @apply bg-black text-red-500; }
-    html.a11y-contrast a { @apply text-red-500 underline; }
+    html.a11y-contrast body { @apply bg-black text-yellow-300; }
+    html.a11y-contrast a { @apply text-yellow-300 underline; }
     html.a11y-contrast {
         --bg-brown: #000000;
-        --bg-green: #FFFFFF;
+        --bg-green: #FDE047;
         --bg-light-green: #FFFFFF;
         --black: #FFFFFF;
-        --nav-color: rgb(65, 63, 63);
+        --blue-bg: #000000;
+        --bg-page: #000000;
+        --con-black: #FFFFFF;
+        --nav-color: #000000;
         --white-to-black: #000;
     }
+}
+
+html.a11y-contrast body {
+    background: #000 !important;
+    color: #fde047 !important;
+}
+
+html.a11y-contrast #__nuxt,
+html.a11y-contrast main,
+html.a11y-contrast body > div,
+html.a11y-contrast .bg-page,
+html.a11y-contrast .foundation-sec,
+html.a11y-contrast .homepage-framed-section,
+html.a11y-contrast .homepage-framed-section__inner,
+html.a11y-contrast .our-activities-block,
+html.a11y-contrast .our-activities-left,
+html.a11y-contrast .our-activities-title,
+html.a11y-contrast .our-activities-pictures {
+    background: #000 !important;
+    background-color: #000 !important;
+}
+
+html.a11y-contrast,
+html.a11y-contrast body,
+html.a11y-contrast body * {
+    filter: none !important;
+}
+
+html.a11y-contrast body :where(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    li,
+    div,
+    time,
+    strong,
+    em,
+    button,
+    a
+) {
+    color: #fde047 !important;
+}
+
+html.a11y-contrast body :where(a, button) {
+    text-decoration-color: #fde047 !important;
+}
+
+html.a11y-contrast body :where(input, textarea, select) {
+    background: #000 !important;
+    color: #fde047 !important;
+    border-color: #fde047 !important;
 }
 
 .mob-ver {

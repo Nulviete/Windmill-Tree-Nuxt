@@ -2,7 +2,11 @@
 
 <!-- PC verze -->
   <div class="pc-ver text-[var(--con-black)]">
-    <footer v-bind="$attrs" class="footer w-full z-10 font-body bottom-0 flex flex-row mx-auto justify-between px-10 py-5 bg-[var(--bg-page)]">
+    <footer
+      v-bind="$attrs"
+      class="footer w-full z-10 font-body bottom-0 flex flex-row mx-auto justify-between px-10 py-5 bg-[var(--bg-page)]"
+      :class="{ 'footer--contrast': contrast }"
+    >
         <div class="footer-left self-center">
           <img src="~/assets/footer/logo.png" alt="" srcset="" style="margin-left: -25px;">
           <p style="margin-top: -10px;">
@@ -44,7 +48,11 @@
 
 <!-- Mob verze -->
   <div class="mob-ver" style="color: black;">
-    <footer v-bind="$attrs" class="footer z-10 font-body bottom-0 px-10 py-5">
+    <footer
+      v-bind="$attrs"
+      class="footer z-10 font-body bottom-0 px-10 py-5"
+      :class="{ 'footer--contrast': contrast }"
+    >
 
       <div class="footer-mob">
         <div class="footer-mob-socials" style="align-self: flex-start;">
@@ -86,6 +94,8 @@
 </template>
 
 <script setup>
+const { contrast } = useA11y();
+
 defineOptions({
   inheritAttrs: false
 })
@@ -104,9 +114,24 @@ a:hover {
   color: #8E9193;
 }
 .footer {
-background-image: url('~/assets/footer/footer.png');
-background-size: 100% 315px;
-padding-top: 50px;
+  position: relative;
+  background-image: url('~/assets/footer/footer.png');
+  background-size: 100% 315px;
+  padding-top: 50px;
+  overflow: hidden;
+}
+.footer--contrast {
+  background-color: #000 !important;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-20 44 C 220 10 430 8 690 40 C 940 70 1130 70 1460 28' fill='none' stroke='%23fde047' stroke-width='13' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center 14px !important;
+  background-size: 100% 58px !important;
+  color: #fde047 !important;
+  padding-top: 72px;
+}
+.footer--contrast a:hover {
+  background-color: transparent;
+  color: #fff176;
 }
 p {
   font-size: 20px;
@@ -126,6 +151,11 @@ padding: 5px;
     background-image: url('~/assets/footer/footer-mob.png');
     background-size: 100% 500px;
     font-size: 10px;
+  }
+  .footer--contrast {
+    padding-top: 58px;
+    background-position: center 10px !important;
+    background-size: 100% 44px !important;
   }
 }
 </style>
