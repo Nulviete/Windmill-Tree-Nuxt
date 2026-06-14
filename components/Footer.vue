@@ -26,13 +26,16 @@
 
         <div class="footer-mid-right ">
           <a href="https://www.facebook.com/FundacjaWindmillTree/photos_by">
-            <img src="~/assets/icons/fb.png" alt="" srcset="">
+            <IconsFacebook v-if="contrast" class="footer-social-icon" />
+            <img v-else src="~/assets/icons/fb.png" alt="" srcset="">
           </a>
           <a href="https://www.instagram.com/foundation_windmill_tree/">
-            <img src="~/assets/icons/ig.png" alt="" srcset="">
+            <IconsInstagram v-if="contrast" class="footer-social-icon" />
+            <img v-else src="~/assets/icons/ig.png" alt="" srcset="">
           </a>
           <a href="https://www.youtube.com/@foundationwindmilltree8203">
-            <img src="~/assets/icons/yt.png" alt="" srcset="">
+            <IconsYoutube v-if="contrast" class="footer-social-icon" />
+            <img v-else src="~/assets/icons/yt.png" alt="" srcset="">
           </a>
         </div>
         <div class="footer-right text-right">
@@ -57,13 +60,16 @@
       <div class="footer-mob">
         <div class="footer-mob-socials" style="align-self: flex-start;">
           <a href="https://www.youtube.com/@foundationwindmilltree8203">
-            <img src="~/assets/footer/footer-mob-yt.png" alt="" srcset="">
+            <IconsYoutube v-if="contrast" class="footer-social-icon" />
+            <img v-else src="~/assets/footer/footer-mob-yt.png" alt="" srcset="">
           </a>
           <a href="https://www.instagram.com/foundation_windmill_tree/">
-            <img src="~/assets/footer/footer-mob-ig.png" alt="" srcset="">
+            <IconsInstagram v-if="contrast" class="footer-social-icon" />
+            <img v-else src="~/assets/footer/footer-mob-ig.png" alt="" srcset="">
           </a>
           <a href="https://www.facebook.com/FundacjaWindmillTree/photos_by">
-            <img src="~/assets/footer/footer-mob-fb.png" alt="" srcset="">
+            <IconsFacebook v-if="contrast" class="footer-social-icon" />
+            <img v-else src="~/assets/footer/footer-mob-fb.png" alt="" srcset="">
           </a>
           
         </div>
@@ -170,6 +176,11 @@ a:hover {
 .footer--contrast .footer-mob-socials img {
   margin: 0;
   padding: 0;
+}
+.footer--contrast .footer-social-icon {
+  width: 22px;
+  height: 22px;
+  color: #fde047;
 }
 p {
   font-size: 20px;

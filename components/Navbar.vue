@@ -53,18 +53,7 @@
       <UDropdown
         :items="menuItems"
         :popper="{ placement: 'bottom-start' }"
-        :ui="{
-          width: 'w-56',
-          rounded: 'rounded-lg',
-          background: 'bg-[var(--bg-green)]',
-          ring: 'ring-1 ring-black/10',
-          item: {
-            base: 'px-3 py-2 text-sm',
-            rounded: 'rounded-md',
-            active: 'bg-white/30 text-black',
-            inactive: 'text-gray-900',
-          },
-        }"
+        :ui="dropdownUi"
       >
         <button class="navbar-menu-button" type="button" aria-label="Open navigation menu">
           <IconsMenu class="menu" />
@@ -113,6 +102,18 @@ const navItems = [
 ];
 
 const menuItems = navItems.map((item) => [item]);
+const dropdownUi = computed(() => ({
+  width: "w-56",
+  rounded: "rounded-lg",
+  background: contrast.value ? "bg-black" : "bg-[var(--bg-green)]",
+  ring: contrast.value ? "ring-2 ring-yellow-300" : "ring-1 ring-black/10",
+  item: {
+    base: "navbar-dropdown-item px-3 py-2 text-sm",
+    rounded: "rounded-md",
+    active: contrast.value ? "bg-yellow-300 !text-black" : "bg-white/30 text-black",
+    inactive: contrast.value ? "text-yellow-300 hover:!text-black focus:!text-black" : "text-gray-900",
+  },
+}));
 let lastScroll = 0;
 
 const handleNavbarScroll = () => {

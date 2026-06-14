@@ -584,7 +584,7 @@ usePageSeo({
 }
 
 .homepage-news {
-  padding: 48px 40px 69px;
+  padding: 48px 40px 24px;
 }
 
 .section-heading {
@@ -625,7 +625,6 @@ usePageSeo({
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 18px;
   padding: 10px 18px;
   border-radius: 999px;
   background: #ce910d;
@@ -655,6 +654,10 @@ usePageSeo({
 }
 
 .news-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 104px;
   margin-top: 18px;
   text-align: center;
 }
