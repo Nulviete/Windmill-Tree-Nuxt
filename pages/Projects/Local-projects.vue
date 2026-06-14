@@ -68,7 +68,7 @@ usePageSeo({
 
 <style lang="scss" scoped>
 * {
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 .proj-title {
     background-color: rgba(151,71,255,0.77);
@@ -77,13 +77,13 @@ usePageSeo({
 }
 .dash {
     letter-spacing: -2px;
-    font-size: 12px;
+    font-size: 0.75rem;
     margin: 0px 10px;
 }
 
 @media (max-width: 900px) {  
     * {
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 }
 </style>

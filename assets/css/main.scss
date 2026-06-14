@@ -109,7 +109,7 @@ html.a11y-contrast .our-partners-title {
 }
 
 html.a11y-contrast .section-link {
-    border-color: #fde047;
+    border: 2px solid #fde047;
     background: #000;
     color: #fde047;
     box-shadow: none;
@@ -125,6 +125,38 @@ html.a11y-contrast .section-link:focus-visible {
     outline-color: #fde047;
 }
 
+@media (max-width: 900px) {
+    html.a11y-contrast .our-mission-right {
+        display: grid;
+        gap: 16px;
+        padding: 0 16px 24px;
+        background: #000 !important;
+    }
+
+    html.a11y-contrast .our-mission-right h1 {
+        padding: 22px 16px 6px !important;
+        background: #000 !important;
+        color: #fde047 !important;
+    }
+
+    html.a11y-contrast .our-mission-right > img.mob-ver {
+        display: none !important;
+    }
+
+    html.a11y-contrast .our-mission-right .om-first,
+    html.a11y-contrast .our-mission-right .om-second {
+        position: static !important;
+        padding: 18px 16px !important;
+        border: 2px solid #fde047;
+        border-radius: 8px;
+        background: #000 !important;
+        color: #fde047 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.65;
+        text-align: left;
+    }
+}
+
 html.a11y-contrast .hero-txt {
     border: 1px solid #fff;
     background: #000;
@@ -138,6 +170,14 @@ html.a11y-contrast .hero-text-hl {
 html.a11y-contrast .socials-under {
     border-color: #fff;
     background: #000;
+}
+
+html.a11y-contrast .socials-under svg {
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .nav-socials img {
+    filter: brightness(0) saturate(100%) invert(90%) sepia(85%) saturate(767%) hue-rotate(338deg) brightness(104%) contrast(98%) !important;
 }
 
 html.a11y-contrast .our-activities-title,
@@ -337,6 +377,173 @@ html.a11y-contrast .toolbox-list a:focus-visible .link-mark {
     border-color: #000;
     background: #000 !important;
     color: #fde047 !important;
+}
+
+html.a11y-contrast .menu-button {
+    border: 2px solid #fde047 !important;
+    background: #000 !important;
+    color: #fde047 !important;
+    box-shadow: none !important;
+}
+
+html.a11y-contrast .menu-button:hover,
+html.a11y-contrast .menu-button:focus-visible,
+html.a11y-contrast .menuButtonActive {
+    border-color: #fde047 !important;
+    background: #fde047 !important;
+    color: #000 !important;
+}
+
+html.a11y-contrast .menu-button:focus-visible {
+    outline: 3px solid #fde047;
+    outline-offset: 4px;
+}
+
+html.a11y-contrast .proj-title,
+html.a11y-contrast .project-title-2025 {
+    border: 2px solid #fde047;
+    background: #000 !important;
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .head-title,
+html.a11y-contrast .date,
+html.a11y-contrast .proj-p,
+html.a11y-contrast .proj-p-2 {
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .proj-name,
+html.a11y-contrast .proj-name-1,
+html.a11y-contrast .proj-name-sub,
+html.a11y-contrast .proj-volunteers,
+html.a11y-contrast .coming-soon {
+    border: 2px solid #fde047 !important;
+    background: #000 !important;
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .coming-soon-title,
+html.a11y-contrast .coming-soon-text {
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .dash {
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .project-copy h2,
+html.a11y-contrast .project-copy p,
+html.a11y-contrast .project-copy strong,
+html.a11y-contrast .project-stats span,
+html.a11y-contrast .project-stats p {
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .project-stats div,
+html.a11y-contrast .project-funder {
+    border: 1px solid #fde047;
+    background: rgba(253, 224, 71, 0.08) !important;
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .project-gallery-button,
+html.a11y-contrast .project-fullscreen-close,
+html.a11y-contrast .project-fullscreen-button {
+    border: 2px solid #fde047;
+    background: #000 !important;
+    color: #fde047 !important;
+    box-shadow: none !important;
+}
+
+html.a11y-contrast .project-gallery-button:hover,
+html.a11y-contrast .project-gallery-button:focus-visible,
+html.a11y-contrast .project-fullscreen-close:hover,
+html.a11y-contrast .project-fullscreen-close:focus-visible,
+html.a11y-contrast .project-fullscreen-button:hover,
+html.a11y-contrast .project-fullscreen-button:focus-visible {
+    background: #fde047 !important;
+    color: #000 !important;
+}
+
+html.a11y-contrast .project-logos {
+    border: 2px solid #fde047;
+    background: #fff !important;
+}
+
+html.a11y-contrast .header-copy,
+html.a11y-contrast .project-overview,
+html.a11y-contrast .project-section,
+html.a11y-contrast .video-links-section {
+    background: #000 !important;
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .header-copy {
+    padding: clamp(20px, 3vw, 34px) !important;
+}
+
+html.a11y-contrast .header-badge,
+html.a11y-contrast .project-meta-card,
+html.a11y-contrast .interview-video-wrap {
+    border: 2px solid #fde047 !important;
+    background: #000 !important;
+    color: #fde047 !important;
+    box-shadow: none !important;
+}
+
+html.a11y-contrast .header-kicker,
+html.a11y-contrast .header-badge,
+html.a11y-contrast .proj-nam,
+html.a11y-contrast .project-summary,
+html.a11y-contrast .project-meta-label,
+html.a11y-contrast .project-meta-value,
+html.a11y-contrast .proj-des,
+html.a11y-contrast .project-section-kicker,
+html.a11y-contrast .project-section-heading,
+html.a11y-contrast .project-section-heading h2,
+html.a11y-contrast .video-link,
+html.a11y-contrast .video-links-empty {
+    color: #fde047 !important;
+}
+
+html.a11y-contrast .gallery-section {
+    border-top: 2px solid #fde047;
+    border-bottom: 2px solid #fde047;
+    background: #000 !important;
+}
+
+html.a11y-contrast .project-detail-gallery-button,
+html.a11y-contrast .project-detail-fullscreen-close,
+html.a11y-contrast .project-detail-fullscreen-button {
+    border: 2px solid #fde047 !important;
+    background: #000 !important;
+    color: #fde047 !important;
+    box-shadow: none !important;
+}
+
+html.a11y-contrast .project-detail-gallery-button:hover,
+html.a11y-contrast .project-detail-gallery-button:focus-visible,
+html.a11y-contrast .project-detail-fullscreen-close:hover,
+html.a11y-contrast .project-detail-fullscreen-close:focus-visible,
+html.a11y-contrast .project-detail-fullscreen-button:hover,
+html.a11y-contrast .project-detail-fullscreen-button:focus-visible,
+html.a11y-contrast .video-link:hover,
+html.a11y-contrast .video-link:focus-visible {
+    background: #fde047 !important;
+    color: #000 !important;
+}
+
+html.a11y-contrast .project-detail-gallery-button:focus-visible,
+html.a11y-contrast .project-detail-fullscreen-close:focus-visible,
+html.a11y-contrast .project-detail-fullscreen-button:focus-visible,
+html.a11y-contrast .video-link:focus-visible {
+    outline: 3px solid #fde047 !important;
+    outline-offset: 4px !important;
+}
+
+html.a11y-contrast hr {
+    border-top-color: #fde047 !important;
 }
 
 html.a11y-contrast .our-partners {

@@ -509,7 +509,7 @@ usePageSeo({
 <style lang="scss" scoped>
 * {
     color: black;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 .header {
     background-image: url('~/assets/projects/for-ukraine/header-img.webp');
@@ -518,14 +518,14 @@ usePageSeo({
     background-position: center;
 }
 .header-1 {
-    font-size: 127px;
+    font-size: 7.9375rem;
     text-align: center;
     color: white;
     font-weight: bold;
 }
 .dash {
     letter-spacing: -2px;
-    font-size: 12px;
+    font-size: 0.75rem;
     margin: 0px 10px;
 }
 hr {
@@ -560,13 +560,13 @@ hr {
     max-width: 1180px;
 }
 .project-copy h2 {
-    font-size: 40px;
+    font-size: 2.5rem;
     line-height: 1.12;
     font-weight: 700;
 }
 .project-copy p,
 .project-copy strong {
-    font-size: 22px;
+    font-size: 1.375rem;
     line-height: 1.45;
 }
 .project-copy--intro {
@@ -618,7 +618,7 @@ hr {
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
     transform: translateY(-50%);
-    font-size: 28px;
+    font-size: 1.75rem;
     line-height: 1;
 }
 .project-gallery-button--prev {
@@ -658,7 +658,7 @@ hr {
     right: 18px;
     width: 48px;
     height: 48px;
-    font-size: 40px;
+    font-size: 2.5rem;
     line-height: 1;
 }
 .project-fullscreen-button {
@@ -667,7 +667,7 @@ hr {
     height: 46px;
     background-color: rgba(255, 255, 255, 0.18);
     transform: translateY(-50%);
-    font-size: 28px;
+    font-size: 1.75rem;
 }
 .project-fullscreen-button--prev {
     left: 18px;
@@ -717,12 +717,12 @@ hr {
 .project-stats span {
     display: block;
     margin-bottom: 6px;
-    font-size: 48px;
+    font-size: 3rem;
     line-height: 1;
     font-weight: 700;
 }
 .project-stats p {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.25;
 }
 img {
@@ -739,13 +739,13 @@ img {
 
 @media (max-width: 900px) { 
 * {
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 .header {
     height: 34vh;
 }
 .header-1 {
-    font-size: 30px;
+    font-size: 1.875rem;
 }
 
 hr {
@@ -762,11 +762,11 @@ hr {
     padding-bottom: 36px;
 }
 .project-copy h2 {
-    font-size: 26px;
+    font-size: 1.625rem;
 }
 .project-copy p,
 .project-copy strong {
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 .project-copy--columns,
 .project-stats {
@@ -782,7 +782,7 @@ hr {
 .project-gallery-button {
     width: 38px;
     height: 38px;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 .project-gallery-button--prev {
     left: 8px;
@@ -801,12 +801,12 @@ hr {
     right: 10px;
     width: 42px;
     height: 42px;
-    font-size: 34px;
+    font-size: 2.125rem;
 }
 .project-fullscreen-button {
     width: 40px;
     height: 40px;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 .project-fullscreen-button--prev {
     left: 10px;
@@ -835,10 +835,10 @@ hr {
     border-radius: 14px;
 }
 .project-stats span {
-    font-size: 32px;
+    font-size: 2rem;
 }
 .project-stats p {
-    font-size: 13px;
+    font-size: 0.8125rem;
 }
 
 }

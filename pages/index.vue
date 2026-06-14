@@ -391,7 +391,7 @@
               decoding="async"
             />
             <div class="number">{{ animatedNumbers[1] }}+</div>
-            <div class="number-text" style="height: 55px; font-size: 20px">
+            <div class="number-text number-text--short" style="height: 55px">
               Projects organised
             </div>
           </div>
@@ -404,7 +404,7 @@
               decoding="async"
             />
             <div class="number">{{ animatedNumbers[2] }}+</div>
-            <div class="number-text" style="height: 55px; font-size: 20px">
+            <div class="number-text number-text--short" style="height: 55px">
               International partners
             </div>
           </div>
@@ -769,16 +769,16 @@ usePageSeo({
 }
 
 .number {
-  top: 43%;
-  font-size: clamp(3.75rem, 8vw, 7.5rem);
+  top: 38%;
+  font-size: clamp(3.5rem, 6.5vw, 6.25rem);
   line-height: 0.9;
 }
 
 .number-text {
   bottom: clamp(8px, 1.2vw, 16px);
   box-sizing: border-box;
-  padding: 0 clamp(10px, 1.4vw, 20px);
-  font-size: clamp(1rem, 1.6vw, 1.5rem);
+  padding: 0 clamp(16px, 2vw, 28px);
+  font-size: clamp(0.95rem, 1.35vw, 1.25rem);
   line-height: 1.22;
 }
 

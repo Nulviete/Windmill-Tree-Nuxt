@@ -273,13 +273,13 @@ function formatDate(dateStr) {
   display: block;
   margin-bottom: 8px;
   color: rgb(71, 70, 70);
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .news-card-title {
   margin-bottom: 12px;
   color: rgb(0, 0, 0);
-  font-size: clamp(22px, 1.8vw, 30px);
+  font-size: clamp(1.375rem, 1.8vw, 1.875rem);
   line-height: 1.15;
   display: -webkit-box;
   overflow: hidden;
@@ -289,7 +289,7 @@ function formatDate(dateStr) {
 
 .news-card--full .news-card-title {
   margin: 0 0 12px;
-  font-size: clamp(28px, 3vw, 38px);
+  font-size: clamp(1.75rem, 3vw, 2.375rem);
   line-height: 1.1;
   -webkit-line-clamp: unset;
 }
@@ -302,7 +302,7 @@ function formatDate(dateStr) {
 
 .news-card-excerpt {
   color: rgb(71, 70, 70);
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.6;
   display: -webkit-box;
   overflow: hidden;
@@ -313,7 +313,7 @@ function formatDate(dateStr) {
 .news-card-body {
   max-width: 70ch;
   color: rgb(71, 70, 70);
-  font-size: clamp(18px, 2vw, 22px);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
   line-height: 1.8;
 }
 
@@ -327,7 +327,7 @@ function formatDate(dateStr) {
 
 .news-card-links-label {
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgb(71, 70, 70);
@@ -345,7 +345,7 @@ function formatDate(dateStr) {
 
 .news-card-signature {
   margin-top: 24px;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-style: italic;
 }
 
@@ -394,7 +394,7 @@ function formatDate(dateStr) {
 
 @media (max-width: 900px) {
   .news-card-title {
-    font-size: 25px;
+    font-size: 1.5625rem;
   }
 
   .news-card--full {
@@ -404,16 +404,16 @@ function formatDate(dateStr) {
   }
 
   .news-card--full .news-card-title {
-    font-size: 25px;
+    font-size: 1.5625rem;
   }
 
   .news-card-body {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.7;
   }
 
   .news-card-signature {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 </style>

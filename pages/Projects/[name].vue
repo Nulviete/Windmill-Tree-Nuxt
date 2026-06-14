@@ -109,14 +109,14 @@
 
             <!-- Arrows -->
             <button
-              class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+              class="project-detail-gallery-button absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
               @click="prevSlide"
               v-if="currentIndex > 0"
             >
               ◀
             </button>
             <button
-              class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+              class="project-detail-gallery-button absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
               @click="nextSlide"
               v-if="currentIndex < maxIndex"
             >
@@ -134,13 +134,13 @@
         @click="closeFullscreenOnBackground"
       >
         <button
-          class="absolute top-4 right-4 text-white text-4xl font-bold z-[10000]"
+          class="project-detail-fullscreen-close absolute top-4 right-4 text-white text-4xl font-bold z-[10000]"
           @click.stop="closeFullscreen"
         >
           &times;
         </button>
         <button
-          class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+          class="project-detail-fullscreen-button absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
           @click.stop="prevFullscreenSlide"
           v-if="currentFullscreenIndex > 0"
         >
@@ -151,7 +151,7 @@
           class="max-w-full max-h-full"
         />
         <button
-          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
+          class="project-detail-fullscreen-button absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow"
           @click.stop="nextFullscreenSlide"
           v-if="currentFullscreenIndex < project.photos.length - 1"
         >
@@ -549,7 +549,7 @@ useHead({
 
 .header-kicker {
   margin-bottom: 14px;
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(236, 243, 158, 0.92);
@@ -568,7 +568,7 @@ useHead({
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(10px);
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .header-badge--soft {
@@ -576,7 +576,7 @@ useHead({
 }
 
 .proj-nam {
-  font-size: clamp(36px, 5vw, 68px);
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
   line-height: 0.98;
   font-weight: 700;
   text-wrap: balance;
@@ -585,7 +585,7 @@ useHead({
 .project-summary {
   max-width: 58ch;
   margin-top: 16px;
-  font-size: 19px;
+  font-size: 1.1875rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.84);
 }
@@ -626,14 +626,14 @@ useHead({
 }
 
 .project-meta-label {
-  font-size: 12px;
+  font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(31, 28, 23, 0.56);
 }
 
 .project-meta-value {
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.4;
   font-weight: 600;
   color: #1f1c17;
@@ -643,7 +643,7 @@ useHead({
   max-width: 920px;
   margin-right: auto;
   margin-left: auto;
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
   line-height: 1.85;
   color: #1f1c17;
 }
@@ -669,7 +669,7 @@ useHead({
 .project-section-kicker {
   margin-bottom: 6px;
   color: rgba(31, 28, 23, 0.56);
-  font-size: 13px;
+  font-size: 0.8125rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -679,7 +679,7 @@ useHead({
 }
 
 .project-section-heading h2 {
-  font-size: clamp(30px, 4vw, 48px);
+  font-size: clamp(1.875rem, 4vw, 3rem);
   line-height: 1;
   font-weight: 700;
 }
@@ -744,7 +744,7 @@ useHead({
 .video-link {
   min-width: 0;
   color: #1d4ed8;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.45;
   overflow-wrap: anywhere;
   text-decoration: underline;
@@ -768,7 +768,7 @@ useHead({
 
 .video-links-empty {
   color: rgba(31, 28, 23, 0.68);
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.6;
 }
 
@@ -788,7 +788,7 @@ useHead({
   }
 
   .project-summary {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .project-overview {
@@ -804,11 +804,11 @@ useHead({
   }
 
   .project-meta-value {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .proj-des {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.75;
   }
 
@@ -852,7 +852,7 @@ useHead({
 
   .video-link,
   .video-links-empty {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 }
 </style>

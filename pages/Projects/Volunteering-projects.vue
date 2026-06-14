@@ -111,7 +111,13 @@
 
         </div>
 
+        <!-- 3rd edition -->
+        <div v-if="menuSel==3" class="coming-soon">
+            <div class="coming-soon-title">Coming soon...</div>
+            <div class="coming-soon-text">We are preparing the next edition of our volunteering projects.</div>
+        </div>
 
+        
 
 
 
@@ -266,6 +272,21 @@ usePageSeo({
 .proj-1-img {
     margin-top: 140px;
 }
+.coming-soon {
+    max-width: 760px;
+    margin: 20px 0 120px;
+    padding: 36px 42px;
+    border-radius: 28px;
+    background: rgba(239, 255, 59, 0.42);
+}
+.coming-soon-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+.coming-soon-text {
+    font-size: 24px;
+}
 
 @media (max-width: 900px) { 
 
@@ -313,6 +334,17 @@ usePageSeo({
 .menu-button {
     margin-top: 0px;
     margin-bottom: 30px;
+}
+.coming-soon {
+    margin: 0 0 70px;
+    padding: 24px 20px;
+    border-radius: 18px;
+}
+.coming-soon-title {
+    font-size: 28px;
+}
+.coming-soon-text {
+    font-size: 16px;
 }
 .mob-ver img {
     margin-bottom: 15px;
