@@ -5,7 +5,7 @@
     id="navbar"
   >
     <NuxtLink to="/" class="navbar-logo" aria-label="Windmill Tree Foundation homepage">
-      <img src="~/assets/logo/logoWindmilltree_color.png" alt="Windmill Tree Foundation" />
+      <img :src="navbarLogo" alt="Windmill Tree Foundation" />
     </NuxtLink>
 
     <div class="links">
@@ -78,7 +78,12 @@
 </template>
 
 <script setup>
+import logoColor from "~/assets/logo/logoWindmilltree_color.png";
+import logoContrast from "~/assets/logo/logoWindmilltree_contrast.png";
+
 const { labelFont, contrast, toggleFont, toggleContrast } = useA11y();
+
+const navbarLogo = computed(() => (contrast.value ? logoContrast : logoColor));
 
 const navItems = [
   {

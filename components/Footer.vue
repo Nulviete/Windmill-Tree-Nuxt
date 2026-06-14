@@ -8,7 +8,7 @@
       :class="{ 'footer--contrast': contrast }"
     >
         <div class="footer-left self-center">
-          <img src="~/assets/footer/logo.png" alt="" srcset="" style="margin-left: -25px;">
+          <img :src="footerLogo" alt="Windmill Tree Foundation" class="footer-logo">
           <p style="margin-top: -10px;">
             Paderewskiego str. 10,   <br>
             58-506 Jelenia Góra,  <br>
@@ -75,7 +75,7 @@
         </div>
 
         <div class="footer-mob-logo">
-          <img src="~/assets/footer/logo.png" alt="" srcset="" style="margin-left: -25px;">
+          <img :src="footerLogo" alt="Windmill Tree Foundation" class="footer-logo">
         </div>
 
         <div class="footer-mob-vat" style="align-self: flex-end;">
@@ -94,7 +94,12 @@
 </template>
 
 <script setup>
+import footerLogoDefault from "~/assets/footer/logo.png";
+import footerLogoContrast from "~/assets/logo/logoWindmilltree_contrast.png";
+
 const { contrast } = useA11y();
+
+const footerLogo = computed(() => (contrast.value ? footerLogoContrast : footerLogoDefault));
 
 defineOptions({
   inheritAttrs: false
@@ -129,9 +134,42 @@ a:hover {
   color: #fde047 !important;
   padding-top: 72px;
 }
+.footer--contrast :where(p, div, span, a) {
+  color: #fde047 !important;
+}
+.footer--contrast a {
+  text-decoration-color: #fde047;
+  text-underline-offset: 3px;
+}
 .footer--contrast a:hover {
   background-color: transparent;
   color: #fff176;
+}
+.footer--contrast .footer-mid-left {
+  gap: 4px;
+}
+.footer--contrast .footer-mid-left a {
+  width: fit-content;
+  padding: 3px 0;
+}
+.footer--contrast .footer-mid-right {
+  gap: 8px;
+}
+.footer--contrast .footer-mid-right a,
+.footer--contrast .footer-mob-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #fde047;
+  border-radius: 999px;
+  background-color: #111;
+}
+.footer--contrast .footer-mid-right img,
+.footer--contrast .footer-mob-socials img {
+  margin: 0;
+  padding: 0;
 }
 p {
   font-size: 20px;
@@ -145,6 +183,12 @@ p {
 .footer-mid-right img {
 padding: 5px;
 }
+.footer-logo {
+  width: 328px;
+  max-width: 100%;
+  height: auto;
+  margin-left: -25px;
+}
 
 @media (max-width: 900px) {
   .footer {
@@ -153,9 +197,43 @@ padding: 5px;
     font-size: 10px;
   }
   .footer--contrast {
-    padding-top: 58px;
+    padding: 62px 24px 32px;
     background-position: center 10px !important;
     background-size: 100% 44px !important;
+  }
+  .footer--contrast .footer-mob {
+    align-items: stretch;
+    width: min(100%, 430px);
+    margin: 0 auto;
+    gap: 18px;
+  }
+  .footer--contrast .footer-mob-socials {
+    align-self: center !important;
+    justify-content: center;
+    gap: 12px;
+    padding-bottom: 0;
+  }
+  .footer--contrast .footer-mob-socials img {
+    width: 22px;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .footer--contrast .footer-mob-address,
+  .footer--contrast .footer-mob-vat {
+    align-self: stretch !important;
+    padding: 14px 16px;
+    border: 1px solid rgba(253, 224, 71, 0.72);
+    border-radius: 8px;
+    background-color: rgba(253, 224, 71, 0.06);
+    line-height: 1.55;
+  }
+  .footer--contrast .footer-mob-logo {
+    display: flex;
+    justify-content: center;
+  }
+  .footer--contrast .footer-logo {
+    width: min(100%, 260px);
+    margin-left: 0;
   }
 }
 </style>
