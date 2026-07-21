@@ -13,10 +13,12 @@
         v-for="item in navItems"
         :key="item.to"
         :to="item.to"
+        :target="item.target"
         class="navbar-link"
       >
         {{ item.label }}
       </NuxtLink>
+
     </div>
 
     <div class="navbar-actions">
@@ -84,6 +86,12 @@ const navItems = [
     to: "/projects",
   },
   {
+    label: "CAO",
+    to: "https://cao.org.pl/",
+    target: "_blank",
+    
+  },
+  {
     label: "Our Team",
     to: "/our-team",
   },
@@ -99,6 +107,7 @@ const navItems = [
     label: "Documents & Toolbox",
     to: "/documents",
   },
+  
 ];
 
 const menuItems = navItems.map((item) => [item]);

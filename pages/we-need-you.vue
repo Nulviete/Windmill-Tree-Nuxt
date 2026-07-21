@@ -2,10 +2,10 @@
   <main class="open-call-page">
     <section class="open-call-hero">
       <p class="open-call-kicker">Call for participants</p>
-      <h1>SMS - Stop. Motion. Speak.</h1>
+      <h1>Youth Exchange: Windmill Tree in Nemoland</h1>
       <p class="open-call-lead">
-        A training course for youth workers and artists curious about creative
-        teamwork, storytelling, and DIY stop-motion animation.
+        Outdoor learning experience - nature, simple living, creative tasks and
+        community as tools for emotional recovery, resilience, and teamwork.
       </p>
     </section>
 
@@ -13,11 +13,11 @@
       <div class="open-call-summary">
         <div class="open-call-summary-item">
           <span>Dates</span>
-          <strong>24 February - 1 March 2026</strong>
+          <strong>18-25 August 2026</strong>
         </div>
         <div class="open-call-summary-item">
           <span>Place</span>
-          <strong>Trzcinsko, Poland</strong>
+          <strong>Międzylesie (Izery Mountains), Poland</strong>
         </div>
         <div class="open-call-summary-item">
           <span>Language</span>
@@ -25,7 +25,7 @@
         </div>
         <div class="open-call-summary-item">
           <span>Group</span>
-          <strong>25 participants, age 20+</strong>
+          <strong>20 participants, age 18+</strong>
         </div>
       </div>
 
@@ -33,26 +33,24 @@
         <article class="open-call-main">
           <section class="open-call-section">
             <p class="open-call-section-label">About the project</p>
-            <h2>Creativity as a shared language</h2>
+            <h2>Slowing Down and Reconnecting</h2>
             <p>
-              This training course explores DIY stop-motion animation as a
-              creative and expressive tool. It creates space to talk about
-              important topics while building deep connections within a group.
+              It is a project about slowing down, reconnecting and discovering
+              how the forest, the fields, the body, the group and imagination
+              can become part of meaningful educational practice.
             </p>
           </section>
 
           <section class="open-call-section">
-            <p class="open-call-section-label">Participants will</p>
+            <p class="open-call-section-label">About the experience</p>
             <ul class="open-call-list">
-              <li>Explore stop-motion animation as a form of expression.</li>
-              <li>Learn by doing, through hands-on creative work.</li>
               <li>
-                Take a closer look at how the creative process happens in a
-                group.
+                Experience outdoor learning in nature with simple living practices.
               </li>
+              <li>Develop emotional recovery and build resilience through community.</li>
+              <li>Participate in creative tasks and meaningful educational activities.</li>
               <li>
-                Reflect on how creativity in a team can be facilitated,
-                supported, and strengthened.
+                Connect with the forest, fields, your body, and group imagination.
               </li>
             </ul>
           </section>
@@ -61,12 +59,13 @@
             <p class="open-call-section-label">Participant profile</p>
             <ul class="open-call-list">
               <li>
-                Experience working with young people, or strong motivation to
-                start.
+                Have experience working with young people or strong motivation to start.
               </li>
-              <li>Basic to intermediate drawing or illustration skills.</li>
-              <li>Communicative English.</li>
-              <li>Ability to work and create in a team.</li>
+              <li>Speak English at a communicative level.</li>
+              <li>
+                Have some previous outdoor experience or a strong motivation and
+                willingness to develop it during the project.
+              </li>
             </ul>
           </section>
         </article>
@@ -74,12 +73,17 @@
         <aside class="open-call-sidebar" aria-label="Application information">
           <div class="open-call-deadline">
             <span>Application deadline</span>
-            <strong>2 February</strong>
+            <strong>26 July 2026</strong>
           </div>
 
           <div class="open-call-note">
             <h2>How to apply</h2>
-            <p>Fill out the application form via the link shared with the call.</p>
+            <p>
+              Fill out the application form
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSewLX0QqVw8vq9MPEhxB2uSYxu1zFRQNPXbDN-7ypTr-Bu2bQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" style="color: #0066cc; text-decoration: underline; padding:0;">
+                here
+              </a>
+            </p>
           </div>
 
           <div class="open-call-note">
@@ -233,6 +237,7 @@ usePageSeo({
 .open-call-list,
 .open-call-note ul {
   padding-left: 1.2rem;
+  padding-top: 4px;
 }
 
 .open-call-list li + li,
