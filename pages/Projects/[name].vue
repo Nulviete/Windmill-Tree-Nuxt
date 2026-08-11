@@ -50,7 +50,13 @@
         </div>
 
         <div class="proj-des pt-6 pb-10">
-          {{ project.description }}
+          <p
+            v-for="(paragraph, index) in projectParagraphs"
+            :key="index"
+            class="mb-6 last:mb-0"
+          >
+            {{ paragraph }}
+          </p>
         </div>
       </div>
     </RevealOnScroll>
@@ -238,8 +244,19 @@ const { data, pending, error } = await useAsyncData(
 
 const project = computed(() => data.value?.data?.[0] ?? null);
 const dataLoaded = computed(() => !pending.value && !!project.value);
+const projectParagraphs = computed(() => {
+  const description = project.value?.description;
+
+  if (Array.isArray(description)) {
+    return description.map((paragraph) => String(paragraph ?? "").trim()).filter(Boolean);
+  }
+
+  const paragraph = String(description ?? "").trim();
+  return paragraph ? [paragraph] : [];
+});
+
 const projectSummary = computed(() => {
-  const description = String(project.value?.description ?? "").trim();
+  const description = projectParagraphs.value.join(" ");
 
   if (!description) {
     return "";
@@ -460,7 +477,7 @@ const projectTitle = computed(() =>
 );
 
 const projectDescription = computed(() => {
-  const description = String(project.value?.description ?? "").trim();
+  const description = projectParagraphs.value.join(" ");
   if (description) {
     return description.slice(0, 160);
   }
