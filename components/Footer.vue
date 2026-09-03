@@ -44,6 +44,19 @@
             VAT No.: 6161567287 <br>
             National Official Register: 383942113
           </p>
+          <p class="footer-credit">
+            <span>Website by</span>
+            <a
+              href="https://zapletal.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-credit-link"
+              aria-label="Visit Michael Zapletal's portfolio (opens in a new tab)"
+            >
+              Michael Zapletal
+              <span class="footer-credit-arrow" aria-hidden="true">↗</span>
+            </a>
+          </p>
         </div>
     </footer>
   </div>
@@ -88,7 +101,21 @@
           <div>National Court Register No.: 0000784824</div>
           <div>VAT No.: 6161567287</div>
           <div>National Official Register: 383942113</div>
-        </div> 
+        </div>
+
+        <p class="footer-credit footer-credit--mobile">
+          <span>Website by</span>
+          <a
+            href="https://zapletal.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-credit-link"
+            aria-label="Visit Michael Zapletal's portfolio (opens in a new tab)"
+          >
+            Michael Zapletal
+            <span class="footer-credit-arrow" aria-hidden="true">↗</span>
+          </a>
+        </p>
       </div>
             
         
@@ -200,6 +227,43 @@ padding: 5px;
   height: auto;
   margin-left: -25px;
 }
+.footer-credit {
+  margin: 12px 0 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+.footer-credit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: 3px;
+  padding: 2px 0;
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.35);
+  text-underline-offset: 3px;
+}
+.footer-credit-link:hover {
+  background-color: transparent;
+  color: #53622e;
+  text-decoration-color: currentColor;
+}
+.footer-credit-link:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.footer-credit-arrow {
+  transition: transform 0.2s ease;
+}
+.footer-credit-link:hover .footer-credit-arrow,
+.footer-credit-link:focus-visible .footer-credit-arrow {
+  transform: translate(2px, -2px);
+}
 
 @media (max-width: 900px) {
   .footer {
@@ -245,6 +309,11 @@ padding: 5px;
   .footer--contrast .footer-logo {
     width: min(100%, 260px);
     margin-left: 0;
+  }
+  .footer-credit--mobile {
+    align-self: flex-end;
+    margin-top: 18px;
+    text-align: right;
   }
 }
 </style>
