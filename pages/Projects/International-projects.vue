@@ -48,7 +48,7 @@ const { data, pending } = await useAsyncData(
 )
 
 const projects = computed(() =>
-  Array.isArray(data.value?.data) ? [...data.value.data].reverse() : []
+  Array.isArray(data.value?.data) ? data.value.data : []
 )
 
 usePageSeo({
