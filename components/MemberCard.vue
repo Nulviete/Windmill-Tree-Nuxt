@@ -17,7 +17,7 @@
     <div class="name">
       <div class="name-row">
         <span>{{ member.name }}</span>
-        <span class="member-country">
+        <span v-if="member.position=='volunteer'" class="member-country">
           <img :src="`/country_flag/${member.country}_wave.png`" alt="" class="block h-8 w-auto shrink-0">
           <span class="uppercase">{{ member.country}}</span>
         </span>
