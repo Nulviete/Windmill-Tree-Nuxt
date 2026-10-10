@@ -15,7 +15,13 @@
       @click="onTap"
     />
     <div class="name">
-      <span>{{ member.name }}</span>
+      <div class="name-row">
+        <span>{{ member.name }}</span>
+        <span class="member-country">
+          <img :src="`/country_flag/${member.country}_wave.png`" alt="" class="block h-8 w-auto shrink-0">
+          <span class="uppercase">{{ member.country}}</span>
+        </span>
+      </div>
     </div>
 
     <!-- OVERLAY -->
@@ -23,8 +29,8 @@
       <div class="overlay-box">
         <div class="overlay-title">{{ member.name }}</div>
 
+
         <div class="overlay-text">
-          <div v-if="member.country" class="overlay-line">Country: {{ member.country }}</div>
           <div v-if="member.volunteering_from" class="overlay-line">
             Volunteering: {{ member.volunteering_from }} – {{ member.volunteering_to }}
           </div>
@@ -102,6 +108,7 @@ const onTap = (e) => {
   z-index: 1;
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   min-height: 42%;
   padding: 28px 22px 20px;
   color: white;
@@ -111,6 +118,21 @@ const onTap = (e) => {
   pointer-events: none;
   background: linear-gradient(180deg, rgba(16, 32, 22, 0) 0%, rgba(16, 32, 22, 0.82) 100%);
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.member-country {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 .overlay {
