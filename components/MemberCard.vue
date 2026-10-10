@@ -19,7 +19,7 @@
     </div>
 
     <!-- OVERLAY -->
-    <div class="overlay" :class="{ open }" @click.stop>
+    <div class="overlay" :class="{ open }" @click.stop v-if="member.role || member.field_of_work">
       <div class="overlay-box">
         <div class="overlay-title">{{ member.name }}</div>
 

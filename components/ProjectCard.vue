@@ -1,11 +1,15 @@
 <template>
 
     <div class="card flex flex-col bg-white/60 backdrop-blur-sm ring-1 ring-black/5 overflow-hidden">
-        <img :src="props.project.main_photo || props.project.video_image" alt="" style="">
+        <slot name="image">
+            <img :src="props.project.main_photo || props.project.video_image" alt="" style="">
+        </slot>
         <div class="project-card-copy flex flex-col grow justify-around">
             <div class="proj-cat"> {{ props.project.category }}</div>
             <div class="proj-nam"> {{ props.project.name }}</div>
-            <div class="hashtags w-fit"> {{ props.project.hashtags }}</div> 
+            <div v-if="hashtags.length" class="hashtags">
+                <span v-for="hashtag in hashtags" :key="hashtag" class="hashtag">{{ hashtag }}</span>
+            </div>
         </div>
         
     </div>
@@ -13,12 +17,17 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 
 const props = defineProps({
     project: {
         type: Object
     }
 })
+
+const hashtags = computed(() => [...new Set(
+    (props.project.hashtags || '').split(/[,#]+/).map(tag => tag.trim()).filter(Boolean)
+)])
 
 </script>
 
@@ -56,10 +65,22 @@ transition: all 0.7s;
     font-weight: bold;
 }
 .hashtags {
-    border: 2px solid #f8764f;
-    border-radius: 50vh;
-    padding: 0px 15px;
-    font-size: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+.hashtag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 9px;
+    border: 1px solid #f8764f;
+    border-radius: 999px;
+    background: #fff1e9;
+    color: #943b20;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: nowrap;
 }
 
 @media (max-width: 900px) {
@@ -76,6 +97,11 @@ transition: all 0.7s;
         font-size: 14px;
     }
     .hashtags {
+        gap: 5px;
+        margin-top: 10px;
+    }
+    .hashtag {
+        padding: 3px 8px;
         font-size: 12px;
     }
 
