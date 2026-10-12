@@ -1,305 +1,186 @@
 <template>
   <main class="open-call-page">
-    <section class="open-call-hero">
-      <p class="open-call-kicker">Call for participants</p>
-      <h1>Youth Exchange: Windmill Tree in Nemoland</h1>
-      <p class="open-call-lead">
-        Outdoor learning experience - nature, simple living, creative tasks and
-        community as tools for emotional recovery, resilience, and teamwork.
-      </p>
-    </section>
-
-    <section class="open-call-shell" aria-label="Training course details">
-      <div class="open-call-summary">
-        <div class="open-call-summary-item">
-          <span>Dates</span>
-          <strong>18-25 August 2026</strong>
-        </div>
-        <div class="open-call-summary-item">
-          <span>Place</span>
-          <strong>Międzylesie (Izery Mountains), Poland</strong>
-        </div>
-        <div class="open-call-summary-item">
-          <span>Language</span>
-          <strong>English</strong>
-        </div>
-        <div class="open-call-summary-item">
-          <span>Group</span>
-          <strong>20 participants, age 18+</strong>
+    <section class="open-call-hero" aria-labelledby="open-call-title">
+      <div class="open-call-copy">
+        <p class="open-call-kicker">Open calls</p>
+        <h1 id="open-call-title">No open calls at the moment</h1>
+        <p class="open-call-lead">
+          We’re not currently accepting applications. Follow us on social media
+          to hear about future youth exchanges, training courses and volunteering
+          opportunities.
+        </p>
+        <p class="open-call-invitation">
+          In the meantime, discover what we’ve been creating together.
+        </p>
+        <div class="open-call-actions">
+          <NuxtLink to="/projects" class="open-call-button open-call-button--primary">
+            Explore our projects
+            <span aria-hidden="true">→</span>
+          </NuxtLink>
+          <a
+            href="https://www.instagram.com/foundation_windmill_tree/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="open-call-button open-call-button--secondary"
+          >
+            Follow us on Instagram
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
 
-      <div class="open-call-layout">
-        <article class="open-call-main">
-          <section class="open-call-section">
-            <p class="open-call-section-label">About the project</p>
-            <h2>Slowing Down and Reconnecting</h2>
-            <p>
-              It is a project about slowing down, reconnecting and discovering
-              how the forest, the fields, the body, the group and imagination
-              can become part of meaningful educational practice.
-            </p>
-          </section>
-
-          <section class="open-call-section">
-            <p class="open-call-section-label">About the experience</p>
-            <ul class="open-call-list">
-              <li>
-                Experience outdoor learning in nature with simple living practices.
-              </li>
-              <li>Develop emotional recovery and build resilience through community.</li>
-              <li>Participate in creative tasks and meaningful educational activities.</li>
-              <li>
-                Connect with the forest, fields, your body, and group imagination.
-              </li>
-            </ul>
-          </section>
-
-          <section class="open-call-section">
-            <p class="open-call-section-label">Participant profile</p>
-            <ul class="open-call-list">
-              <li>
-                Have experience working with young people or strong motivation to start.
-              </li>
-              <li>Speak English at a communicative level.</li>
-              <li>
-                Have some previous outdoor experience or a strong motivation and
-                willingness to develop it during the project.
-              </li>
-            </ul>
-          </section>
-        </article>
-
-        <aside class="open-call-sidebar" aria-label="Application information">
-          <div class="open-call-deadline">
-            <span>Application deadline</span>
-            <strong>26 July 2026</strong>
-          </div>
-
-          <div class="open-call-note">
-            <h2>How to apply</h2>
-            <p>
-              Fill out the application form
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSewLX0QqVw8vq9MPEhxB2uSYxu1zFRQNPXbDN-7ypTr-Bu2bQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" style="color: #0066cc; text-decoration: underline; padding:0;">
-                here
-              </a>
-            </p>
-          </div>
-
-          <div class="open-call-note">
-            <h2>Eligible countries</h2>
-            <ul>
-              <li>All EU Member States.</li>
-              <li>
-                Non-EU countries associated with Erasmus+: Iceland, Norway,
-                North Macedonia, Serbia, Turkiye.
-              </li>
-              <li>Western Balkans.</li>
-              <li>Eastern Partnership countries: Ukraine, Moldova.</li>
-            </ul>
-          </div>
-
-          <p class="open-call-funded">
-            This activity is funded by Erasmus+ with the support of the European
-            Union.
-          </p>
-        </aside>
-      </div>
+      <figure class="open-call-photo">
+        <img
+          src="~/assets/our-mission/our-mission-2.png"
+          alt="Project participants forming an arch with their arms during a group activity outdoors"
+          width="677"
+          height="412"
+          decoding="async"
+        >
+        <figcaption>Shared experiences. New connections. Windmill Tree.</figcaption>
+      </figure>
     </section>
   </main>
 </template>
 
 <script setup>
 usePageSeo({
-  title: "We Need You | Windmill Tree Foundation",
+  title: 'Open Calls | Windmill Tree Foundation',
   description:
-    "Current call for participants and opportunities to join Windmill Tree Foundation projects, trainings, and international activities.",
-});
+    'There are no open calls at the moment. Explore Windmill Tree Foundation projects and follow us for future youth exchanges, training courses and volunteering opportunities.',
+})
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .open-call-page {
-  padding: 130px 40px 80px;
+  padding: 160px 40px 96px;
 }
 
 .open-call-hero {
-  max-width: 900px;
-  margin: 0 auto 36px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.open-call-kicker,
-.open-call-section-label {
-  color: #6c7600;
+.open-call-kicker {
+  margin-bottom: 16px;
+  color: #526000;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.open-call-hero h1 {
-  margin: 10px 0 18px;
-  color: #111;
-  font-size: clamp(44px, 7vw, 88px);
-  font-weight: 850;
-  line-height: 0.95;
+.open-call-copy h1 {
+  margin: 0 0 24px;
+  color: #183e2b;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
 }
 
-.open-call-lead {
-  max-width: 700px;
-  margin: 0 auto;
-  color: rgb(71, 70, 70);
-  font-size: clamp(18px, 2.2vw, 24px);
-  line-height: 1.5;
+.open-call-lead,
+.open-call-invitation {
+  max-width: 560px;
+  color: #405348;
+  font-size: 18px;
+  line-height: 1.7;
 }
 
-.open-call-shell {
-  max-width: 1180px;
-  margin: 0 auto;
+.open-call-invitation {
+  margin-top: 18px;
 }
 
-.open-call-summary {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.open-call-actions {
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-top: 30px;
 }
 
-.open-call-summary-item,
-.open-call-main,
-.open-call-sidebar {
-  border: 1px solid rgba(144, 169, 85, 0.22);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 18px 45px rgba(72, 55, 26, 0.08);
+.open-call-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid #244d35;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
 }
 
-.open-call-summary-item {
-  min-height: 112px;
-  padding: 18px;
-  border-radius: 18px;
+.open-call-button--primary {
+  background: #244d35;
+  color: #fff;
 }
 
-.open-call-summary-item span,
-.open-call-deadline span {
+.open-call-button--primary:hover {
+  background: #183e2b;
+}
+
+.open-call-button--secondary {
+  background: rgb(255 255 255 / 50%);
+  color: #244d35;
+}
+
+.open-call-button--secondary:hover {
+  background: #fff;
+}
+
+.open-call-button:focus-visible {
+  outline: 3px solid #244d35;
+  outline-offset: 4px;
+}
+
+.open-call-photo {
+  margin: 0;
+}
+
+.open-call-photo img {
   display: block;
-  margin-bottom: 8px;
-  color: rgb(71, 70, 70);
-  font-size: 0.86rem;
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
 }
 
-.open-call-summary-item strong,
-.open-call-deadline strong {
-  color: #111;
-  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
-  line-height: 1.25;
+.open-call-photo figcaption {
+  margin-top: 16px;
+  color: #405348;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
 }
 
-.open-call-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
-  gap: 18px;
-  align-items: start;
-}
-
-.open-call-main,
-.open-call-sidebar {
-  border-radius: 24px;
-}
-
-.open-call-main {
-  padding: clamp(24px, 4vw, 48px);
-}
-
-.open-call-section + .open-call-section {
-  margin-top: 40px;
-  padding-top: 36px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.open-call-section h2,
-.open-call-note h2 {
-  margin: 8px 0 14px;
-  color: #111;
-  font-size: clamp(26px, 3vw, 38px);
-  line-height: 1.1;
-}
-
-.open-call-section p,
-.open-call-list,
-.open-call-note p,
-.open-call-note ul,
-.open-call-funded {
-  color: rgb(41, 41, 41);
-  font-size: 1.08rem;
-  line-height: 1.65;
-}
-
-.open-call-list,
-.open-call-note ul {
-  padding-left: 1.2rem;
-  padding-top: 4px;
-}
-
-.open-call-list li + li,
-.open-call-note li + li {
-  margin-top: 10px;
-}
-
-.open-call-sidebar {
-  position: sticky;
-  top: 96px;
-  padding: 22px;
-}
-
-.open-call-deadline {
-  margin-bottom: 18px;
-  padding: 22px;
-  border-radius: 18px;
-  background: var(--bg-light-green);
-}
-
-.open-call-note {
-  padding: 20px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.open-call-note h2 {
-  font-size: 1.35rem;
-}
-
-.open-call-funded {
-  margin-top: 8px;
-  padding: 16px;
-  border-radius: 16px;
-  background: rgba(144, 169, 85, 0.16);
-  font-size: 0.98rem;
-}
-
-@media (max-width: 980px) {
+@media (max-width: 900px) {
   .open-call-page {
-    padding: 96px 18px 56px;
+    padding: 120px 20px 64px;
   }
 
-  .open-call-summary {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .open-call-layout {
+  .open-call-hero {
     grid-template-columns: 1fr;
+    max-width: 640px;
+    gap: 36px;
   }
 
-  .open-call-sidebar {
-    position: static;
+  .open-call-lead,
+  .open-call-invitation {
+    font-size: 16px;
   }
 }
 
-@media (max-width: 560px) {
-  .open-call-summary {
-    grid-template-columns: 1fr;
-  }
-
-  .open-call-summary-item {
-    min-height: 0;
+@media (max-width: 480px) {
+  .open-call-actions {
+    flex-direction: column;
   }
 }
 </style>
