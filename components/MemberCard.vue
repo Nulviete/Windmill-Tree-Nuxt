@@ -82,7 +82,6 @@ const onTap = (e) => {
   height: 457px;
   border-radius: 22px;
   border: 1px solid rgba(17, 153, 40, 0.24);
-  cursor: pointer;
   background: #102016;
   box-shadow: 0 18px 46px rgba(22, 32, 19, 0.16);
   transition:
