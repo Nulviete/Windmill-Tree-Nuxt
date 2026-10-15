@@ -10,7 +10,7 @@
         <div class="footer-left self-center">
           <img :src="footerLogo" alt="Windmill Tree Foundation" class="footer-logo">
           <p style="margin-top: -10px;">
-            M. Kopernika str 2 / 1U,   <br>
+            M. Kopernika str 2/1U,   <br>
             58-500 Jelenia Góra,  <br>
             Poland
           </p>
