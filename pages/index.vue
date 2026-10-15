@@ -567,7 +567,7 @@ onUnmounted(() => {
 });
 
 usePageSeo({
-  title: "Windmill Tree Foundation | Youth, Inclusion and International Projects",
+  title: "Windmill Tree Foundation | Non formal education, art, ecology, community",
   description:
     "Windmill Tree Foundation supports youth, inclusion, refugee communities, international exchange, volunteering, and creative education projects in Poland and beyond.",
   image: "/hero/hero_second_ver.webp",
