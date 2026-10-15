@@ -74,6 +74,14 @@ const members = computed(() =>
   Array.isArray(data.value?.data) ? data.value.data : []
 );
 
+const byCreatedAtDesc = (a, b) => {
+  const dateA = Date.parse(a.created_at);
+  const dateB = Date.parse(b.created_at);
+  if (Number.isNaN(dateA)) return Number.isNaN(dateB) ? 0 : 1;
+  if (Number.isNaN(dateB)) return -1;
+  return dateB - dateA;
+};
+
 const sections = computed(() =>
   [
     {
@@ -107,12 +115,16 @@ const sections = computed(() =>
       id: "current-volunteers",
       kicker: "Long-term volunteers",
       title: "Current",
-      members: members.value.filter((member) => member.status === "present"),
+      members: members.value
+        .filter((member) => member.status === "present")
+        .sort(byCreatedAtDesc),
     },
     {
       id: "past-volunteers",
       title: "Past",
-      members: members.value.filter((member) => member.status === "past"),
+      members: members.value
+        .filter((member) => member.status === "past")
+        .sort(byCreatedAtDesc),
     },
     {
       id: "partner-volunteers",
