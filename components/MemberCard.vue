@@ -255,6 +255,10 @@ const onTap = (e) => {
     font-size: 13px;
   }
 
+  .member-country img {
+    height: 18px;
+  }
+
   .overlay {
     padding: 8px;
   }
