@@ -18,7 +18,12 @@
       <div class="name-row">
         <span>{{ member.name }}</span>
         <span v-if="member.position=='volunteer' || member.position=='partnerVolunteer'" class="member-country">
-          <img :src="`/country_flag/${member.country}_wave.png`" alt="" class="block h-8 w-auto shrink-0">
+          <img
+            :src="`/country_flag/${member.country}_wave.png`"
+            :class="{ 'flag-it': member.country?.toLowerCase() === 'it' }"
+            alt=""
+            class="block h-8 w-auto shrink-0"
+          >
           <span class="uppercase">{{ member.country}}</span>
         </span>
       </div>
@@ -132,6 +137,11 @@ const onTap = (e) => {
   align-items: center;
   gap: 4px;
   flex-shrink: 0;
+}
+
+.member-country img.flag-it {
+  transform: scale(1.25);
+  margin-inline: 3px;
 }
 
 .overlay {
