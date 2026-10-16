@@ -107,11 +107,6 @@ const sections = computed(() =>
       members: members.value.filter((member) => member.position === "creative"),
     },
     {
-      id: "mental-support",
-      title: "Mental Support",
-      members: members.value.filter((member) => member.position === "mental"),
-    },
-    {
       id: "current-volunteers",
       kicker: "Long-term volunteers",
       title: "Current",
@@ -133,6 +128,11 @@ const sections = computed(() =>
         (member) => member.position === "partnerVolunteer"
       ),
     },
+    {
+      id: "mental-support",
+      title: "Mental Support",
+      members: members.value.filter((member) => member.position === "mental"),
+    }
   ].filter((section) => section.members.length)
 );
 
