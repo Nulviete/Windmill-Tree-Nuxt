@@ -20,10 +20,11 @@
         <span v-if="member.position=='volunteer' || member.position=='partnerVolunteer'" class="member-country">
           <img
             :src="`/country_flag/${member.country}_wave.png`"
-            @error="setFallbackFlag($event, member.country)"
-            :class="{ 'flag-it': member.country?.toLowerCase() === 'it' }"
+            :class="{ 'flag-it': member.country?.toLowerCase() === 'it',
+                      'flag-br' : member.country?.toLowerCase() === 'br'
+             }"
             alt=""
-            class="block h-8 w-auto shrink-0"
+            class="block h-[32px] w-auto shrink-0"
           >
           <span class="uppercase">{{ member.country}}</span>
         </span>
@@ -67,16 +68,6 @@ const props = defineProps({ member: Object, open: Boolean })
 const emit = defineEmits(['toggle'])
 
 const isTouch = ref(false)
-
-const setFallbackFlag = (event, country) => {
-  const img = event.target
-  const fallback = `/country_flag/${country}.webp`
-
-  // Do not retry if the fallback image also fails to load.
-  if (img.getAttribute('src') !== fallback) {
-    img.src = fallback
-  }
-}
 
 onMounted(() => {
   isTouch.value = window.matchMedia('(hover: none)').matches
@@ -151,6 +142,10 @@ const onTap = (e) => {
 }
 
 .member-country img.flag-it {
+  transform: scale(1.25);
+  margin-inline: 3px;
+}
+.member-country img.flag-br {
   transform: scale(1.25);
   margin-inline: 3px;
 }
